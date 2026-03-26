@@ -526,14 +526,23 @@
 
       .setup-steps {
         max-width: 100%;
+        overflow: hidden;
+      }
+
+      .step {
+        gap: 12px;
       }
 
       .code-block {
-        padding: 20px 40px 20px 16px;
+        padding: 16px 36px 16px 12px;
+        max-width: calc(100vw - 48px - 44px);
       }
 
       .code-block code {
-        font-size: 12px;
+        font-size: 11px;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
       }
     }
   </style>
