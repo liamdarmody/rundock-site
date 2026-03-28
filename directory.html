@@ -3,8 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Directory: Agents, skills, and packs for Claude Code | Rundock</title>
-  <meta name="description" content="Browse agents, skills, and starter packs for Claude Code. Community-built, open source.">
+  <title>Directory: Agents, skills, packs, and resources for Claude Code | Rundock</title>
+  <meta name="description" content="Browse agents, skills, packs, and resources for Claude Code. Community-built, open source.">
+  <meta property="og:title" content="Directory: Agents, skills, packs, and resources for Claude Code | Rundock">
+  <meta property="og:description" content="Browse agents, skills, packs, and resources for Claude Code. Community-built, open source.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rundock.ai/directory">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Directory: Agents, skills, packs, and resources for Claude Code | Rundock">
+  <meta name="twitter:description" content="Browse agents, skills, packs, and resources for Claude Code. Community-built, open source.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta name="theme-color" content="#1A1A1A">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +32,10 @@
       --success: #6BC67E;
       --working: #7AA2E8;
       --idle: #7A756E;
+      --cat-agent: #7AA2E8;
+      --cat-skill: #6BC67E;
+      --cat-pack: #A78BDB;
+      --cat-resource: #D4C472;
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -46,10 +57,22 @@
     header { padding: 24px 0; border-bottom: 1px solid var(--border); }
     header .container { display: flex; align-items: center; justify-content: space-between; }
     .logo { font-size: 18px; font-weight: 700; color: var(--text-1); text-decoration: none; letter-spacing: -0.02em; }
-    .header-nav { display: flex; align-items: center; gap: 24px; }
-    .header-link { color: var(--text-2); text-decoration: none; font-size: 14px; font-weight: 500; }
-    .header-link:hover { color: var(--text-1); }
-    .header-link.active { color: var(--text-1); }
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--accent);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 7px 18px;
+      border-radius: 6px;
+      border: 1px solid var(--accent);
+      text-decoration: none;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .btn-secondary:hover { background: var(--accent); color: #FFFFFF; }
 
     /* Page header */
     .page-header { padding: 72px 0 32px; text-align: center; }
@@ -102,7 +125,11 @@
       white-space: nowrap;
     }
     .filter-pill:hover { color: var(--text-1); border-color: var(--text-2); }
-    .filter-pill.active { color: var(--accent); border-color: var(--accent); background: var(--accent-glow); }
+    .filter-pill.active { color: var(--accent); border-color: var(--accent); background: rgba(232,122,90,0.12); }
+    .filter-pill.active[data-filter="agent"] { color: var(--cat-agent); border-color: var(--cat-agent); background: rgba(122,162,232,0.12); }
+    .filter-pill.active[data-filter="skill"] { color: var(--cat-skill); border-color: var(--cat-skill); background: rgba(107,198,126,0.12); }
+    .filter-pill.active[data-filter="pack"] { color: var(--cat-pack); border-color: var(--cat-pack); background: rgba(167,139,219,0.12); }
+    .filter-pill.active[data-filter="resource"] { color: var(--cat-resource); border-color: var(--cat-resource); background: rgba(212,196,114,0.12); }
 
     .results-count { padding: 0 0 20px; font-size: 13px; color: var(--text-2); }
 
@@ -161,10 +188,10 @@
       padding: 2px 7px;
       flex-shrink: 0;
     }
-    .type-agent { color: var(--working); border: 1px solid rgba(122,162,232,0.4); }
-    .type-skill { color: var(--success); border: 1px solid rgba(107,198,126,0.4); }
-    .type-pack { color: var(--accent); border: 1px solid rgba(232,122,90,0.4); }
-    .type-list { color: var(--idle); border: 1px solid rgba(122,117,110,0.5); }
+    .type-agent { color: var(--cat-agent); border: 1px solid rgba(122,162,232,0.4); }
+    .type-skill { color: var(--cat-skill); border: 1px solid rgba(107,198,126,0.4); }
+    .type-pack { color: var(--cat-pack); border: 1px solid rgba(167,139,219,0.4); }
+    .type-resource { color: var(--cat-resource); border: 1px solid rgba(212,196,114,0.4); }
 
     .dir-card-author {
       font-size: 12px;
@@ -255,11 +282,11 @@
     .footer-credit a:hover { color: var(--text-1); }
 
     /* Responsive */
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       .dir-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 680px) {
       .page-header { padding: 52px 0 24px; }
       .page-header h1 { font-size: 28px; }
       .page-header p { font-size: 15px; }
@@ -275,17 +302,14 @@
   <header>
     <div class="container">
       <a href="/" class="logo">Rundock</a>
-      <nav class="header-nav">
-        <a href="/directory" class="header-link active">Directory</a>
-        <a href="https://github.com/liamdarmody/rundock" class="header-link" target="_blank" rel="noopener">GitHub</a>
-      </nav>
+      <a href="https://github.com/liamdarmody/rundock-site/issues/new?template=directory-submission.md" class="btn-secondary" target="_blank" rel="noopener">Add to directory</a>
     </div>
   </header>
 
   <div class="container">
     <div class="page-header">
       <h1>Directory</h1>
-      <p>Agents, skills, and starter packs for Claude Code. Open source, community-built.</p>
+      <p>Agents, skills, packs, and resources for Claude Code. Open source, community-built.</p>
     </div>
 
     <div class="controls">
@@ -295,7 +319,7 @@
         <button class="filter-pill" data-filter="agent">Agents</button>
         <button class="filter-pill" data-filter="skill">Skills</button>
         <button class="filter-pill" data-filter="pack">Packs</button>
-        <button class="filter-pill" data-filter="list">Lists</button>
+        <button class="filter-pill" data-filter="resource">Resources</button>
       </div>
     </div>
 
@@ -359,8 +383,16 @@ const DIRECTORY = [
     tags: ["official", "skills-standard", "documents"]
   },
   {
+    name: "Claude Code Ultimate Guide",
+    type: "resource",
+    author: "FlorianBruniaux",
+    repo: "https://github.com/FlorianBruniaux/claude-code-ultimate-guide",
+    description: "Comprehensive guide with 16 specialised chapters, 219 production-ready templates, a 17-tool MCP server, security hardening patterns, and a 271-question quiz.",
+    tags: ["guide", "templates", "security"]
+  },
+  {
     name: "Awesome Subagents",
-    type: "list",
+    type: "resource",
     author: "VoltAgent",
     repo: "https://github.com/VoltAgent/awesome-claude-code-subagents",
     description: "Curated list of 100+ subagent files organised by category: core development, language specialists, infrastructure, and quality.",
@@ -416,7 +448,7 @@ const DIRECTORY = [
   },
   {
     name: "Awesome Claude Code",
-    type: "list",
+    type: "resource",
     author: "hesreallyhim",
     repo: "https://github.com/hesreallyhim/awesome-claude-code",
     description: "Community-maintained curated list of skills, hooks, slash commands, agent orchestrators, applications, and plugins for Claude Code.",
@@ -464,6 +496,14 @@ function render() {
 
   countEl.textContent = items.length + (items.length === 1 ? ' result' : ' results');
 
+  const ctaCard = `
+    <a href="https://github.com/liamdarmody/rundock-site/issues/new?template=directory-submission.md" class="dir-card-cta" target="_blank" rel="noopener">
+      <svg class="dir-card-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      <div class="dir-card-cta-title">Add yours</div>
+      <div class="dir-card-cta-desc">Built an agent, skill, or pack for Claude Code? Submit it to the directory.</div>
+    </a>
+  `;
+
   if (!items.length) {
     grid.innerHTML = '<div class="dir-empty">No entries match your search.</div>' + ctaCard;
     return;
@@ -480,14 +520,6 @@ function render() {
       <div class="dir-card-tags">${d.tags.map(t => `<span class="dir-tag${t === activeTag ? ' active' : ''}" data-tag="${t}">${t}</span>`).join('')}</div>
     </a>
   `).join('');
-
-  const ctaCard = `
-    <a href="https://github.com/liamdarmody/rundock-site/issues/new?template=directory-submission.md" class="dir-card-cta" target="_blank" rel="noopener">
-      <svg class="dir-card-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-      <div class="dir-card-cta-title">Add yours</div>
-      <div class="dir-card-cta-desc">Built an agent, skill, or pack for Claude Code? Submit it to the directory.</div>
-    </a>
-  `;
 
   grid.innerHTML = cards + ctaCard;
 }
