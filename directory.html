@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Directory: Agents, skills, and packs for Claude Code | Rundock</title>
+  <meta name="description" content="Browse agents, skills, and starter packs for Claude Code. Community-built, open source.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --base: #1A1A1A;
+      --surface: #212121;
+      --elevated: #272727;
+      --card: #333333;
+      --border: #3D3D3D;
+      --text-1: #F0EDE8;
+      --text-2: #9A9590;
+      --accent: #E87A5A;
+      --accent-hover: #F09070;
+      --accent-glow: rgba(232,122,90,0.12);
+      --success: #6BC67E;
+      --working: #7AA2E8;
+      --idle: #7A756E;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--base);
+      color: var(--text-1);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    header { padding: 24px 0; border-bottom: 1px solid var(--border); }
+    header .container { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 18px; font-weight: 700; color: var(--text-1); text-decoration: none; letter-spacing: -0.02em; }
+    .header-nav { display: flex; align-items: center; gap: 24px; }
+    .header-link { color: var(--text-2); text-decoration: none; font-size: 14px; font-weight: 500; }
+    .header-link:hover { color: var(--text-1); }
+    .header-link.active { color: var(--text-1); }
+
+    /* Page header */
+    .page-header { padding: 72px 0 32px; text-align: center; }
+    .page-header h1 {
+      font-size: 36px; font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.03em; margin-bottom: 12px;
+    }
+    .page-header p {
+      color: var(--text-2); font-size: 17px; line-height: 1.7;
+      max-width: 520px; margin: 0 auto;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex; align-items: center; gap: 12px;
+      padding: 28px 0 12px;
+    }
+
+    .search-input {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px 10px 38px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text-1);
+      outline: none;
+      transition: border-color 0.15s ease;
+      background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239A9590' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 12px center;
+    }
+    .search-input::placeholder { color: var(--text-2); }
+    .search-input:focus { border-color: var(--text-2); }
+
+    .filter-pills { display: flex; gap: 6px; flex-shrink: 0; }
+
+    .filter-pill {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .filter-pill:hover { color: var(--text-1); border-color: var(--text-2); }
+    .filter-pill.active { color: var(--accent); border-color: var(--accent); background: var(--accent-glow); }
+
+    .results-count { padding: 0 0 20px; font-size: 13px; color: var(--text-2); }
+
+    .dir-tag.active {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-glow);
+    }
+
+    /* Directory grid: 3 columns */
+    .dir-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding-bottom: 72px;
+    }
+
+    /* Card */
+    .dir-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s ease;
+    }
+    .dir-card:hover { border-color: var(--text-2); }
+
+    .dir-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .dir-card-name {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-1);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .dir-card:hover .dir-card-name { color: var(--accent); }
+
+    .dir-card-type {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 100px;
+      padding: 2px 7px;
+      flex-shrink: 0;
+    }
+    .type-agent { color: var(--working); border: 1px solid rgba(122,162,232,0.4); }
+    .type-skill { color: var(--success); border: 1px solid rgba(107,198,126,0.4); }
+    .type-pack { color: var(--accent); border: 1px solid rgba(232,122,90,0.4); }
+    .type-list { color: var(--idle); border: 1px solid rgba(122,117,110,0.5); }
+
+    .dir-card-author {
+      font-size: 12px;
+      color: var(--text-2);
+      margin-bottom: 10px;
+    }
+
+    .dir-card-desc {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--text-2);
+      flex: 1;
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .dir-card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+
+    .dir-tag {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-2);
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 2px 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .dir-tag:hover { color: var(--text-1); border-color: var(--text-2); }
+
+    /* Empty state */
+    .dir-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-2);
+      font-size: 15px;
+    }
+
+    /* CTA card */
+    .dir-card-cta {
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s ease;
+      min-height: 180px;
+    }
+    .dir-card-cta:hover { border-color: var(--text-2); }
+    .dir-card-cta-icon {
+      width: 32px; height: 32px;
+      color: var(--text-2);
+      margin-bottom: 12px;
+      transition: color 0.15s ease;
+    }
+    .dir-card-cta:hover .dir-card-cta-icon { color: var(--accent); }
+    .dir-card-cta-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-1);
+      margin-bottom: 4px;
+    }
+    .dir-card-cta-desc {
+      font-size: 12px;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 40px 0; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .footer-brand { font-size: 16px; font-weight: 700; color: var(--text-1); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: var(--text-2); text-decoration: none; font-size: 14px; }
+    .footer-links a:hover { color: var(--text-1); }
+    .footer-credit { font-size: 13px; color: var(--text-2); }
+    .footer-credit a { color: var(--text-2); text-decoration: underline; text-underline-offset: 2px; }
+    .footer-credit a:hover { color: var(--text-1); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .dir-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .page-header { padding: 52px 0 24px; }
+      .page-header h1 { font-size: 28px; }
+      .page-header p { font-size: 15px; }
+      .controls { flex-direction: column; align-items: stretch; }
+      .filter-pills { flex-wrap: wrap; }
+      .dir-grid { grid-template-columns: 1fr; }
+      .footer-top { flex-wrap: wrap; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <a href="/" class="logo">Rundock</a>
+      <nav class="header-nav">
+        <a href="/directory" class="header-link active">Directory</a>
+        <a href="https://github.com/liamdarmody/rundock" class="header-link" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Directory</h1>
+      <p>Agents, skills, and starter packs for Claude Code. Open source, community-built.</p>
+    </div>
+
+    <div class="controls">
+      <input type="text" class="search-input" id="search" placeholder="Search by name, author, or tag...">
+      <div class="filter-pills">
+        <button class="filter-pill active" data-filter="all">All</button>
+        <button class="filter-pill" data-filter="agent">Agents</button>
+        <button class="filter-pill" data-filter="skill">Skills</button>
+        <button class="filter-pill" data-filter="pack">Packs</button>
+        <button class="filter-pill" data-filter="list">Lists</button>
+      </div>
+    </div>
+
+    <div class="results-count" id="results-count"></div>
+    <div class="dir-grid" id="dir-grid"></div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <span class="footer-brand">Rundock</span>
+        <div class="footer-links">
+          <a href="https://github.com/liamdarmody/rundock" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://github.com/liamdarmody/rundock/issues" target="_blank" rel="noopener">Send feedback</a>
+        </div>
+      </div>
+      <p class="footer-credit">Built by <a href="https://www.linkedin.com/in/liamdarmody/" target="_blank" rel="noopener">Liam Darmody</a></p>
+    </div>
+  </footer>
+
+<script>
+const DIRECTORY = [
+  {
+    name: "Dex",
+    type: "pack",
+    author: "davekilleen",
+    repo: "https://github.com/davekilleen/Dex",
+    description: "A personal operating system built on Claude Code. Named agent, vault structure for notes, meetings, tasks, and people, MCP integrations, and distributable skills.",
+    tags: ["personal-os", "knowledge-management", "productivity"]
+  },
+  {
+    name: "gstack",
+    type: "pack",
+    author: "garrytan",
+    repo: "https://github.com/garrytan/gstack",
+    description: "A software factory that turns Claude Code into a virtual engineering team. 28 slash-command skills covering the full sprint lifecycle: plan, build, review, QA, security audit, ship, and retro.",
+    tags: ["engineering", "software-development", "devops"]
+  },
+  {
+    name: "Carl's Product OS",
+    type: "pack",
+    author: "carlvellotti",
+    repo: "https://github.com/carlvellotti/carls-product-os",
+    description: "A personal operating system template for product managers. Structured around projects, workflows, tasks, and knowledge, with blank and example workspaces plus a starter skill.",
+    tags: ["personal-os", "product-management", "templates"]
+  },
+  {
+    name: "PM Brain",
+    type: "agent",
+    author: "andreaskelm",
+    repo: "https://github.com/andreaskelm/pm-brain",
+    description: "A git-versioned product management system with an AI coaching agent. Stakeholder avatars, political landscape mapping, a learning system, and Brier-score forecast tracking.",
+    tags: ["product-management", "ai-coaching", "strategy"]
+  },
+  {
+    name: "Anthropic Skills",
+    type: "pack",
+    author: "anthropics",
+    repo: "https://github.com/anthropics/skills",
+    description: "Anthropic's official skills library. 17+ skills across creative, technical, and enterprise categories, including document skills for DOCX, PDF, PPTX, and XLSX creation.",
+    tags: ["official", "skills-standard", "documents"]
+  },
+  {
+    name: "Awesome Subagents",
+    type: "list",
+    author: "VoltAgent",
+    repo: "https://github.com/VoltAgent/awesome-claude-code-subagents",
+    description: "Curated list of 100+ subagent files organised by category: core development, language specialists, infrastructure, and quality.",
+    tags: ["curated-list", "subagents", "engineering"]
+  },
+  {
+    name: "Claude OS",
+    type: "pack",
+    author: "knnymrls",
+    repo: "https://github.com/knnymrls/claude-os",
+    description: "Turns Claude Code into a persistent life assistant with cross-session memory, habit tracking, daily briefings, and brain dumps. CLAUDE.md-driven with a structured vault.",
+    tags: ["personal-os", "memory", "habits"]
+  },
+  {
+    name: "Vizra Agents",
+    type: "pack",
+    author: "vizra-ai",
+    repo: "https://github.com/vizra-ai/claude-code-agents",
+    description: "59 specialised agents spanning development, marketing, and architecture that Claude Code auto-delegates to based on task context.",
+    tags: ["subagents", "auto-delegation", "full-stack"]
+  },
+  {
+    name: "Agent Plugins",
+    type: "pack",
+    author: "wshobson",
+    repo: "https://github.com/wshobson/agents",
+    description: "99 agents, 107 skills, and 15 multi-agent workflow orchestrators bundled into 67 focused plugins. Preset team configurations for code review, debugging, and feature development.",
+    tags: ["orchestration", "multi-agent", "plugins"]
+  },
+  {
+    name: "Claude Skills Library",
+    type: "pack",
+    author: "alirezarezvani",
+    repo: "https://github.com/alirezarezvani/claude-skills",
+    description: "205 production-ready skills across 9 domains: engineering, marketing, product, compliance, and C-level advisory. Cross-platform with Codex, Gemini CLI, and Cursor.",
+    tags: ["skills", "cross-platform", "enterprise"]
+  },
+  {
+    name: "Skill Factory",
+    type: "skill",
+    author: "alirezarezvani",
+    repo: "https://github.com/alirezarezvani/claude-code-skill-factory",
+    description: "Interactive toolkit for generating production-ready skills, agents, slash commands, and hooks at scale via guided question flows.",
+    tags: ["scaffold", "generator", "slash-commands"]
+  },
+  {
+    name: "Hex Skills",
+    type: "pack",
+    author: "levnikolaevich",
+    repo: "https://github.com/levnikolaevich/claude-code-skills",
+    description: "Skills covering the full Agile delivery lifecycle, bundled with three custom MCP servers: hash-verified editing, code knowledge graph, and remote SSH.",
+    tags: ["agile", "mcp-servers", "engineering"]
+  },
+  {
+    name: "Awesome Claude Code",
+    type: "list",
+    author: "hesreallyhim",
+    repo: "https://github.com/hesreallyhim/awesome-claude-code",
+    description: "Community-maintained curated list of skills, hooks, slash commands, agent orchestrators, applications, and plugins for Claude Code.",
+    tags: ["curated-list", "hooks", "slash-commands"]
+  },
+  {
+    name: "Claude Plugins",
+    type: "pack",
+    author: "anthropics",
+    repo: "https://github.com/anthropics/claude-plugins-official",
+    description: "Anthropic's managed directory of vetted plugins: feature-dev, frontend-design, CLAUDE.md management, skill-creator, and a reference implementation.",
+    tags: ["official", "anthropic", "plugins"]
+  },
+  {
+    name: "Everything Claude Code",
+    type: "pack",
+    author: "affaan-m",
+    repo: "https://github.com/affaan-m/everything-claude-code",
+    description: "Agent harness combining skills, instincts, memory, security rules, and research-first development patterns. Cross-platform with OpenCode support.",
+    tags: ["harness", "memory", "cross-platform"]
+  }
+];
+
+const grid = document.getElementById('dir-grid');
+const countEl = document.getElementById('results-count');
+const searchInput = document.getElementById('search');
+const filterBtns = document.querySelectorAll('.filter-pill');
+let activeFilter = 'all';
+let activeTag = null;
+
+function render() {
+  const q = searchInput.value.toLowerCase().trim();
+  let items = activeFilter === 'all' ? DIRECTORY : DIRECTORY.filter(d => d.type === activeFilter);
+  if (q) {
+    items = items.filter(d =>
+      d.name.toLowerCase().includes(q) ||
+      d.description.toLowerCase().includes(q) ||
+      d.author.toLowerCase().includes(q) ||
+      d.tags.some(t => t.includes(q))
+    );
+  }
+  if (activeTag) {
+    items = items.filter(d => d.tags.includes(activeTag));
+  }
+
+  countEl.textContent = items.length + (items.length === 1 ? ' result' : ' results');
+
+  if (!items.length) {
+    grid.innerHTML = '<div class="dir-empty">No entries match your search.</div>' + ctaCard;
+    return;
+  }
+
+  const cards = items.map(d => `
+    <a href="${d.repo}" class="dir-card" target="_blank" rel="noopener">
+      <div class="dir-card-header">
+        <span class="dir-card-name">${d.name}</span>
+        <span class="dir-card-type type-${d.type}">${d.type}</span>
+      </div>
+      <div class="dir-card-author">${d.author}</div>
+      <div class="dir-card-desc">${d.description}</div>
+      <div class="dir-card-tags">${d.tags.map(t => `<span class="dir-tag${t === activeTag ? ' active' : ''}" data-tag="${t}">${t}</span>`).join('')}</div>
+    </a>
+  `).join('');
+
+  const ctaCard = `
+    <a href="https://github.com/liamdarmody/rundock-site/issues/new?template=directory-submission.md" class="dir-card-cta" target="_blank" rel="noopener">
+      <svg class="dir-card-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      <div class="dir-card-cta-title">Add yours</div>
+      <div class="dir-card-cta-desc">Built an agent, skill, or pack for Claude Code? Submit it to the directory.</div>
+    </a>
+  `;
+
+  grid.innerHTML = cards + ctaCard;
+}
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    render();
+  });
+});
+
+searchInput.addEventListener('input', render);
+
+document.addEventListener('click', (e) => {
+  const tag = e.target.closest('.dir-tag');
+  if (tag) {
+    e.preventDefault();
+    e.stopPropagation();
+    const clicked = tag.dataset.tag;
+    activeTag = (activeTag === clicked) ? null : clicked;
+    render();
+  }
+});
+
+render();
+</script>
+</body>
+</html>

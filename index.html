@@ -84,6 +84,12 @@
       letter-spacing: -0.02em;
     }
 
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
     .header-link {
       color: var(--text-2);
       text-decoration: none;
@@ -560,7 +566,10 @@
   <header>
     <div class="container">
       <a href="/" class="logo">Rundock</a>
-      <a href="https://github.com/liamdarmody/rundock" class="header-link" target="_blank" rel="noopener">GitHub</a>
+      <nav class="header-nav">
+        <a href="/directory" class="header-link">Directory</a>
+        <a href="https://github.com/liamdarmody/rundock" class="header-link" target="_blank" rel="noopener">GitHub</a>
+      </nav>
     </div>
   </header>
 
