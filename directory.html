@@ -203,15 +203,16 @@
       font-size: 13px;
       line-height: 1.55;
       color: var(--text-2);
-      flex: 1;
+      flex: 1 1 auto;
       margin-bottom: 14px;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      max-height: calc(3 * 1.55 * 13px);
     }
 
-    .dir-card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .dir-card-tags { display: flex; flex-wrap: nowrap; gap: 4px; overflow: hidden; }
 
     .dir-tag {
       font-size: 10px;
@@ -223,6 +224,8 @@
       padding: 2px 8px;
       cursor: pointer;
       transition: all 0.15s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .dir-tag:hover { color: var(--text-1); border-color: var(--text-2); }
 
