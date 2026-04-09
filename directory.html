@@ -209,10 +209,9 @@
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      max-height: calc(3 * 1.55 * 13px);
     }
 
-    .dir-card-tags { display: flex; flex-wrap: nowrap; gap: 4px; overflow: hidden; }
+    .dir-card-tags { display: flex; flex-wrap: wrap; gap: 5px; overflow: hidden; height: 46px; align-content: flex-start; }
 
     .dir-tag {
       font-size: 10px;
@@ -251,7 +250,8 @@
       text-decoration: none;
       color: inherit;
       transition: border-color 0.15s ease;
-      min-height: 180px;
+      min-height: 220px;
+      align-self: start;
     }
     .dir-card-cta:hover { border-color: var(--text-2); }
     .dir-card-cta-icon {
@@ -522,6 +522,10 @@ const filterBtns = document.querySelectorAll('.filter-pill');
 let activeFilter = 'all';
 let activeTag = null;
 
+function tagLabel(slug) {
+  return slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
 function render() {
   const q = searchInput.value.toLowerCase().trim();
   let items = activeFilter === 'all' ? DIRECTORY : DIRECTORY.filter(d => d.type === activeFilter);
@@ -560,7 +564,7 @@ function render() {
       </div>
       <div class="dir-card-author">${d.author}</div>
       <div class="dir-card-desc">${d.description}</div>
-      <div class="dir-card-tags">${d.tags.map(t => `<span class="dir-tag${t === activeTag ? ' active' : ''}" data-tag="${t}">${t}</span>`).join('')}</div>
+      <div class="dir-card-tags">${d.tags.map(t => `<span class="dir-tag${t === activeTag ? ' active' : ''}" data-tag="${t}">${tagLabel(t)}</span>`).join('')}</div>
     </a>
   `).join('');
 
