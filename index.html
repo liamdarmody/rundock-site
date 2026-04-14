@@ -20,6 +20,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Rundock",
+    "description": "Get a team of AI agents built around your actual work. Point Rundock at your workspace and start delegating. No coding, no configuration.",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "macOS",
+    "url": "https://rundock.ai",
+    "downloadUrl": "https://github.com/liamdarmody/rundock/releases/latest",
+    "softwareVersion": "0.8.3",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Liam Darmody",
+      "url": "https://www.linkedin.com/in/liamdarmody/"
+    }
+  }
+  </script>
   <style>
     :root {
       --base: #1A1A1A;
@@ -41,6 +64,12 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
     }
 
     html {
@@ -125,6 +154,29 @@
       background-color: var(--accent-hover);
     }
 
+    /* Button size modifiers */
+    .btn-lg {
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 8px;
+    }
+
+    .btn-sm {
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 6px;
+    }
+
+    /* Shared section lead paragraph (wide centred body copy) */
+    .section-lead {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 17px;
+      text-align: center;
+    }
+
     /* Sections */
     section {
       padding: 80px 0;
@@ -198,7 +250,21 @@
       background: var(--accent-glow);
     }
 
-    .hero .btn-primary {
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .hero-requirements {
+      color: var(--text-2);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-align: center;
+      margin-top: 4px;
       margin-bottom: 48px;
     }
 
@@ -313,6 +379,7 @@
     }
 
     .getting-started h2 {
+      /* Override: 32px to match wall-of-love (content-heavy sections need more breathing room than the global 24px) */
       margin-bottom: 32px;
     }
 
@@ -446,6 +513,18 @@
       font-style: italic;
     }
 
+    .step-content .step-download {
+      margin-top: 12px;
+    }
+
+    .step-content .step-requirements {
+      margin-top: 6px;
+      color: var(--text-2);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
     .step .code-block {
       margin: 12px 0 12px;
       max-width: 100%;
@@ -571,6 +650,132 @@
         -webkit-overflow-scrolling: touch;
       }
     }
+
+    /* Wall of Love */
+    .wall-of-love h2 {
+      /* Override: 32px to match getting-started section rhythm (content-heavy sections need more breathing room than the global 24px) */
+      margin-bottom: 32px;
+    }
+
+    .testimonial-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      flex: 0 1 300px;
+      min-width: 0;
+      max-width: 340px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 0;
+    }
+
+    .testimonial-grid.with-featured .testimonial-card {
+      flex: 0 1 460px;
+      max-width: 500px;
+      padding: 36px 40px;
+      gap: 24px;
+    }
+
+    .testimonial-card blockquote {
+      color: var(--text-1);
+      font-size: 15px;
+      line-height: 1.7;
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .testimonial-grid.with-featured .testimonial-card blockquote {
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .testimonial-attribution {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--surface);
+    }
+
+    .testimonial-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .testimonial-meta cite {
+      color: var(--text-1);
+      font-size: 14px;
+      font-weight: 600;
+      font-style: normal;
+      line-height: 1.2;
+    }
+
+    .testimonial-meta cite a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .testimonial-meta cite a:hover {
+      color: var(--accent-hover);
+    }
+
+    .testimonial-meta cite a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .testimonial-usage {
+      color: var(--text-2);
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .wall-cta {
+      text-align: center;
+      padding: 0 0 80px;
+    }
+
+    .wall-cta + section {
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .wall-of-love h2 {
+        margin-bottom: 24px;
+      }
+
+      .testimonial-card {
+        padding: 24px 26px;
+      }
+
+      .testimonial-grid.with-featured .testimonial-card {
+        padding: 30px 28px;
+      }
+
+      .testimonial-grid.with-featured .testimonial-card blockquote {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -582,14 +787,19 @@
     </div>
   </header>
 
+  <main>
+
   <!-- Hero -->
   <section class="hero">
     <div class="container">
       <span class="badge">Early access</span>
       <h1>Get your own AI team</h1>
       <p class="hero-subhead">Point Rundock at your workspace and get a team of AI agents built around what you do. A researcher, a writer, a strategist. They show up on an org chart and work together. No coding, no configuration.</p>
-      <a href="https://github.com/liamdarmody/rundock/releases/download/v0.8.3/Rundock-0.8.3-arm64.dmg" class="btn-primary" target="_blank" rel="noopener">Download for Mac</a>
-      <a href="https://github.com/liamdarmody/rundock" class="btn-secondary" target="_blank" rel="noopener" style="margin-left:12px;padding:14px 32px;font-size:16px;font-weight:600;border-radius:8px">View on GitHub</a>
+      <div class="hero-actions">
+        <a href="https://github.com/liamdarmody/rundock/releases/download/v0.8.3/Rundock-0.8.3-arm64.dmg" class="btn-primary" target="_blank" rel="noopener">Download for Mac</a>
+        <a href="https://github.com/liamdarmody/rundock" class="btn-secondary btn-lg" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+      <p class="hero-requirements">For Apple Silicon Macs (M1 or later)</p>
       <div class="screenshot"><img src="rundock-agent-team-org-chart.png" alt="Rundock org chart showing an AI agent team"></div>
     </div>
   </section>
@@ -648,7 +858,7 @@
   <section>
     <div class="container">
       <h2>No lock-in</h2>
-      <p style="max-width:680px;margin:0 auto;font-size:17px;text-align:center">Your agents and skills are standard Claude Code files. They work in Claude Code, Claude.ai, the Claude Agent SDK, and any tool that supports Anthropic's agent format. Rundock adds the team layer on top. If you stop using Rundock, your agents and skills go with you. No export needed.</p>
+      <p class="section-lead">Your agents and skills are standard Claude Code files. They work in Claude Code, Claude.ai, the Claude Agent SDK, and any tool that supports Anthropic's agent format. Rundock adds the team layer on top. If you stop using Rundock, your agents and skills go with you. No export needed.</p>
     </div>
   </section>
 
@@ -680,6 +890,29 @@
     </div>
   </section>
 
+  <!-- Wall of Love -->
+  <section class="wall-of-love" aria-label="User testimonials">
+    <div class="container">
+      <h2>What people are saying</h2>
+      <div class="testimonial-grid with-featured">
+        <figure class="testimonial-card">
+          <blockquote>Rundock removed the intimidation of Claude Code. You stop thinking in coding terms and start thinking in team terms. It's like having your own virtual team of highly paid experts, running in parallel. I've built my entire business DNA in the box.</blockquote>
+          <div class="testimonial-attribution">
+            <img class="testimonial-avatar" src="james-compton.jpeg" alt="James Compton" width="44" height="44">
+            <div class="testimonial-meta">
+              <cite><a href="https://www.linkedin.com/in/jamescomptonofficial/" target="_blank" rel="noopener noreferrer">James Compton</a></cite>
+              <span class="testimonial-usage">Uses Rundock 7 days a week, 2-3 hours a day</span>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="wall-cta">
+    <a href="https://github.com/liamdarmody/rundock/releases/download/v0.8.3/Rundock-0.8.3-arm64.dmg" class="btn-primary" target="_blank" rel="noopener">Download for Mac</a>
+  </div>
+
   <!-- Getting started -->
   <section class="getting-started">
     <div class="container">
@@ -700,7 +933,8 @@
           <div class="step-content">
             <h3>Download Rundock</h3>
             <p>Download the desktop app, drag it to Applications, and open it. Rundock checks for Claude Code on first launch.</p>
-            <p style="margin-top:12px"><a href="https://github.com/liamdarmody/rundock/releases/download/v0.8.3/Rundock-0.8.3-arm64.dmg" class="btn-primary" style="font-size:14px;padding:10px 24px" target="_blank" rel="noopener">Download for Mac (Apple Silicon)</a></p>
+            <p class="step-download"><a href="https://github.com/liamdarmody/rundock/releases/download/v0.8.3/Rundock-0.8.3-arm64.dmg" class="btn-primary btn-sm" target="_blank" rel="noopener">Download for Mac</a></p>
+            <p class="step-requirements">For Apple Silicon Macs (M1 or later)</p>
             <p class="skip" style="margin-top:12px">Prefer the terminal? <code style="background:var(--card);padding:2px 6px;border-radius:4px;font-size:13px">git clone https://github.com/liamdarmody/rundock.git && cd rundock && npm install && npm start</code></p>
           </div>
         </div>
@@ -726,6 +960,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -736,7 +972,7 @@
           <a href="https://github.com/liamdarmody/rundock/issues" target="_blank" rel="noopener">Send feedback</a>
         </div>
       </div>
-      <p class="footer-credit">Built by <a href="https://www.linkedin.com/in/liamdarmody/" target="_blank" rel="noopener">Liam Darmody</a></p>
+      <p class="footer-credit">Built by <a href="https://www.linkedin.com/in/liamdarmody/" target="_blank" rel="noopener noreferrer">Liam Darmody</a></p>
     </div>
   </footer>
 
