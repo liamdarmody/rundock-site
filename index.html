@@ -193,6 +193,13 @@
     .hero {
       padding: 100px 0 80px;
       text-align: center;
+      /* Contain horizontal bleed of `.screenshot::before` (width: 140%)
+         on mobile without putting `overflow-x` on <html> or <body>
+         (which would break `position: sticky` on the header).
+         `clip` is used over `hidden` so this section never becomes
+         a scroll container itself. The glow still bleeds visibly
+         past `.screenshot`'s box up to the viewport edges. */
+      overflow-x: clip;
     }
 
     .hero .badge {
@@ -294,6 +301,10 @@
     ===================================================== */
     .feature-section {
       padding: 80px 0;
+      /* Same rationale as `.hero`: contain `.screenshot-sm::before`
+         (width: 120%) bleed on mobile without affecting <html>/<body>
+         overflow (which would break sticky header). */
+      overflow-x: clip;
     }
 
     .feature-section-inner {

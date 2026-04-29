@@ -39,10 +39,21 @@
 }
 
 html {
-  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
+/* No `overflow-x: clip/hidden` on <html> or <body>:
+   - On <html>, `overflow-x: clip` establishes a scroll-containing
+     block, which silently breaks `position: sticky` on direct body
+     children (e.g. <header>) in Chromium *and* WebKit.
+   - On <body>, `overflow-x: hidden` doesn't reliably contain
+     `.screenshot::before` (width: 140%) on mobile, and `clip` on body
+     doesn't propagate to viewport — so the html element still
+     allows horizontal scroll.
+   Containment is applied per-section instead (see `.hero` and
+   `.feature-section` rules in each page's stylesheet), which keeps
+   the glow bleed visible past `.screenshot` while preventing the
+   page from scrolling horizontally on mobile. */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--base);
@@ -50,7 +61,6 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 /* === Typography === */
