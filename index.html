@@ -260,8 +260,15 @@
       max-width: 880px;
       margin: 0 auto;
       position: relative;
-      /* No overflow clipping: glow is allowed to bleed naturally beyond image bounds.
-         body { overflow-x: hidden } handles any page-level horizontal scroll. Matches live rundock.ai. */
+      aspect-ratio: 1947 / 1020;
+      /* aspect-ratio matches rundock-app-hero.png so the browser reserves the
+         correct space before the image loads. Without this, .screenshot collapses
+         to ~0 height pre-load, the ::before glow (positioned 50% top, 140% height)
+         renders against an interim parent size, and the glow appears in the wrong
+         place until image arrives. Cold-cache reproducer: hard-reload on slow
+         network and watch the glow snap into place when the image lands.
+         No overflow clipping: glow is allowed to bleed naturally beyond image bounds.
+         html { overflow-x: clip } handles any page-level horizontal scroll. */
     }
 
     .screenshot::before {
