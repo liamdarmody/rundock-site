@@ -114,12 +114,17 @@ section + section {
 }
 
 /* === Header chrome ===
-   Base header rule shared by both pages. Sticky positioning
-   is currently index-only and lives in index.html's embedded
-   block; directory adopts sticky in Des's next session. */
+   Sticky on both pages. background: var(--base) ensures the
+   solid nav masks content scrolling beneath it — no glass
+   on the nav, which avoids stacking context conflicts with
+   glass cards in the scroll layer below. */
 header {
   padding: 24px 0;
   border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--base);
+  z-index: 100;
 }
 
 header .container {

@@ -52,16 +52,6 @@
     ===================================================== */
 
     /* =====================================================
-       HEADER (sticky override; base rule in shared.css)
-    ===================================================== */
-    header {
-      position: sticky;
-      top: 0;
-      background: var(--base);
-      z-index: 100;
-    }
-
-    /* =====================================================
        BADGE
     ===================================================== */
     .badge {
@@ -1121,6 +1111,25 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
       }
+
+      /* MOBILE: DROP BLUR FOR PERFORMANCE
+         Backdrop-filter is GPU-expensive on low-end devices.
+         Remove blur and compensate with higher background opacity. */
+      .opt-b-grid .tcard {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(51, 51, 51, 0.92);
+      }
+      .pricing-col {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(33, 33, 33, 0.95);
+      }
+      .faq-item {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(33, 33, 33, 0.95);
+      }
     }
 
     @media (max-width: 480px) {
@@ -1284,6 +1293,23 @@
       line-height: 1.7;
       color: var(--text-2);
       margin: 0;
+    }
+
+    /* =====================================================
+       BACKDROP-FILTER FALLBACK
+       Browsers without backdrop-filter support get solid
+       surfaces so glass cards still read with contrast.
+    ===================================================== */
+    @supports not (backdrop-filter: blur(1px)) {
+      .opt-b-grid .tcard {
+        background: var(--card);
+      }
+      .pricing-col {
+        background: var(--surface);
+      }
+      .faq-item {
+        background: var(--surface);
+      }
     }
 
   </style>
