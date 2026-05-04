@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found · Rundock</title>
+  <meta name="description" content="The link is broken or the page has moved. Rundock probably still has what you're looking for somewhere else.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shared.css">
+  <style>
+    /* =====================================================
+       Page-specific styles for 404.html.
+       Tokens, header/footer chrome, and buttons live in
+       /css/shared.css.
+    ===================================================== */
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 96px 0;
+    }
+    .notfound {
+      max-width: 560px;
+      text-align: center;
+    }
+    .notfound .label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .notfound h1 {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-1);
+      margin: 0 0 16px;
+    }
+    .notfound p {
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--text-2);
+      margin: 0 0 28px;
+    }
+    .notfound-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      main { padding: 64px 0; }
+      .notfound h1 { font-size: 30px; }
+      .notfound p { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================
+       1. HEADER
+  ==================================================== -->
+  <header>
+    <div class="container">
+      <a href="/" class="logo">Rundock</a>
+      <a href="https://docs.rundock.ai" class="header-link">Docs</a>
+      <a href="https://github.com/liamdarmody/rundock" class="header-link" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <!-- ===================================================
+       2. NOT FOUND
+  ==================================================== -->
+  <main>
+    <div class="container">
+      <div class="notfound">
+        <span class="label">404</span>
+        <h1>This page doesn't exist</h1>
+        <p>The link is broken or the page has moved. Rundock probably still has what you're looking for somewhere else.</p>
+        <div class="notfound-ctas">
+          <a href="/" class="btn-primary">Back to Rundock</a>
+          <a href="https://docs.rundock.ai" class="btn-secondary">Read the docs</a>
+          <a href="https://github.com/liamdarmody/rundock" class="btn-secondary" target="_blank" rel="noopener">GitHub repo</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================================================
+       3. FOOTER
+  ==================================================== -->
+  <footer>
+    <div class="container">
+
+      <div class="footer-layout">
+
+        <!-- Brand column -->
+        <div class="footer-brand-col">
+          <a href="/" class="logo">Rundock</a>
+          <p class="footer-tagline">A visual interface for AI agent teams.<br>Built for people running their own businesses.</p>
+        </div>
+
+        <!-- Product column -->
+        <div>
+          <p class="footer-col-label">Product</p>
+          <div class="footer-col-links">
+            <a href="https://github.com/liamdarmody/rundock/releases/download/v0.8.8/Rundock-0.8.8-arm64.dmg" target="_blank" rel="noopener">Download Rundock</a>
+            <a href="https://docs.rundock.ai">Documentation</a>
+            <a href="https://github.com/liamdarmody/rundock" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://rundock.ai/directory" target="_blank" rel="noopener">Directory</a>
+            <a href="https://github.com/liamdarmody/rundock/issues" target="_blank" rel="noopener">Report an issue</a>
+          </div>
+        </div>
+
+        <!-- From Liam column -->
+        <div>
+          <p class="footer-col-label">From Liam</p>
+          <div class="footer-col-links">
+            <a href="https://liamdarmody.com/agents" target="_blank" rel="noopener">The Agent Kit</a>
+            <a href="https://liamdarmody.com/ai-scorecard/" target="_blank" rel="noopener">AI Readiness Scorecard</a>
+            <a href="https://liamdarmody.com/services" target="_blank" rel="noopener">Services</a>
+            <a href="https://linkedin.com/in/liamdarmody" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="footer-credit">
+        Built by <a href="https://www.linkedin.com/in/liamdarmody/" target="_blank" rel="noopener">Liam Darmody</a>.
+        &copy; 2026. Rundock is
+        <a href="https://github.com/liamdarmody/rundock/blob/main/LICENSE" target="_blank" rel="noopener">PolyForm Perimeter 1.0.0</a>.
+      </p>
+
+    </div>
+  </footer>
+
+</body>
+</html>
