@@ -1,1 +1,2 @@
 https://rundock.netlify.app/* https://rundock.ai/:splat 301!
+/docs/*  https://rundock.mintlify.app/:splat  200
