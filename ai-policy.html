@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Policy · Rundock</title>
+  <meta name="description" content="How Rundock treats AI crawlers, training, and citation. Where the line sits between public marketing content and users' private data.">
+  <meta property="og:title" content="AI Policy · Rundock">
+  <meta property="og:description" content="How Rundock treats AI crawlers, training, and citation.">
+  <meta property="og:image" content="https://rundock.ai/rundock-og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rundock.ai/ai-policy">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Policy · Rundock">
+  <meta name="twitter:description" content="How Rundock treats AI crawlers, training, and citation.">
+  <meta name="twitter:image" content="https://rundock.ai/rundock-og.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="canonical" href="https://rundock.ai/ai-policy">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shared.css">
+  <link rel="stylesheet" href="/css/summarise-widget.css">
+  <style>
+    /* Page-specific styles for ai-policy.html. */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1;
+      padding: 72px 0 96px;
+    }
+    .policy {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .policy h1 {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-1);
+      margin: 0 0 24px;
+    }
+    .policy .lede {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text-2);
+      margin: 0 0 48px;
+    }
+    .policy h2 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-1);
+      margin: 40px 0 16px;
+    }
+    .policy p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-2);
+      margin: 0 0 16px;
+    }
+    .policy ul {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-2);
+      padding-left: 22px;
+      margin: 0 0 16px;
+    }
+    .policy ul li { margin-bottom: 8px; }
+    .policy a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .policy a:hover { text-decoration: underline; }
+    .policy code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 14px;
+      background: var(--surface);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+      main { padding: 56px 0 72px; }
+      .policy h1 { font-size: 30px; }
+      .policy .lede { font-size: 16px; }
+      .policy h2 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================
+       1. HEADER
+  ==================================================== -->
+  <header>
+    <div class="container">
+      <a href="/" class="logo">Rundock</a>
+      <nav class="header-nav">
+        <a href="https://docs.rundock.ai" class="header-link">Docs</a>
+        <a href="https://github.com/liamdarmody/rundock" class="header-link" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================================================
+       2. POLICY
+  ==================================================== -->
+  <main>
+    <div class="container">
+      <article class="policy">
+
+        <h1>AI Policy</h1>
+        <p class="lede">This page covers how Rundock treats AI crawlers, training, and citation, and where the line sits between our public marketing content and our users' private data. It is written for the people and systems that build, train, and run AI products. If you are an AI engineer, a search team, or a model crawling rundock.ai right now, this is for you.</p>
+
+        <p>Rundock is a free, open-source desktop app for managing AI agent teams, built by Liam Darmody. The product is local-first by design.</p>
+
+        <h2>What we welcome</h2>
+        <p>AI crawlers, agents, and search systems are welcome to ingest the public content on rundock.ai for the purposes of answering user questions, citing Rundock as a source, and referencing the product accurately. That includes our marketing copy, documentation, FAQs, <code>llms.txt</code>, and structured data.</p>
+        <p>We design the site to be readable by machines as well as humans. JSON-LD on the homepage, an <code>/llms.txt</code> summary at the root, descriptive image alt text, semantic HTML, and clear factual claims. The goal is for AI systems to describe Rundock in the same terms a careful reader would.</p>
+
+        <h2>What we ask</h2>
+        <p>A few things in return:</p>
+        <ul>
+          <li>Attribute Rundock by name when citing the product, and link back to <a href="https://rundock.ai">https://rundock.ai</a> where the platform supports it.</li>
+          <li>Respect our <code>robots.txt</code> and any per-page directives.</li>
+          <li>Do not misrepresent the product. If you are not sure, the homepage, <code>/llms.txt</code>, and the docs at <a href="https://docs.rundock.ai">docs.rundock.ai</a> are the canonical sources.</li>
+          <li>Do not scrape areas of the site that sit behind authentication or that are marked as user-generated.</li>
+        </ul>
+
+        <h2>Private user data</h2>
+        <p>Rundock is local-first. User workspaces, agents, conversations, skills, and files run on the user's own machine and never reach Rundock's servers. We do not host them, we cannot see them, and they are not available for any AI system to crawl, ingest, or train on.</p>
+        <p>This policy applies only to Rundock's public marketing content at rundock.ai. It does not extend to anything users create inside the app. That is theirs.</p>
+
+        <h2>Contact</h2>
+        <p>Questions, corrections, or requests about how Rundock is represented in an AI system are welcome.</p>
+        <ul>
+          <li>Email: <a href="mailto:hello@withcuriousgrowth.com">hello@withcuriousgrowth.com</a></li>
+          <li>GitHub issues: <a href="https://github.com/liamdarmody/rundock/issues" target="_blank" rel="noopener">github.com/liamdarmody/rundock/issues</a></li>
+          <li>LinkedIn: <a href="https://www.linkedin.com/in/liamdarmody/" target="_blank" rel="noopener">linkedin.com/in/liamdarmody</a></li>
+        </ul>
+
+      </article>
+    </div>
+  </main>
+
+  <!-- ===================================================
+       3. FOOTER
+  ==================================================== -->
+  <footer>
+    <div class="container">
+
+      <div class="footer-layout">
+
+        <!-- Brand column -->
+        <div class="footer-brand-col">
+          <a href="/" class="logo">Rundock</a>
+          <p class="footer-tagline">A visual interface for AI agent teams.<br>Built for people running their own businesses.</p>
+        </div>
+
+        <!-- Product column -->
+        <div>
+          <p class="footer-col-label">Product</p>
+          <div class="footer-col-links">
+            <a href="https://github.com/liamdarmody/rundock/releases/latest" target="_blank" rel="noopener">Download Rundock</a>
+            <a href="https://docs.rundock.ai">Documentation</a>
+            <a href="https://github.com/liamdarmody/rundock" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://rundock.ai/directory" target="_blank" rel="noopener">Directory</a>
+            <a href="https://github.com/liamdarmody/rundock/issues" target="_blank" rel="noopener">Report an issue</a>
+          </div>
+        </div>
+
+        <!-- From Liam column -->
+        <div>
+          <p class="footer-col-label">From Liam</p>
+          <div class="footer-col-links">
+            <a href="https://liamdarmody.com/agents" target="_blank" rel="noopener">The Agent Kit</a>
+            <a href="https://liamdarmody.com/ai-scorecard/" target="_blank" rel="noopener">AI Readiness Scorecard</a>
+            <a href="https://liamdarmody.com/services" target="_blank" rel="noopener">Services</a>
+            <a href="https://linkedin.com/in/liamdarmody" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="footer-credit">
+        Built by <a href="https://www.linkedin.com/in/liamdarmody/" target="_blank" rel="noopener">Liam Darmody</a>.
+        &copy; 2026. Rundock is
+        <a href="https://github.com/liamdarmody/rundock/blob/main/LICENSE" target="_blank" rel="noopener">PolyForm Perimeter 1.0.0</a>.
+        <a href="/ai-policy">AI Policy</a>.
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- Summarise-with-LLM widget. Self-contained; bottom-right floating launcher. -->
+  <script src="/css/summarise-widget.js" defer></script>
+
+</body>
+</html>

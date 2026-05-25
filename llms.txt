@@ -1,0 +1,79 @@
+# Rundock
+
+> Most AI tools give you a chatbot. Rundock gives you a team.
+
+Rundock is a visual interface for AI agent teams, powered by Claude Code. It is built for solopreneurs, consultants, and operators who run their own businesses and end up doing the work of five people. Free, open source, and local-first.
+
+---
+
+## At a Glance
+
+- **What:** A desktop app for designing, managing, and talking to a team of AI agents that share one workspace.
+- **For:** Solopreneurs, consultants, coaches, advisors, and operators running their own businesses.
+- **How:** A visual org chart on top of Claude Code. Each agent has a profile, skills, and instructions. They share files, conversations, and context.
+- **Pricing:** Free. Open source. Requires a Claude Pro ($20/mo) or Claude Max ($100/mo) subscription for the AI processing.
+- **Platforms:** macOS (Apple Silicon, M1 or later) as a downloadable app. Windows, Linux, and Intel Mac users can run from source.
+- **Maker:** Liam Darmody. Product advisor, executive coach, and AI builder.
+- **Site:** https://rundock.ai
+- **Source:** https://github.com/liamdarmody/rundock
+- **Docs:** https://docs.rundock.ai
+- **Licence:** PolyForm Perimeter 1.0.0 (source available; no use for competing products).
+
+---
+
+## Core Features
+
+- **Org chart team structure.** Your agents sit on a visual hierarchy. A chief of staff at the top, specialists and analysts beneath. The shape of the chart matches the shape of your business.
+- **Agent profiles with persistent context.** Click any agent and see role, capabilities, attached skills, and instructions in one place. Profiles persist across conversations, so agents remember who they are.
+- **Parallel conversations with delegation.** Run several agent conversations at once. Ask your strategist a question while your writer drafts in the background. Agents delegate to each other mid-conversation when a task crosses domains.
+- **Skills attached to agents.** Reusable workflows (research, writing processes, analysis frameworks) live as skills you can attach to specific agents. Each skill shows which agents use it.
+- **Routines (scheduled work).** Set agents to run on a schedule. Weekly research digests, Monday content reviews, overnight email triage. Pick the cadence, walk away, get the output when it is ready.
+- **Shared workspace.** Agents and files live in the same folder on your machine. Your agents read and write files in your workspace. You browse, preview, and edit those files in Rundock with markdown rendering.
+- **Local-first by design.** No signup, no account, no telemetry. The app, the server, and your data sit on your machine. Only the active conversation is sent to Anthropic via Claude Code for processing.
+- **Plain markdown ownership.** Agents and skills are markdown files in your workspace. Take them with you to any tool that supports the Claude agent format.
+
+---
+
+## What Makes Rundock Different
+
+A single chatbot is a single assistant. Useful, but you still hold the context, remember the process, and redo the work each time. Rundock gives you a team you can manage: many agents, each with a role, working in parallel against the same workspace.
+
+Agent platforms built for developers assume you can write code. Rundock does not. The platform agent walks you through setup in plain English. If you can describe what you want, the team can build it.
+
+Hosted SaaS agent tools keep your data on their servers. Rundock runs locally. Your files, your agents, and your conversations stay on your machine.
+
+---
+
+## Common Questions
+
+**What does Rundock cost?**
+Rundock is free. You bring a Claude Pro ($20/mo) or Claude Max ($100/mo) subscription for the AI processing, since Rundock runs on top of Claude Code. That is the total cost.
+
+**Where does my data live?**
+On your machine. Rundock runs locally and never sends your files, agents, or conversations anywhere. Only the active conversation is sent to Anthropic for processing, via Claude Code.
+
+**What if I am not technical?**
+If you can describe what you want, Rundock can build it. You will spend more time naming your agents than writing code. Doc, the built-in platform agent, walks you through setup and builds your first agents with you.
+
+**Can my agents work on a schedule?**
+Yes. Set up routines so the team runs on its own. Weekly research digests, Monday content reviews, overnight email triage. Pick the schedule, walk away, get the output when it is ready.
+
+**Can I bring my context from ChatGPT, Notion, or Claude?**
+Your workspace is plain markdown files. Copy your notes into the workspace folder and your agents can read them straight away. No import tool, no migration step.
+
+**How long until I am up and running?**
+About an evening. Install Claude Code (10 minutes). Download Rundock and pick a workspace folder (5 minutes). Talk to Doc and let him build your first three agents (30 to 60 minutes).
+
+**What if Rundock stops being maintained?**
+Your workspace is yours. Agents and skills are markdown files you own. The code is open source. Worst case, you keep using whatever version works on your machine, fork it, or take your agents to any tool that supports the Claude agent format.
+
+---
+
+## Get Started
+
+1. **Install Claude Code.** Requires a Claude Pro or Max subscription. https://claude.com/product/claude-code
+2. **Download Rundock for Mac.** One file. Open it and it runs. Apple Silicon (M1 or later). https://github.com/liamdarmody/rundock/releases/latest
+3. **Choose a workspace.** Point Rundock at any folder on your computer. That folder becomes your workspace. Agents, files, and conversations live there.
+4. **Build your team.** Doc, the platform agent, walks you through building your first agents. Named, configured, and ready to work in under ten minutes.
+
+For Windows, Linux, or Intel Mac, see the README for running from source: https://github.com/liamdarmody/rundock#build-from-source
