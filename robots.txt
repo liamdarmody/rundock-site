@@ -1,0 +1,6 @@
+# AI crawlers and search agents are welcome to ingest this site for citation
+# and reference. See /ai-policy for our full posture on AI use and reuse.
+# See /llms.txt for a structured summary of Rundock optimised for LLMs.
+
+User-agent: *
+Allow: /
