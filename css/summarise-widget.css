@@ -1,0 +1,246 @@
+/* =====================================================
+   summarise-widget.css
+   Floating "Summarise with [LLM]" widget.
+   Bottom-right launcher that opens a vertical menu of
+   outbound links to ChatGPT, Perplexity, Claude, Grok,
+   and Google AI Mode, each pre-filled with a summary
+   prompt for the current page.
+
+   Progressive enhancement only: requires JS to function.
+   Markup is injected at runtime by summarise-widget.js,
+   so a JS-disabled page simply has no widget.
+
+   Visual tokens consumed from /css/shared.css:
+     --base, --surface, --elevated, --border,
+     --text-1, --text-2, --accent, --accent-hover
+===================================================== */
+
+.sw-root {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 50;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Allow the menu (above) to overflow the trigger's box. */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+/* Hide on mobile per spec (Searchable parity: hidden md:block). */
+@media (max-width: 767px) {
+  .sw-root {
+    display: none;
+  }
+}
+
+/* =====================================================
+   Trigger button
+===================================================== */
+.sw-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--elevated, #272727);
+  color: var(--text-1, #F0EDE8);
+  border: 1px solid var(--border, #3D3D3D);
+  border-radius: 100px;
+  padding: 10px 18px 10px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+
+.sw-trigger:hover,
+.sw-trigger:focus-visible {
+  border-color: var(--accent, #E87A5A);
+  color: var(--accent, #E87A5A);
+}
+
+.sw-trigger:active {
+  transform: translateY(1px);
+}
+
+.sw-trigger[aria-expanded="true"] {
+  border-color: var(--accent, #E87A5A);
+  color: var(--accent, #E87A5A);
+}
+
+.sw-trigger-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.sw-trigger-caret {
+  width: 12px;
+  height: 12px;
+  margin-left: 2px;
+  opacity: 0.65;
+  transition: transform 0.18s ease, opacity 0.15s ease;
+}
+
+.sw-trigger[aria-expanded="true"] .sw-trigger-caret {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* =====================================================
+   Menu
+===================================================== */
+.sw-menu {
+  background: var(--surface, #212121);
+  border: 1px solid var(--border, #3D3D3D);
+  border-radius: 14px;
+  padding: 8px;
+  min-width: 240px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  /* Animation initial state. */
+  transform-origin: bottom right;
+  opacity: 0;
+  transform: translateY(6px) scale(0.98);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.sw-menu.is-open {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.sw-menu-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-2, #9A9590);
+  padding: 8px 12px 6px;
+}
+
+.sw-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--text-1, #F0EDE8);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.sw-menu-item:hover,
+.sw-menu-item:focus-visible {
+  background: var(--elevated, #272727);
+  color: var(--text-1, #F0EDE8);
+  outline: none;
+}
+
+.sw-menu-item:focus-visible {
+  box-shadow: inset 0 0 0 1px var(--accent, #E87A5A);
+}
+
+.sw-menu-item-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-1, #F0EDE8);
+}
+
+.sw-menu-item-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sw-menu-item-label {
+  flex: 1;
+  letter-spacing: -0.01em;
+}
+
+.sw-menu-item-arrow {
+  width: 12px;
+  height: 12px;
+  color: var(--text-2, #9A9590);
+  opacity: 0;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.sw-menu-item:hover .sw-menu-item-arrow,
+.sw-menu-item:focus-visible .sw-menu-item-arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+/* =====================================================
+   Light-surface variant
+   Applied via .sw-root[data-theme="light"] for sites
+   (like the Accelerator) where the widget might sit on
+   a warm/light background and the default dark surface
+   would clash. Inherits the same accent semantics.
+===================================================== */
+.sw-root[data-theme="light"] .sw-trigger {
+  background: #FFFFFF;
+  color: #1A1A1A;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.sw-root[data-theme="light"] .sw-trigger:hover,
+.sw-root[data-theme="light"] .sw-trigger:focus-visible,
+.sw-root[data-theme="light"] .sw-trigger[aria-expanded="true"] {
+  border-color: var(--accent, #E87A5A);
+  color: var(--accent, #E87A5A);
+}
+
+.sw-root[data-theme="light"] .sw-menu {
+  background: #FFFFFF;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.sw-root[data-theme="light"] .sw-menu-label {
+  color: #6B6660;
+}
+
+.sw-root[data-theme="light"] .sw-menu-item {
+  color: #1A1A1A;
+}
+
+.sw-root[data-theme="light"] .sw-menu-item:hover,
+.sw-root[data-theme="light"] .sw-menu-item:focus-visible {
+  background: #F4F1EC;
+  color: #1A1A1A;
+}
+
+.sw-root[data-theme="light"] .sw-menu-item-icon {
+  color: #1A1A1A;
+}
+
+.sw-root[data-theme="light"] .sw-menu-item-arrow {
+  color: #6B6660;
+}
+
+/* Reduced motion: kill the open animation. */
+@media (prefers-reduced-motion: reduce) {
+  .sw-menu,
+  .sw-trigger,
+  .sw-trigger-caret,
+  .sw-menu-item,
+  .sw-menu-item-arrow {
+    transition: none;
+  }
+}
