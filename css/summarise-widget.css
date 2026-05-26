@@ -28,10 +28,15 @@
   gap: 12px;
 }
 
-/* Hide on mobile per spec (Searchable parity: hidden md:block). */
+/* Tighter positioning on mobile. */
 @media (max-width: 767px) {
   .sw-root {
-    display: none;
+    right: 16px;
+    bottom: 20px;
+  }
+  .sw-trigger {
+    padding: 8px 14px 8px 11px;
+    font-size: 12px;
   }
 }
 
