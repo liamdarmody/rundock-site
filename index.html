@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rundock: Your AI agent team</title>
-  <meta name="description" content="A visual interface for managing AI agent teams powered by Claude Code. For solopreneurs, consultants, and operators running their own businesses.">
+  <meta name="description" content="A visual workspace for your AI agent team. Built for people running their own businesses, powered by Claude Code.">
   <meta property="og:title" content="Rundock: Your AI agent team">
-  <meta property="og:description" content="A visual interface for managing AI agent teams powered by Claude Code. For solopreneurs, consultants, and operators running their own businesses.">
+  <meta property="og:description" content="A visual workspace for your AI agent team. Built for people running their own businesses, powered by Claude Code.">
   <meta property="og:image" content="https://rundock.ai/rundock-og.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rundock.ai">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Rundock: Your AI agent team">
-  <meta name="twitter:description" content="A visual interface for managing AI agent teams powered by Claude Code. For solopreneurs, consultants, and operators running their own businesses.">
+  <meta name="twitter:description" content="A visual workspace for your AI agent team. Built for people running their own businesses, powered by Claude Code.">
   <meta name="twitter:image" content="https://rundock.ai/rundock-og.png">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="canonical" href="https://rundock.ai/">
@@ -28,7 +28,7 @@
     "@type": "SoftwareApplication",
     "@id": "https://rundock.ai/#software",
     "name": "Rundock",
-    "description": "A visual interface for managing AI agent teams powered by Claude Code. For solopreneurs, consultants, and operators running their own businesses.",
+    "description": "A visual workspace for your AI agent team. Built for people running their own businesses, powered by Claude Code.",
     "applicationCategory": "ProductivityApplication",
     "operatingSystem": "macOS",
     "url": "https://rundock.ai",
@@ -91,7 +91,7 @@
     "name": "Rundock",
     "url": "https://rundock.ai/",
     "publisher": { "@id": "https://withcuriousgrowth.com/#organization" },
-    "description": "A visual interface for managing AI agent teams powered by Claude Code. For solopreneurs, consultants, and operators running their own businesses."
+    "description": "A visual workspace for your AI agent team. Built for people running their own businesses, powered by Claude Code."
   }
   </script>
   <script type="application/ld+json">
@@ -101,7 +101,7 @@
     "@id": "https://rundock.ai/#webpage",
     "url": "https://rundock.ai/",
     "name": "Rundock: Your AI agent team",
-    "description": "A visual interface for managing AI agent teams powered by Claude Code. For solopreneurs, consultants, and operators running their own businesses.",
+    "description": "A visual workspace for your AI agent team. Built for people running their own businesses, powered by Claude Code.",
     "isPartOf": { "@id": "https://rundock.ai/#website" },
     "primaryImageOfPage": {
       "@type": "ImageObject",
@@ -401,6 +401,69 @@
     .reposition p .line-3 {
       font-style: italic;
       color: var(--text-1);
+    }
+
+    /* =====================================================
+       LEAN AGENT TEAM CALLOUT
+    ===================================================== */
+    .lean-team-callout {
+      background: var(--surface);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      /* border-top comes from shared.css section+section rule — consistent with all other sections */
+    }
+
+    .lean-team-callout::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 640px;
+      height: 420px;
+      background: radial-gradient(ellipse at center, rgba(232,122,90,0.10) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .lean-team-callout__inner {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .lean-team-callout__label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .lean-team-callout__heading {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-1);
+      line-height: 1.3;
+      margin-bottom: 14px;
+      text-wrap: balance;
+    }
+
+    .lean-team-callout__body {
+      font-size: 16px;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    .lean-team-callout__footnote {
+      font-size: 12px;
+      color: var(--idle);
+      margin-top: 16px;
+      margin-bottom: 0;
     }
 
     /* =====================================================
@@ -1450,6 +1513,22 @@
 
 
   <!-- ===================================================
+       3b. LEAN AGENT TEAM CALLOUT
+  ==================================================== -->
+  <section class="lean-team-callout" aria-label="Free download: Lean Agent Team">
+    <div class="container">
+      <div class="lean-team-callout__inner">
+        <p class="lean-team-callout__label">Free download</p>
+        <h2 class="lean-team-callout__heading">Want a pre-built team to get you started?</h2>
+        <p class="lean-team-callout__body">The Lean Agent Team gives you a Chief of Staff, an EA, and a Content Lead: three agents ready to install today.</p>
+        <a href="https://theainativeaccelerator.com/lean-agent-team" class="btn-primary" target="_blank" rel="noopener">Download the Lean Agent Team</a>
+        <p class="lean-team-callout__footnote">Free &middot; No account required &middot; Works in Rundock out of the box</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================================================
        4. THE PROBLEM
   ==================================================== -->
   <section class="problem">
@@ -1640,7 +1719,7 @@
           <p>Today, I still work most days. The difference is what I am doing in those hours. Cos has the morning briefing waiting. Penn has hooks and a draft for me to push back on. Arlo's weekly digest lands on Saturday whether I open it or not. I am the editor and the orchestrator, not the bottleneck. That is what Rundock is for.</p>
           <div class="story-links">
             <a href="https://liamdarmody.com/agents" target="_blank" rel="noopener">Get The Agent Kit, free</a>
-            <a href="https://liamdarmody.com/ai-scorecard/" target="_blank" rel="noopener">Take the AI Readiness Scorecard</a>
+            <a href="https://theainativeaccelerator.com/ai-scorecard/" target="_blank" rel="noopener">Take the AI Readiness Scorecard</a>
             <a href="https://liamdarmody.com/services" target="_blank" rel="noopener">How I help businesses build their AI systems</a>
           </div>
         </div>
@@ -1866,7 +1945,7 @@
         <!-- Brand column -->
         <div class="footer-brand-col">
           <a href="/" class="logo">Rundock</a>
-          <p class="footer-tagline">A visual interface for AI agent teams.<br>Built for people running their own businesses.</p>
+          <p class="footer-tagline">A visual workspace for your AI agent team.<br>Built for people running their own businesses.</p>
         </div>
 
         <!-- Product column -->
@@ -1885,8 +1964,9 @@
         <div>
           <p class="footer-col-label">From Liam</p>
           <div class="footer-col-links">
+            <a href="https://theainativeaccelerator.com/lean-agent-team" target="_blank" rel="noopener">The Lean Agent Team</a>
             <a href="https://liamdarmody.com/agents" target="_blank" rel="noopener">The Agent Kit</a>
-            <a href="https://liamdarmody.com/ai-scorecard/" target="_blank" rel="noopener">AI Readiness Scorecard</a>
+            <a href="https://theainativeaccelerator.com/ai-scorecard/" target="_blank" rel="noopener">AI Readiness Scorecard</a>
             <a href="https://liamdarmody.com/services" target="_blank" rel="noopener">Services</a>
             <a href="https://linkedin.com/in/liamdarmody" target="_blank" rel="noopener">LinkedIn</a>
           </div>

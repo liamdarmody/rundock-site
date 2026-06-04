@@ -2,7 +2,7 @@
 
 > Most AI tools give you a chatbot. Rundock gives you a team.
 
-Rundock is a visual interface for AI agent teams, powered by Claude Code. It is built for solopreneurs, consultants, and operators who run their own businesses and end up doing the work of five people. Free, open source, and local-first.
+Rundock is a visual workspace for your AI agent team, powered by Claude Code. It is built for solopreneurs, consultants, and operators who run their own businesses and end up doing the work of five people. Free, open source, and local-first.
 
 ---
 
