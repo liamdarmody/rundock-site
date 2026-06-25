@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Rundock | A visual workspace for your AI agent team</title>
+  <meta name="description" content="Download Rundock for macOS. A universal build that runs on both Apple Silicon and Intel Macs. Windows coming soon; Linux runs from source.">
+  <meta property="og:title" content="Download Rundock">
+  <meta property="og:description" content="Download Rundock for macOS. A universal build that runs on both Apple Silicon and Intel Macs. Windows coming soon; Linux runs from source.">
+  <meta property="og:image" content="https://rundock.ai/rundock-agent-team-org-chart.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rundock.ai/download">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Download Rundock">
+  <meta name="twitter:description" content="Download Rundock for macOS. A universal build that runs on both Apple Silicon and Intel Macs. Windows coming soon; Linux runs from source.">
+  <meta name="twitter:image" content="https://rundock.ai/rundock-agent-team-org-chart.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shared.css">
+  <style>
+    /* Page-specific styles for download.html */
+    .download-head { text-align: center; max-width: 640px; margin: 0 auto 40px; }
+    .download-head h1 { margin-bottom: 12px; }
+    .download-head p { color: var(--text-2); font-size: 16px; }
+    .platform-list { display: flex; flex-direction: column; gap: 16px; max-width: 640px; margin: 0 auto; }
+    .platform-card { border: 1px solid var(--border); border-radius: 12px; padding: 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .platform-card.soon { opacity: 0.72; }
+    .platform-info h2 { font-size: 18px; margin: 0 0 4px; }
+    .platform-info p { color: var(--text-2); font-size: 14px; margin: 0; }
+    .platform-action { white-space: nowrap; }
+    .platform-badge { display: inline-block; font-size: 12px; font-weight: 600; color: var(--text-2); border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; }
+    .download-foot { text-align: center; max-width: 640px; margin: 32px auto 0; color: var(--text-2); font-size: 14px; }
+    .download-foot a { color: var(--text-2); text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 560px) {
+      .platform-card { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <a href="/" class="logo">Rundock</a>
+      <nav class="header-nav">
+        <a href="https://docs.rundock.ai" class="header-link">Docs</a>
+        <a href="https://github.com/liamdarmody/rundock" class="header-link" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 64px; padding-bottom: 64px;">
+
+    <div class="download-head">
+      <h1>Download Rundock</h1>
+      <p>Free to use, bring your own Claude Pro or Max subscription.</p>
+    </div>
+
+    <div class="platform-list">
+
+      <!-- macOS -->
+      <div class="platform-card">
+        <div class="platform-info">
+          <h2>macOS</h2>
+          <p>Universal build. Works on any Mac, Apple Silicon or Intel. No architecture to choose.</p>
+        </div>
+        <div class="platform-action">
+          <a href="https://github.com/liamdarmody/rundock/releases/download/v0.8.14/Rundock-0.8.14-universal.dmg"
+             class="btn-primary" target="_blank" rel="noopener">Download for Mac</a>
+        </div>
+      </div>
+
+      <!-- Windows -->
+      <div class="platform-card soon">
+        <div class="platform-info">
+          <h2>Windows</h2>
+          <p>A native Windows installer is on the way.</p>
+        </div>
+        <div class="platform-action">
+          <span class="platform-badge">Coming soon</span>
+        </div>
+      </div>
+
+      <!-- Linux -->
+      <div class="platform-card">
+        <div class="platform-info">
+          <h2>Linux</h2>
+          <p>No packaged build yet. Run Rundock from source in a few commands.</p>
+        </div>
+        <div class="platform-action">
+          <a href="https://github.com/liamdarmody/rundock#build-from-source"
+             class="btn-secondary" target="_blank" rel="noopener">Run from source</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="download-foot">
+      Latest release: <strong>v0.8.14</strong>.
+      <a href="https://github.com/liamdarmody/rundock/releases" target="_blank" rel="noopener">View all releases</a>.
+      New to Rundock? <a href="https://docs.rundock.ai/installation">Read the install guide</a>.
+    </p>
+
+  </main>
+
+  <footer>
+    <div class="container">
+
+      <div class="footer-layout">
+
+        <div class="footer-brand-col">
+          <a href="/" class="logo">Rundock</a>
+          <p class="footer-tagline">A visual workspace for your AI agent team.<br>Built for people running their own businesses.</p>
+        </div>
+
+        <div>
+          <p class="footer-col-label">Product</p>
+          <div class="footer-col-links">
+            <a href="/download">Download Rundock</a>
+            <a href="https://docs.rundock.ai">Documentation</a>
+            <a href="https://github.com/liamdarmody/rundock" target="_blank" rel="noopener">GitHub</a>
+            <a href="/directory">Directory</a>
+            <a href="https://github.com/liamdarmody/rundock/issues" target="_blank" rel="noopener">Report an issue</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-col-label">From Liam</p>
+          <div class="footer-col-links">
+            <a href="https://theainativeaccelerator.com/lean-agent-team" target="_blank" rel="noopener">The Lean Agent Team</a>
+            <a href="https://liamdarmody.com/agents" target="_blank" rel="noopener">The Agent Kit</a>
+            <a href="https://theainativeaccelerator.com/ai-scorecard/" target="_blank" rel="noopener">AI Readiness Scorecard</a>
+            <a href="https://liamdarmody.com/services" target="_blank" rel="noopener">Services</a>
+            <a href="https://linkedin.com/in/liamdarmody" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="footer-credit">
+        Built by <a href="https://www.linkedin.com/in/liamdarmody/" target="_blank" rel="noopener">Liam Darmody</a>.
+        &copy; 2026. Rundock is
+        <a href="https://github.com/liamdarmody/rundock/blob/main/LICENSE" target="_blank" rel="noopener">PolyForm Perimeter 1.0.0</a>.
+        <a href="/ai-policy">AI Policy</a>.
+      </p>
+
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1493,12 +1493,12 @@
       <h1>Most AI tools give you a chatbot. Rundock gives you a team.</h1>
 
       <div class="hero-ctas">
-        <a href="https://github.com/liamdarmody/rundock/releases/download/v0.8.13/Rundock-0.8.13-arm64.dmg"
-           class="btn-primary"
+        <a href="https://github.com/liamdarmody/rundock/releases/download/v0.8.14/Rundock-0.8.14-universal.dmg"
+           class="btn-primary js-smart-dl"
            target="_blank" rel="noopener">Download for Mac</a>
         <a href="https://github.com/liamdarmody/rundock" class="btn-secondary" target="_blank" rel="noopener">View on GitHub</a>
       </div>
-      <p style="font-size:13px; color:var(--text-2); margin-bottom:6px;">For Apple Silicon Macs (M1 or later). Intel Mac, Windows, or Linux? <a href="https://github.com/liamdarmody/rundock#build-from-source" target="_blank" rel="noopener" style="color:var(--text-2); text-decoration:underline; text-underline-offset:3px;">Run from source.</a></p>
+      <p style="font-size:13px; color:var(--text-2); margin-bottom:6px;">Universal Mac build, works on Apple Silicon and Intel. <a href="/download" style="color:var(--text-2); text-decoration:underline; text-underline-offset:3px;">Other platforms.</a></p>
       <p style="font-size:13px; color:var(--text-2); margin-bottom:32px;">Rundock is free. Bring your own Claude Pro or Max subscription.</p>
 
       <div class="screenshot">
@@ -1836,11 +1836,12 @@
       <p class="get-started-intro">You don't need to write code. You need Claude Code and a folder to call your workspace.</p>
 
       <div class="get-started-ctas">
-        <a href="https://github.com/liamdarmody/rundock/releases/download/v0.8.13/Rundock-0.8.13-arm64.dmg"
-           class="btn-primary"
+        <a href="https://github.com/liamdarmody/rundock/releases/download/v0.8.14/Rundock-0.8.14-universal.dmg"
+           class="btn-primary js-smart-dl"
            target="_blank" rel="noopener">Download for Mac</a>
         <a href="https://github.com/liamdarmody/rundock" class="btn-secondary" target="_blank" rel="noopener">View on GitHub</a>
       </div>
+      <p style="font-size:13px; color:var(--text-2); margin-top:8px;">Universal Mac build, works on Apple Silicon and Intel. <a href="/download" style="color:var(--text-2); text-decoration:underline; text-underline-offset:3px;">Other platforms.</a></p>
 
       <!-- Vertical numbered timeline -->
       <div class="steps-timeline">
@@ -1857,7 +1858,7 @@
           <div class="step-numeral">02</div>
           <div class="step-content">
             <h3>Download Rundock</h3>
-            <p>One file. Open it and it runs. Apple Silicon Macs (M1 or later). For other platforms, see the README for setup.</p>
+            <p>One file. Open it and it runs. A universal Mac build, so it works on any Mac (Apple Silicon or Intel). For Windows and Linux, see the <a href="/download">download page</a>.</p>
           </div>
         </div>
 
@@ -1952,7 +1953,7 @@
         <div>
           <p class="footer-col-label">Product</p>
           <div class="footer-col-links">
-            <a href="https://github.com/liamdarmody/rundock/releases/download/v0.8.13/Rundock-0.8.13-arm64.dmg" target="_blank" rel="noopener">Download Rundock</a>
+            <a href="/download">Download Rundock</a>
             <a href="https://docs.rundock.ai">Documentation</a>
             <a href="https://github.com/liamdarmody/rundock" target="_blank" rel="noopener">GitHub</a>
             <a href="https://rundock.ai/directory" target="_blank" rel="noopener">Directory</a>
@@ -2045,6 +2046,25 @@
       card.setAttribute('aria-label', 'View full size: ' + (cardImg.alt || 'image'));
       card.addEventListener('click', function () { openLb(cardImg.src, cardImg.alt); });
       card.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(cardImg.src, cardImg.alt); } });
+    });
+  }());
+  </script>
+
+  <script>
+  /* Smart download button: OS-detect (not architecture). Mac visitors get a
+     direct universal-DMG download; everyone else is routed to /download. The
+     default HTML href already points at the Mac DMG, so this only adjusts for
+     non-Mac visitors and degrades gracefully without JS. */
+  (function () {
+    var MAC_DMG = 'https://github.com/liamdarmody/rundock/releases/download/v0.8.14/Rundock-0.8.14-universal.dmg';
+    var ua = navigator.userAgent || '';
+    var plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+    var isMac = /Mac/i.test(plat) || /Mac OS X/i.test(ua);
+    var isWin = /Win/i.test(plat) || /Windows/i.test(ua);
+    document.querySelectorAll('.js-smart-dl').forEach(function (btn) {
+      if (isMac) { btn.textContent = 'Download for Mac'; btn.href = MAC_DMG; }
+      else if (isWin) { btn.textContent = 'Download for Windows'; btn.href = '/download'; btn.removeAttribute('target'); }
+      else { btn.textContent = 'Download'; btn.href = '/download'; btn.removeAttribute('target'); }
     });
   }());
   </script>
