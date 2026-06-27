@@ -1,5 +1,5 @@
 /* =====================================================
-   Rundock site — shared.css
+   Rundock site: shared.css
    Tokens, reset, base typography, and shared chrome
    shared between index.html and directory.html.
 
@@ -48,7 +48,7 @@ html {
      children (e.g. <header>) in Chromium *and* WebKit.
    - On <body>, `overflow-x: hidden` doesn't reliably contain
      `.screenshot::before` (width: 140%) on mobile, and `clip` on body
-     doesn't propagate to viewport — so the html element still
+     doesn't propagate to viewport, so the html element still
      allows horizontal scroll.
    Containment is applied per-section instead (see `.hero` and
    `.feature-section` rules in each page's stylesheet), which keeps
@@ -125,7 +125,7 @@ section + section {
 
 /* === Header chrome ===
    Sticky on both pages. background: var(--base) ensures the
-   solid nav masks content scrolling beneath it — no glass
+   solid nav masks content scrolling beneath it, no glass
    on the nav, which avoids stacking context conflicts with
    glass cards in the scroll layer below. */
 header {
