@@ -6,7 +6,7 @@
    HTML page that also links /css/summarise-widget.css.
 
    Markup is built at runtime so the page is fully usable
-   without JS — the widget simply doesn't appear.
+   without JS, the widget simply doesn't appear.
 
    Optional config on the script tag:
      data-theme="dark" | "light"   (default: "dark")
@@ -55,7 +55,7 @@
       build: function (prompt) {
         return 'https://chatgpt.com/?q=' + encodeURIComponent(prompt);
       },
-      // OpenAI "blossom" mark — monochrome, single-path rendering of the
+      // OpenAI "blossom" mark: monochrome, single-path rendering of the
       // official OpenAI logomark. Sourced from the openai.com brand mark
       // (Simple Icons / Lucide / Phosphor do not ship an OpenAI icon).
       icon:
@@ -210,7 +210,7 @@
     }));
 
     link.addEventListener('click', function (e) {
-      // Refresh href just in case (defence in depth — opener also updates on menu open).
+      // Refresh href just in case (defence in depth: opener also updates on menu open).
       var url = target.build(buildPrompt(getPageUrl()));
       link.setAttribute('href', url);
       trackClick(target);
