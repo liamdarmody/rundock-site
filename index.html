@@ -984,20 +984,9 @@
     /* Vertical timeline (section 11) */
     .steps-timeline {
       max-width: 680px;
-      margin: 0 auto 48px;
+      margin: 40px auto 48px;
       text-align: left;
       position: relative;
-    }
-
-    /* Vertical hairline running through numerals */
-    .steps-timeline::before {
-      content: '';
-      position: absolute;
-      left: 18px; /* centres on the numeral column */
-      top: 44px;
-      bottom: 16px;
-      width: 1px;
-      background: var(--border);
     }
 
     .step-row {
@@ -1019,9 +1008,6 @@
       color: var(--accent);
       letter-spacing: -0.03em;
       padding-top: 2px; /* aligns top of numeral with h3 cap height */
-      position: relative;
-      z-index: 1;
-      background: var(--base); /* masks the hairline behind numeral */
     }
 
     .step-content {

@@ -383,14 +383,13 @@ table.cmp thead th {
   line-height: 1.3;
 }
 table.cmp thead th:first-child {
-  background: transparent;
-  border-bottom-color: transparent;
+  border-right: 1px solid var(--border);
 }
 table.cmp thead th.col-rundock {
   color: var(--accent);
   background: var(--accent-glow);
   border-bottom-color: var(--accent);
-  border-left: 2px solid var(--accent);
+  border-left: 1px solid var(--border);
 }
 
 /* Body cells shared. */
@@ -424,7 +423,7 @@ table.cmp tbody td.col-rundock {
   color: var(--text-1);
   font-weight: 500;
   background: var(--accent-glow);
-  border-left: 2px solid var(--accent);
+  border-left: 1px solid var(--border);
 }
 
 /* Row-label sub-note (the "checked July 2026" date on the Price row). */
@@ -442,12 +441,11 @@ table.cmp tbody td.col-rundock {
 table.cmp tbody tr:last-child th,
 table.cmp tbody tr:last-child td { border-bottom: none; }
 
-/* Best-for row: summary row. Set apart with a stronger top divider
-   rather than italics, so it reads as the takeaway. */
+/* Best-for row: summary row. No italics; reads like the other rows
+   with the standard 1px divider. */
 table.cmp tbody tr.row-best th,
 table.cmp tbody tr.row-best td {
   font-size: 14px;
-  border-top: 2px solid var(--border);
 }
 table.cmp tbody tr.row-best td.col-rundock {
   font-weight: 600;
