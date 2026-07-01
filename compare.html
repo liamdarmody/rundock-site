@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rundock vs Claude, Cowork and Claude Code</title>
+  <meta name="description" content="Rundock runs on Claude. See how it compares to Claude, Cowork and Claude Code, and where a team of named agents fits your work.">
+  <meta property="og:title" content="Rundock vs Claude, Cowork and Claude Code">
+  <meta property="og:description" content="Rundock runs on Claude. See how it compares to Claude, Cowork and Claude Code, and where a team of named agents fits your work.">
+  <meta property="og:image" content="https://rundock.ai/rundock-og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rundock.ai/compare">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rundock vs Claude, Cowork and Claude Code">
+  <meta name="twitter:description" content="Rundock runs on Claude. See how it compares to Claude, Cowork and Claude Code, and where a team of named agents fits your work.">
+  <meta name="twitter:image" content="https://rundock.ai/rundock-og.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <!-- Canonical is /compare for now. When a second comparison ships this page
+       migrates to /compare/claude under a hub, with a 301 from /compare added
+       to the site _redirects file. Update this canonical at that point. -->
+  <link rel="canonical" href="https://rundock.ai/compare">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/shared.css">
+  <link rel="stylesheet" href="/css/summarise-widget.css">
+  <style>
+    /* Page-specific styles for compare.html. Table styling lives in
+       shared.css (.cmp block); this file styles the page frame only. */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1;
+      padding: 72px 0 96px;
+    }
+    .compare {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    .compare .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .compare h1 {
+      font-size: 44px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--text-1);
+      margin: 0 0 24px;
+      max-width: 820px;
+    }
+    .compare .intro p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text-2);
+      max-width: 720px;
+      margin: 0 0 20px;
+    }
+    .compare h2 {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-1);
+      margin: 48px 0 8px;
+    }
+    .compare .section-lead {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-2);
+      max-width: 720px;
+      margin: 0 0 28px;
+    }
+    .compare .close {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text-2);
+      max-width: 720px;
+      margin: 52px 0 28px;
+    }
+    .compare .cta-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    @media (max-width: 720px) {
+      main { padding: 48px 0 72px; }
+      .compare h1 { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================
+       1. HEADER
+  ==================================================== -->
+  <header>
+    <div class="container">
+      <a href="/" class="logo">Rundock</a>
+      <nav class="header-nav">
+        <a href="https://docs.rundock.ai" class="header-link">Docs</a>
+        <a href="https://github.com/liamdarmody/rundock" class="header-link" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================================================
+       2. COMPARE
+  ==================================================== -->
+  <main>
+    <div class="container">
+      <article class="compare">
+
+        <p class="eyebrow">Comparison</p>
+        <h1>How Rundock compares to Claude's own tools</h1>
+
+        <div class="intro">
+          <p>Most AI tools give you a chat window. You open it, ask a question, and close the tab. It's useful, but it forgets you every time.</p>
+          <p>Rundock takes a different shape. It runs on Claude, the same models you already use, but instead of one window it gives you a team. Named agents, each with a role, that remember your work and follow your rules.</p>
+          <p>So this isn't Rundock against Claude. Rundock runs on Claude. The real question is how you want to work with it: something you talk to, or something you run.</p>
+        </div>
+
+        <h2>Which Claude is which</h2>
+        <p class="section-lead">The Claude desktop app holds Claude, Cowork, and Claude Code at once, which is part of why they're easy to confuse. Here is what each one is, and where Rundock fits.</p>
+
+        <!-- ===================================================
+             COMPARISON TABLE (six rows, four columns)
+             Styles live in shared.css (.cmp block).
+             GO-STALE: the Price row and the Cowork cells carry a
+             "checked July 2026" date. Update these cells and the
+             footnote below together when pricing or Cowork changes.
+        ==================================================== -->
+        <div class="cmp-wrap">
+          <table class="cmp">
+            <colgroup>
+              <col class="col-label">
+              <col class="col-data">
+              <col class="col-data">
+              <col class="col-data">
+              <col class="col-rundock">
+            </colgroup>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Claude</th>
+                <th>Claude Cowork</th>
+                <th>Claude Code</th>
+                <th class="col-rundock">Rundock</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Holds the context?</th>
+                <td>The conversation holds it. A new chat starts fresh.</td>
+                <!-- GO-STALE (Cowork): re-check this cell before publish. -->
+                <td>Preferences persist. Each task starts from the brief you give it.</td>
+                <td>Config files hold it. Durable, but hidden by default.</td>
+                <td class="col-rundock">Your vault is the shared, visible state. It persists.</td>
+              </tr>
+              <tr>
+                <th>Owns the work?</th>
+                <td>You, in one window.</td>
+                <td>You delegate a task, Claude returns a deliverable.</td>
+                <td>You can define agents, in files you rarely see.</td>
+                <td class="col-rundock">Named agents each own a domain. You know who to go to.</td>
+              </tr>
+              <tr>
+                <th>What's it like to use?</th>
+                <td>A single chat. Simple and familiar.</td>
+                <td>A workspace in the Claude desktop app.</td>
+                <td>A command line, or a developer-facing app.</td>
+                <td class="col-rundock">One place you navigate, with your team on an org chart.</td>
+              </tr>
+              <!-- GO-STALE (Price): whole row dated. Update with the footnote. -->
+              <tr>
+                <th>
+                  Price
+                  <span class="row-label-note">checked July 2026</span>
+                </th>
+                <td>Free to start. Pro from about $20/mo for more usage.</td>
+                <td>Needs a paid plan (Pro or Max).</td>
+                <td>Included in Pro or Max. Optional metered API beyond your limits.</td>
+                <td class="col-rundock">Free and open source. Runs on your Claude Pro or Max plan, so no extra cost.</td>
+              </tr>
+              <tr>
+                <th>Effort over time?</th>
+                <td>No setup. But you re-brief from scratch each session.</td>
+                <td>Little setup. Each task still starts from your brief.</td>
+                <td>The setup is learning the terminal. Fast once you're over it.</td>
+                <td class="col-rundock">More to set up once. Then every session builds on the last.</td>
+              </tr>
+              <tr class="row-best">
+                <th>Best for</th>
+                <td>Quick questions and everyday help.</td>
+                <td>Handing off a defined task for a finished result.</td>
+                <td>Developers who want a capable agent in their workflow.</td>
+                <td class="col-rundock">Running a team of agents you can see and manage, no code.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cost-callout">
+          Rundock runs on your flat Claude Pro or Max subscription and doesn't bill per token, so your cost stays contained to the plan you already pay for.
+        </div>
+
+        <!-- GO-STALE: pricing footnote, dated. Update with the Price row above. -->
+        <p class="cmp-footnote">
+          <strong>Pricing note (checked July 2026):</strong> prices move. Verify current pricing at claude.ai/pricing before relying on the figures above. <strong>Cowork note:</strong> Cowork's capabilities change fast, so the context and Cowork cells above are the ones to re-check first.
+        </p>
+
+        <p class="close">Rundock is free and open source. If you already pay for Claude Pro or Max, you have everything you need to start.</p>
+
+        <div class="cta-row">
+          <a href="/download" class="btn-primary">Get started</a>
+          <a href="https://docs.rundock.ai" class="btn-secondary">Read the docs</a>
+        </div>
+
+      </article>
+    </div>
+  </main>
+
+  <!-- ===================================================
+       3. FOOTER
+  ==================================================== -->
+  <footer>
+    <div class="container">
+
+      <div class="footer-layout">
+
+        <!-- Brand column -->
+        <div class="footer-brand-col">
+          <a href="/" class="logo">Rundock</a>
+          <p class="footer-tagline">A visual workspace for your AI agent team.<br>Built for people running their own businesses.</p>
+        </div>
+
+        <!-- Product column -->
+        <div>
+          <p class="footer-col-label">Product</p>
+          <div class="footer-col-links">
+            <a href="https://github.com/liamdarmody/rundock/releases/latest" target="_blank" rel="noopener">Download Rundock</a>
+            <a href="https://docs.rundock.ai">Documentation</a>
+            <a href="https://github.com/liamdarmody/rundock" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://rundock.ai/directory" target="_blank" rel="noopener">Directory</a>
+            <a href="https://github.com/liamdarmody/rundock/issues" target="_blank" rel="noopener">Report an issue</a>
+          </div>
+        </div>
+
+        <!-- From Liam column -->
+        <div>
+          <p class="footer-col-label">From Liam</p>
+          <div class="footer-col-links">
+            <a href="https://theainativeaccelerator.com/lean-agent-team" target="_blank" rel="noopener">The Lean Agent Team</a>
+            <a href="https://liamdarmody.com/agents" target="_blank" rel="noopener">The Agent Kit</a>
+            <a href="https://theainativeaccelerator.com/ai-scorecard/" target="_blank" rel="noopener">AI Readiness Scorecard</a>
+            <a href="https://liamdarmody.com/services" target="_blank" rel="noopener">Services</a>
+            <a href="https://linkedin.com/in/liamdarmody" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="footer-credit">
+        Built by <a href="https://www.linkedin.com/in/liamdarmody/" target="_blank" rel="noopener">Liam Darmody</a>.
+        &copy; 2026. Rundock is
+        <a href="https://github.com/liamdarmody/rundock/blob/main/LICENSE" target="_blank" rel="noopener">PolyForm Perimeter 1.0.0</a>.
+        <a href="/ai-policy">AI Policy</a>.
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- Summarise-with-LLM widget. Self-contained; bottom-right floating launcher. -->
+  <script src="/css/summarise-widget.js" defer></script>
+
+</body>
+</html>

@@ -331,3 +331,138 @@ footer {
     gap: 32px;
   }
 }
+
+/* === Comparison table (.cmp) ===
+   Single source of truth for the Rundock-vs-Claude comparison table.
+   Used by the full six-row table on /compare (compare.html) and the
+   three-row teaser on the homepage (index.html). Adapted from Des's
+   master asset to the site design tokens above.
+
+   GO-STALE NOTE: the copy in the Price row and the Cowork cells lives
+   in the page markup, not here. This block only styles the table. */
+
+/* Horizontal scroll on small screens so columns never crush. */
+.cmp-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table.cmp {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  min-width: 680px;
+}
+
+/* Column widths: label narrower, three data cols equal, Rundock wider. */
+table.cmp col.col-label   { width: 18%; }
+table.cmp col.col-data    { width: 18.3%; }
+table.cmp col.col-rundock { width: 27%; }
+
+/* Column headers. */
+table.cmp thead th {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  padding: 14px 20px 12px;
+  vertical-align: bottom;
+  border-bottom: 2px solid var(--border);
+  text-align: left;
+  line-height: 1.3;
+}
+table.cmp thead th:first-child { border-bottom-color: transparent; }
+table.cmp thead th.col-rundock {
+  color: var(--accent);
+  background: var(--accent-glow);
+  border-bottom-color: var(--accent);
+  border-left: 2px solid var(--accent);
+}
+
+/* Body cells shared. */
+table.cmp tbody th,
+table.cmp tbody td {
+  padding: 22px 20px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  line-height: 1.55;
+}
+
+/* Row label. */
+table.cmp tbody th {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-2);
+  border-right: 1px solid var(--border);
+}
+
+/* Data cells default. */
+table.cmp tbody td {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-2);
+}
+
+/* Rundock column emphasis. */
+table.cmp tbody td.col-rundock {
+  color: var(--text-1);
+  font-weight: 500;
+  background: var(--accent-glow);
+  border-left: 2px solid var(--accent);
+}
+
+/* Row-label sub-note (the "checked July 2026" date on the Price row). */
+.cmp .row-label-note {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.6;
+  margin-top: 3px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Last row: no bottom border. */
+table.cmp tbody tr:last-child th,
+table.cmp tbody tr:last-child td { border-bottom: none; }
+
+/* Best-for row. */
+table.cmp tbody tr.row-best td {
+  font-size: 14px;
+  font-style: italic;
+}
+table.cmp tbody tr.row-best td.col-rundock {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* Contained-cost callout beneath the table. */
+.cost-callout {
+  margin-top: 24px;
+  background: var(--accent-glow);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 16px 22px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-1);
+}
+
+/* Dated pricing footnote. */
+.cmp-footnote {
+  margin-top: 18px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-2);
+  opacity: 0.85;
+}
+.cmp-footnote strong { color: var(--text-2); font-weight: 600; }
+
+@media (max-width: 720px) {
+  table.cmp tbody th { font-size: 13px; }
+  table.cmp tbody td { font-size: 14px; }
+}
