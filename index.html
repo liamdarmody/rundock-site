@@ -1867,15 +1867,15 @@
           <thead>
             <tr>
               <th></th>
-              <th>Claude</th>
-              <th>Claude Cowork</th>
-              <th>Claude Code</th>
-              <th class="col-rundock">Rundock</th>
+              <th scope="col">Claude</th>
+              <th scope="col">Claude Cowork</th>
+              <th scope="col">Claude Code</th>
+              <th scope="col" class="col-rundock">Rundock</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th>Holds the context?</th>
+              <th scope="row">Holds the context?</th>
               <td>The conversation holds it. A new chat starts fresh.</td>
               <td>Preferences persist. Each task starts from the brief you give it.</td>
               <td>Config files hold it. Durable, but hidden by default.</td>
@@ -1883,7 +1883,7 @@
             </tr>
             <!-- GO-STALE (Price): keep in sync with compare.html. -->
             <tr>
-              <th>
+              <th scope="row">
                 Price
                 <span class="row-label-note">checked July 2026</span>
               </th>
@@ -1893,7 +1893,7 @@
               <td class="col-rundock">Free and open source. Runs on your Claude Pro or Max plan, so no extra cost.</td>
             </tr>
             <tr class="row-best">
-              <th>Best for</th>
+              <th scope="row">Best for</th>
               <td>Quick questions and everyday help.</td>
               <td>Handing off a defined task for a finished result.</td>
               <td>Developers who want a capable agent in their workflow.</td>
