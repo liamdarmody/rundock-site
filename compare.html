@@ -56,6 +56,10 @@
       letter-spacing: -0.025em;
       color: var(--text-1);
       margin: 0 0 24px;
+      /* Override the global h1 text-wrap: balance, which wraps the
+         heading into narrow balanced lines. normal lets it fill the
+         900px column and align with the paragraphs below. */
+      text-wrap: normal;
     }
     .compare .intro p {
       font-size: 18px;
