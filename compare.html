@@ -50,16 +50,21 @@
       margin-bottom: 20px;
     }
     .compare h1 {
-      font-size: 44px;
+      font-size: 46px;
       font-weight: 700;
       line-height: 1.1;
       letter-spacing: -0.025em;
       color: var(--text-1);
       margin: 0 0 24px;
-      /* Override the global h1 text-wrap: balance, which wraps the
-         heading into narrow balanced lines. normal lets it fill the
-         900px column and align with the paragraphs below. */
-      text-wrap: normal;
+      /* Override the global h1 text-wrap: balance. balance shrinks the
+         heading into short, centred-length lines (~500px) that read as
+         narrower than the 900px body text. wrap lets it break greedily
+         and fill the column; at 46px the two lines run ~875px, closely
+         matching the paragraph and table width below.
+         Note: text-wrap: normal is invalid and is ignored (leaving the
+         global balance in effect), which is why the earlier fix failed.
+         The valid keyword is wrap. */
+      text-wrap: wrap;
     }
     .compare .intro p {
       font-size: 18px;
@@ -94,7 +99,7 @@
     }
     @media (max-width: 720px) {
       main { padding: 48px 0 72px; }
-      .compare h1 { font-size: 34px; }
+      .compare h1 { font-size: 36px; }
     }
   </style>
 </head>
