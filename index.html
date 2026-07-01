@@ -1462,6 +1462,22 @@
   .diversity-card[data-lb] .org-screenshot img { transition: opacity 180ms; }
   .diversity-card[data-lb]:hover .org-screenshot img { opacity: 0.82; }
 
+  /* === Compare teaser === */
+  .compare-teaser { text-align: center; }
+  .compare-teaser h2 { margin-bottom: 12px; }
+  .compare-teaser .compare-teaser-intro {
+    max-width: 620px;
+    margin: 0 auto 40px;
+    color: var(--text-2);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .compare-teaser .cmp-wrap { text-align: left; }
+  .compare-teaser table.cmp { min-width: 620px; margin: 0 auto; }
+  .compare-teaser .compare-teaser-cta {
+    margin-top: 36px;
+  }
+
   </style>
 
   <!-- Fathom - beautiful, simple website analytics -->
@@ -1823,6 +1839,73 @@
 
       <p class="pricing-callout"><em>And it stays yours.</em> <span>Your agents and skills are plain markdown files. Take them with you whenever you like.</span></p>
 
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       10b. COMPARE TEASER
+       Three-row cut of the /compare table. Shares the .cmp
+       styles in shared.css. Links to the full comparison.
+       GO-STALE: the Price row carries a "checked July 2026"
+       date, kept in sync with compare.html.
+  ==================================================== -->
+  <section class="compare-teaser">
+    <div class="container">
+      <h2>Something you talk to, or something you run.</h2>
+      <p class="compare-teaser-intro">Rundock runs on Claude. Here's the short version of how it compares to Claude's own tools.</p>
+
+      <div class="cmp-wrap">
+        <table class="cmp">
+          <colgroup>
+            <col class="col-label">
+            <col class="col-data">
+            <col class="col-data">
+            <col class="col-data">
+            <col class="col-rundock">
+          </colgroup>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Claude</th>
+              <th>Claude Cowork</th>
+              <th>Claude Code</th>
+              <th class="col-rundock">Rundock</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Holds the context?</th>
+              <td>The conversation holds it. A new chat starts fresh.</td>
+              <td>Preferences persist. Each task starts from the brief you give it.</td>
+              <td>Config files hold it. Durable, but hidden by default.</td>
+              <td class="col-rundock">Your vault is the shared, visible state. It persists.</td>
+            </tr>
+            <!-- GO-STALE (Price): keep in sync with compare.html. -->
+            <tr>
+              <th>
+                Price
+                <span class="row-label-note">checked July 2026</span>
+              </th>
+              <td>Free to start. Pro from about $20/mo for more usage.</td>
+              <td>Needs a paid plan (Pro or Max).</td>
+              <td>Included in Pro or Max. Optional metered API beyond your limits.</td>
+              <td class="col-rundock">Free and open source. Runs on your Claude Pro or Max plan, so no extra cost.</td>
+            </tr>
+            <tr class="row-best">
+              <th>Best for</th>
+              <td>Quick questions and everyday help.</td>
+              <td>Handing off a defined task for a finished result.</td>
+              <td>Developers who want a capable agent in their workflow.</td>
+              <td class="col-rundock">Running a team of agents you can see and manage, no code.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="compare-teaser-cta">
+        <a href="/compare" class="btn-secondary">See the full comparison</a>
+      </div>
     </div>
   </section>
 
