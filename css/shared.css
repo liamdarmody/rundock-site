@@ -344,13 +344,26 @@ footer {
 /* Horizontal scroll on small screens so columns never crush.
    The 1px border + radius live here (not on the table) so the whole
    table reads as one contained object. overflow: hidden clips the
-   accent-glow column and radius corners cleanly. */
+   accent-glow column and radius corners cleanly.
+
+   Right-edge scroll affordance (Lea Verou scroll-shadow technique):
+   a "cover" gradient pinned to the right via background-attachment:
+   local sits over a "shadow" gradient pinned via scroll. The cover
+   hides the shadow when scrolled fully right, and the shadow shows
+   only while there is more table off to the right. On wide screens
+   where the table fits, there is no scroll, so the shadow never
+   shows. --base is the dark page background the fade resolves to. */
 .cmp-wrap {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border: 1px solid var(--border);
   border-radius: 10px;
+  background:
+    /* right cover: solid base pinned to the right edge, scrolls with content */
+    linear-gradient(to left, var(--base), var(--base)) right center / 24px 100% no-repeat local,
+    /* right shadow: fade to base, fixed to the container's right edge */
+    linear-gradient(to left, var(--base), rgba(26, 26, 26, 0)) right center / 40px 100% no-repeat scroll;
 }
 
 table.cmp {
@@ -411,11 +424,14 @@ table.cmp tbody th {
   border-right: 1px solid var(--border);
 }
 
-/* Data cells default. */
+/* Data cells default. Opaque --base background so the right-edge
+   scroll-shadow on .cmp-wrap shows only in the overflow gutter, never
+   bleeding through the cells. */
 table.cmp tbody td {
   font-size: 15px;
   font-weight: 400;
   color: var(--text-2);
+  background: var(--base);
 }
 
 /* Rundock column emphasis. */
@@ -441,12 +457,8 @@ table.cmp tbody td.col-rundock {
 table.cmp tbody tr:last-child th,
 table.cmp tbody tr:last-child td { border-bottom: none; }
 
-/* Best-for row: summary row. No italics; reads like the other rows
-   with the standard 1px divider. */
-table.cmp tbody tr.row-best th,
-table.cmp tbody tr.row-best td {
-  font-size: 14px;
-}
+/* Best-for row: summary row. No italics, no size override; the cells
+   inherit the defaults (15px data, 14px label) like every other row. */
 table.cmp tbody tr.row-best td.col-rundock {
   font-weight: 600;
   color: var(--accent);
