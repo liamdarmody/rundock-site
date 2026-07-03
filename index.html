@@ -1495,7 +1495,7 @@
       <h1>Most AI tools give you a chatbot. Rundock gives you a team.</h1>
 
       <div class="hero-ctas">
-        <a href="https://github.com/liamdarmody/rundock/releases/download/v0.9.2/Rundock-0.9.2-universal.dmg"
+        <a href="https://github.com/liamdarmody/rundock/releases/latest"
            class="btn-primary js-smart-dl"
            target="_blank" rel="noopener">Download for Mac</a>
         <a href="https://github.com/liamdarmody/rundock" class="btn-secondary" target="_blank" rel="noopener">View on GitHub</a>
@@ -1905,7 +1905,7 @@
       <p class="get-started-intro">You don't need to write code. You need Claude Code and a folder to call your workspace.</p>
 
       <div class="get-started-ctas">
-        <a href="https://github.com/liamdarmody/rundock/releases/download/v0.9.2/Rundock-0.9.2-universal.dmg"
+        <a href="https://github.com/liamdarmody/rundock/releases/latest"
            class="btn-primary js-smart-dl"
            target="_blank" rel="noopener">Download for Mac</a>
         <a href="https://github.com/liamdarmody/rundock" class="btn-secondary" target="_blank" rel="noopener">View on GitHub</a>
@@ -2120,22 +2120,40 @@
   </script>
 
   <script>
-  /* Smart download button: OS-detect (not architecture). Mac visitors get a
-     direct universal-DMG download; everyone else is routed to /download. The
-     default HTML href already points at the Mac DMG, so this only adjusts for
-     non-Mac visitors and degrades gracefully without JS. */
+  /* Smart download button. OS-detect (not architecture) for the label, and
+     resolve the direct installer URL from the latest GitHub release at runtime,
+     so these links never need editing on release. The button defaults to the
+     releases page, so it works and stays current without JS or if the API is
+     unreachable; JS upgrades Mac/Windows visitors to a direct download of the
+     current versioned installer. */
   (function () {
-    var MAC_DMG = 'https://github.com/liamdarmody/rundock/releases/download/v0.9.2/Rundock-0.9.2-universal.dmg';
-    var WIN_EXE = 'https://github.com/liamdarmody/rundock/releases/download/v0.9.2/Rundock-Setup-0.9.2.exe';
+    var RELEASES = 'https://github.com/liamdarmody/rundock/releases/latest';
+    var API = 'https://api.github.com/repos/liamdarmody/rundock/releases/latest';
     var ua = navigator.userAgent || '';
     var plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
     var isMac = /Mac/i.test(plat) || /Mac OS X/i.test(ua);
     var isWin = /Win/i.test(plat) || /Windows/i.test(ua);
-    document.querySelectorAll('.js-smart-dl').forEach(function (btn) {
-      if (isMac) { btn.textContent = 'Download for Mac'; btn.href = MAC_DMG; }
-      else if (isWin) { btn.textContent = 'Download for Windows'; btn.href = WIN_EXE; }
+    var btns = document.querySelectorAll('.js-smart-dl');
+
+    // Immediate baseline (no API needed): correct label + a safe href for every visitor.
+    btns.forEach(function (btn) {
+      if (isMac) { btn.textContent = 'Download for Mac'; btn.href = RELEASES; }
+      else if (isWin) { btn.textContent = 'Download for Windows'; btn.href = RELEASES; }
       else { btn.textContent = 'Download'; btn.href = '/download'; btn.removeAttribute('target'); }
     });
+    if (!isMac && !isWin) return; // non-Mac/Windows go to the download page; no API call needed.
+
+    // Upgrade to a direct download of the current installer.
+    fetch(API, { headers: { 'Accept': 'application/vnd.github+json' } })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (rel) {
+        var assets = rel.assets || [];
+        function find(re) { for (var i = 0; i < assets.length; i++) { if (re.test(assets[i].name)) return assets[i].browser_download_url; } return null; }
+        var url = isMac ? (find(/universal.*\.dmg$/i) || find(/\.dmg$/i))
+                        : (find(/Setup.*\.exe$/i) || find(/\.exe$/i));
+        if (url) btns.forEach(function (btn) { btn.href = url; });
+      })
+      .catch(function () { /* keep the releases-page fallback already set */ });
   }());
   </script>
 
