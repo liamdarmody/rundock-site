@@ -2,7 +2,7 @@
 
 > Most AI tools give you a chatbot. Rundock gives you a team.
 
-Rundock is a visual workspace for your AI agent team, powered by Claude Code. It is built for solopreneurs, consultants, and operators who run their own businesses and end up doing the work of five people. Free, open source, and local-first.
+Rundock is a visual workspace for your AI agent team. It is built for solopreneurs, consultants, and operators who run their own businesses and end up doing the work of five people. Agents run on the Claude Code or Codex runtimes, so it works with a Claude (Pro/Max) or ChatGPT subscription. Free, open source, and local-first.
 
 ---
 
@@ -10,8 +10,8 @@ Rundock is a visual workspace for your AI agent team, powered by Claude Code. It
 
 - **What:** A desktop app for designing, managing, and talking to a team of AI agents that share one workspace.
 - **For:** Solopreneurs, consultants, coaches, advisors, and operators running their own businesses.
-- **How:** A visual org chart on top of Claude Code. Each agent has a profile, skills, and instructions. They share files, conversations, and context.
-- **Pricing:** Free. Open source. Requires a Claude Pro ($20/mo) or Claude Max ($100/mo) subscription for the AI processing.
+- **How:** A visual org chart on top of the Claude Code and Codex runtimes. Each agent has a profile, skills, and instructions. They share files, conversations, and context.
+- **Pricing:** Free. Open source. Requires a Claude Pro ($20/mo) or Claude Max ($100/mo) subscription for the AI processing; specialists can also run on a ChatGPT plan via the official Codex CLI.
 - **Platforms:** macOS (Apple Silicon, M1 or later) as a downloadable app. Windows, Linux, and Intel Mac users can run from source.
 - **Maker:** Liam Darmody. Product advisor, executive coach, and AI builder.
 - **Site:** https://rundock.ai
@@ -47,10 +47,10 @@ Hosted SaaS agent tools keep your data on their servers. Rundock runs locally. Y
 ## Common Questions
 
 **What does Rundock cost?**
-Rundock is free. You bring a Claude Pro ($20/mo) or Claude Max ($100/mo) subscription for the AI processing, since Rundock runs on top of Claude Code. That is the total cost.
+Rundock is free. You bring the subscription that runs your agents: Claude Pro ($20/mo) or Claude Max ($100/mo) for the default Claude Code runtime, and optionally a ChatGPT plan to run specialists on the Codex CLI. That is the total cost.
 
 **Where does my data live?**
-On your machine. Rundock runs locally and never sends your files, agents, or conversations anywhere. Only the active conversation is sent to Anthropic for processing, via Claude Code.
+On your machine. Rundock runs locally and never sends your files, agents, or conversations anywhere. Only the active conversation is sent for processing, to Anthropic via Claude Code or to OpenAI via Codex, under your own subscription.
 
 **What if I am not technical?**
 If you can describe what you want, Rundock can build it. You will spend more time naming your agents than writing code. Doc, the built-in platform agent, walks you through setup and builds your first agents with you.
