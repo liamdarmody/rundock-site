@@ -28,7 +28,10 @@ Rundock is a visual workspace for your AI agent team. It is built for solopreneu
 - **Parallel conversations with delegation.** Run several agent conversations at once. Ask your strategist a question while your writer drafts in the background. Agents delegate to each other mid-conversation when a task crosses domains.
 - **Skills attached to agents.** Reusable workflows (research, writing processes, analysis frameworks) live as skills you can attach to specific agents. Each skill shows which agents use it.
 - **Routines (scheduled work).** Set agents to run on a schedule. Weekly research digests, Monday content reviews, overnight email triage. Pick the cadence, walk away, get the output when it is ready.
-- **Shared workspace.** Agents and files live in the same folder on your machine. Your agents read and write files in your workspace. You browse, preview, and edit those files in Rundock with markdown rendering.
+- **Shared workspace with a real editor.** Agents and files live in one folder on your machine. You open notes in an editor that formats as you type (tables, callouts, wikilinks, editable properties), and open HTML, SVG, images, and PDFs as rendered files rather than source.
+- **Universal search.** One shortcut (Cmd+K) searches file contents and names, conversation messages, and agent and skill names, with forgiving partial matching and results that open at the right place.
+- **Review agent work in place.** Comment on any passage in a file an agent produced; the agent proposes inline edits you accept or reject. Feedback is stored in the file as plain text, no lock-in.
+- **Kanban boards.** Obsidian-compatible boards open as real column boards you drag cards across, and write back the same markdown so they stay interchangeable with Obsidian.
 - **Local-first by design.** No signup, no account, no telemetry. The app, the server, and your data sit on your machine. Only the active conversation is sent to Anthropic via Claude Code for processing.
 - **Plain markdown ownership.** Agents and skills are markdown files in your workspace. Take them with you to any tool that supports the Claude agent format.
 

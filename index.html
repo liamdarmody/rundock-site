@@ -214,8 +214,8 @@
       max-width: 880px;
       margin: 0 auto;
       position: relative;
-      aspect-ratio: 1947 / 1020;
-      /* aspect-ratio matches rundock-app-hero.png so the browser reserves the
+      aspect-ratio: 3168 / 2168;
+      /* aspect-ratio matches rundock-hero-org-chart.png so the browser reserves the
          correct space before the image loads. Without this, .screenshot collapses
          to ~0 height pre-load, the ::before glow (positioned 50% top, 140% height)
          renders against an interim parent size, and the glow appears in the wrong
@@ -1526,8 +1526,8 @@
 
       <div class="screenshot">
   <img
-    src="rundock-app-hero.png"
-    alt="Rundock app showing the full agent team org chart: Cos as Chief of Staff with six specialists (Lea, Penn, Des, Dev, Arlo, Sollo) and two analysts (Ana, Scout) reporting to Penn. Sidebar shows team activity status and the routines panel shows four scheduled automations. Doc appears as the platform agent."
+    src="rundock-hero-org-chart.png"
+    alt="Rundock showing an example agent team as an org chart. A Chief of Staff sits at the top with six leads and two analysts reporting in, a Rundock Guide agent below, live team status down the left sidebar, and scheduled routines at the bottom."
   >
 </div>
 
@@ -1574,12 +1574,12 @@
 
         <div class="feature-copy">
           <h2>Every agent on your org chart has a profile.</h2>
-          <p>Click into any agent. Role, capabilities, skills, and instructions in one place.</p>
+          <p>Click into any agent. Role, skills, model, runtime, and instructions in one place, with every conversation you have had with them.</p>
         </div>
 
         <div class="feature-screenshots">
           <div class="screenshot-sm">
-            <img src="agent-profile.png" alt="Rundock agent profile page showing role, capabilities, skills, and instructions for a specialist agent.">
+            <img src="rundock-agent-profile.png" alt="Rundock agent profile for an Engineering Lead, showing the role description, three attached skills, the model and runtime, the editable instructions, and past conversations.">
           </div>
         </div>
 
@@ -1597,12 +1597,12 @@
 
         <div class="feature-copy">
           <h2>Talk to one. They route the rest.</h2>
-          <p>Run conversations with several agents in parallel. Ask your strategist a question while your writer drafts in the background. Talk to any agent through the browser. They delegate to each other mid-conversation when the task calls for it.</p>
+          <p>Run conversations with several agents in parallel. Ask your strategist a question while your writer drafts in the background. Replies stream in as each agent thinks, and they delegate to each other mid-conversation when the task calls for it.</p>
         </div>
 
         <div class="feature-screenshots">
           <div class="screenshot-sm">
-            <img src="conversation-flow.png" alt="Rundock conversation view: sidebar on the left showing parallel conversation threads with active agent indicators, conversation panel on the right showing the orchestrator handing work to a specialist agent.">
+            <img src="rundock-streaming.gif" alt="Rundock conversation with a specialist agent replying in real time, the answer streaming in line by line as the agent works.">
           </div>
         </div>
 
@@ -1625,7 +1625,7 @@
 
         <div class="feature-screenshots">
           <div class="screenshot-sm">
-            <img src="skills-detail.png" alt="Rundock skills sidebar with the Slide Design skill open, showing the description and the Used By panel listing Des as the assigned agent.">
+            <img src="rundock-skills.png" alt="Rundock skills view showing the list of workspace skills with one skill open, its description, and the agents it is attached to.">
           </div>
         </div>
 
@@ -1642,13 +1642,82 @@
       <div class="feature-section-inner reverse">
 
         <div class="feature-copy">
-          <h2>Your files. Your agents. The same workspace.</h2>
-          <p>Your agents read and write files in your workspace. Browse, preview, and edit those same files with full markdown rendering.</p>
+          <h2>Any file your agents touch, shown the way you expect.</h2>
+          <p>Open a note in an editor that formats as you type, with tables, callouts, and clickable wikilinks. Open an HTML or SVG file and see the real rendered page, not its source. Open an image or a PDF and read it in place. Edit a file's properties without touching raw YAML. It is your workspace, shown the way you would expect to see it.</p>
         </div>
 
         <div class="feature-screenshots">
           <div class="screenshot-sm">
-            <img src="file-browser.png" alt="Rundock file browser with a markdown file open in the preview pane.">
+            <img src="rundock-files.png" alt="Rundock showing a markdown note in the editor, with a properties panel above it listing title, status, tags as chips, and a linked related note, and a coloured callout rendered inline below.">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       5e. FEATURE: UNIVERSAL SEARCH
+  ==================================================== -->
+  <section class="feature-section">
+    <div class="container">
+      <div class="feature-section-inner">
+
+        <div class="feature-copy">
+          <h2>One shortcut finds everything you have.</h2>
+          <p>Press Cmd+K and search across every file, every conversation, and every agent and skill at once. Type part of a word and it still finds the match. Pick a result and it opens at the right place, scrolling a conversation straight to the message you were looking for.</p>
+        </div>
+
+        <div class="feature-screenshots">
+          <div class="screenshot-sm">
+            <img src="rundock-search.png" alt="Rundock universal search palette open over the app, showing results for a query grouped into files and conversations with the matching word highlighted in each result.">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       5f. FEATURE: REVIEW IN PLACE
+  ==================================================== -->
+  <section class="feature-section">
+    <div class="container">
+      <div class="feature-section-inner reverse">
+
+        <div class="feature-copy">
+          <h2>Review your agent's work where it lives.</h2>
+          <p>Select any passage in a file an agent produced and leave a comment. The agent reads it, proposes an edit inline, and you accept or reject with a click. The feedback lives in the file as plain text you can read in any editor, so nothing is locked inside Rundock.</p>
+        </div>
+
+        <div class="feature-screenshots">
+          <div class="screenshot-sm">
+            <img src="rundock-review.png" alt="Rundock showing an HTML page rendered in the main panel with a review sidebar beside it holding threaded comments and accept and reject controls.">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       5g. FEATURE: KANBAN BOARDS
+  ==================================================== -->
+  <section class="feature-section">
+    <div class="container">
+      <div class="feature-section-inner">
+
+        <div class="feature-copy">
+          <h2>Your boards open as real columns.</h2>
+          <p>A Kanban board in your workspace opens as a real column board. Drag cards, tick them off, rename and reorder columns. It writes back the same markdown Obsidian uses, so the same board edits cleanly in both.</p>
+        </div>
+
+        <div class="feature-screenshots">
+          <div class="screenshot-sm">
+            <img src="rundock-boards.gif" alt="Rundock showing a Kanban board with several columns and a card being dragged from one column to another.">
           </div>
         </div>
 
