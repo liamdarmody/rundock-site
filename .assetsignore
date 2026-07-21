@@ -1,0 +1,11 @@
+# Files excluded from the deployed static assets (Cloudflare Workers Static
+# Assets reads this like a .gitignore). Keeps the repo's git internals and
+# tooling out of the public site; only the actual site files are served.
+.git
+.github
+.wrangler
+.gitignore
+.assetsignore
+wrangler.jsonc
+wrangler.toml
+README.md
