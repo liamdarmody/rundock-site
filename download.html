@@ -99,7 +99,12 @@
     </div>
 
     <p class="download-foot">
-      Latest release: <strong class="js-latest-version">v0.11.0</strong>.
+      <!-- Revealed only once the API has told us the real version. Hardcoding a
+           number here meant the page asserted a stale one between releases: it
+           was still advertising a version three releases old. Saying nothing is better
+           than saying something wrong, and it keeps the version out of the
+           per-release edit list entirely. -->
+      <span class="js-latest-line" hidden>Latest release: <strong class="js-latest-version"></strong>. </span>
       <a href="https://github.com/liamdarmody/rundock/releases" target="_blank" rel="noopener">View all releases</a>.
       New to Rundock? <a href="https://docs.rundock.ai/installation">Read the install guide</a>.
     </p>
@@ -170,7 +175,11 @@
         if (mac && macBtn) macBtn.href = mac;
         if (win && winBtn) winBtn.href = win;
         var vEl = document.querySelector('.js-latest-version');
-        if (rel.tag_name && vEl) vEl.textContent = /^v/i.test(rel.tag_name) ? rel.tag_name : 'v' + rel.tag_name;
+        var vLine = document.querySelector('.js-latest-line');
+        if (rel.tag_name && vEl) {
+          vEl.textContent = /^v/i.test(rel.tag_name) ? rel.tag_name : 'v' + rel.tag_name;
+          if (vLine) vLine.hidden = false;
+        }
       })
       .catch(function () { /* keep the releases-page fallback already set */ });
   }());
