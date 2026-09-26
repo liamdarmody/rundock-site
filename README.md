@@ -4,7 +4,7 @@ Source code for [rundock.ai](https://rundock.ai), the marketing site for [Rundoc
 
 ## Directory
 
-The site includes a [directory](https://rundock.ai/directory) of community-built agents, skills, packs, and resources for Claude Code.
+The site includes a [directory](https://rundock.ai/directory) of community-built agents, skills, packs, extensions, and resources for Claude Code and Rundock.
 
 To add your project, [open an issue](https://github.com/liamdarmody/rundock-site/issues/new?template=directory-submission.md).
 
