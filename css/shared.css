@@ -169,8 +169,8 @@ header .container {
 }
 
 /* === Buttons ===
-   .btn-secondary is the canonical neutral ghost button
-   (per Des's audit). The directory's previous accent-outline
+   .btn-secondary is the canonical neutral ghost button.
+   The directory's previous accent-outline
    variant has been renamed to .btn-accent-outline below. */
 .btn-primary {
   display: inline-block;
@@ -335,8 +335,8 @@ footer {
 /* === Comparison table (.cmp) ===
    Single source of truth for the Rundock-vs-Claude comparison table.
    Used by the full six-row table on /compare (compare.html) and the
-   three-row teaser on the homepage (index.html). Adapted from Des's
-   master asset to the site design tokens above.
+   three-row teaser on the homepage (index.html). Adapted from the
+   master comparison asset to the site design tokens above.
 
    GO-STALE NOTE: the copy in the Price row and the Cowork cells lives
    in the page markup, not here. This block only styles the table. */

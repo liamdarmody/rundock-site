@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Directory: Agents, skills, and packs for Claude Code | Rundock</title>
-  <meta name="description" content="Browse agents, skills, packs, and resources for Claude Code. Community-built, open source.">
-  <meta property="og:title" content="Directory: Agents, skills, packs, and resources for Claude Code | Rundock">
-  <meta property="og:description" content="Browse agents, skills, packs, and resources for Claude Code. Community-built, open source.">
+  <title>Directory: Agents, skills, packs, and extensions for Claude Code | Rundock</title>
+  <meta name="description" content="Browse agents, skills, packs, extensions, and resources for Claude Code and Rundock. Community-built, open source.">
+  <meta property="og:title" content="Directory: Agents, skills, packs, extensions, and resources for Claude Code | Rundock">
+  <meta property="og:description" content="Browse agents, skills, packs, extensions, and resources for Claude Code and Rundock. Community-built, open source.">
   <meta property="og:image" content="https://rundock.ai/rundock-agent-team-org-chart.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rundock.ai/directory">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Directory: Agents, skills, packs, and resources for Claude Code | Rundock">
-  <meta name="twitter:description" content="Browse agents, skills, packs, and resources for Claude Code. Community-built, open source.">
+  <meta name="twitter:title" content="Directory: Agents, skills, packs, extensions, and resources for Claude Code | Rundock">
+  <meta name="twitter:description" content="Browse agents, skills, packs, extensions, and resources for Claude Code and Rundock. Community-built, open source.">
   <meta name="twitter:image" content="https://rundock.ai/rundock-agent-team-org-chart.png">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta name="theme-color" content="#1A1A1A">
@@ -34,6 +34,10 @@
       --cat-agent: #7AA2E8;
       --cat-skill: #6BC67E;
       --cat-pack: #A78BDB;
+      /* Extension takes the design system's attention amber: the one
+         existing hue not already a category and not the brand accent,
+         which the All pill uses when active. */
+      --cat-extension: #E8A84C;
       --cat-resource: #D4C472;
     }
 
@@ -94,6 +98,7 @@
     .filter-pill.active[data-filter="agent"] { color: var(--cat-agent); border-color: var(--cat-agent); background: rgba(122,162,232,0.12); }
     .filter-pill.active[data-filter="skill"] { color: var(--cat-skill); border-color: var(--cat-skill); background: rgba(107,198,126,0.12); }
     .filter-pill.active[data-filter="pack"] { color: var(--cat-pack); border-color: var(--cat-pack); background: rgba(167,139,219,0.12); }
+    .filter-pill.active[data-filter="extension"] { color: var(--cat-extension); border-color: var(--cat-extension); background: rgba(232,168,76,0.12); }
     .filter-pill.active[data-filter="resource"] { color: var(--cat-resource); border-color: var(--cat-resource); background: rgba(212,196,114,0.12); }
 
     .results-count { padding: 0 0 20px; font-size: 13px; color: var(--text-2); }
@@ -160,7 +165,50 @@
     .type-agent { color: var(--cat-agent); border: 1px solid rgba(122,162,232,0.4); }
     .type-skill { color: var(--cat-skill); border: 1px solid rgba(107,198,126,0.4); }
     .type-pack { color: var(--cat-pack); border: 1px solid rgba(167,139,219,0.4); }
+    .type-extension { color: var(--cat-extension); border: 1px solid rgba(232,168,76,0.4); }
     .type-resource { color: var(--cat-resource); border: 1px solid rgba(212,196,114,0.4); }
+
+    /* The exact string a person pastes into Rundock's Settings, Packages.
+       Shown on any entry that carries a ref, which every extension must. */
+    .dir-card-paste {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+      min-width: 0;
+    }
+    .dir-card-paste code {
+      /* Zero basis, so the string never sets the card's minimum width: it
+         fills what is left beside Copy and wraps on a narrow card. */
+      flex: 1 1 0;
+      width: 0;
+      min-width: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+      color: var(--text-1);
+      background: var(--elevated);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 8px;
+      line-height: 1.45;
+      /* Wraps rather than truncates: a string cut short is not the exact
+         string to paste. */
+      overflow-wrap: anywhere;
+      user-select: all;
+    }
+    .dir-copy {
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 9px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .dir-copy:hover, .dir-copy:focus-visible { color: var(--text-1); border-color: var(--text-2); }
+    .dir-copy.copied { color: var(--cat-skill); border-color: var(--cat-skill); }
 
     .dir-card-author {
       font-size: 12px;
@@ -256,7 +304,7 @@
       .page-header p { font-size: 15px; }
       .controls { flex-direction: column; align-items: stretch; }
       .filter-pills { flex-wrap: wrap; }
-      .dir-grid { grid-template-columns: 1fr; }
+      .dir-grid { grid-template-columns: minmax(0, 1fr); }
     }
 
     /* =====================================================
@@ -312,7 +360,7 @@
   <main class="container">
     <div class="page-header">
       <h1>Directory</h1>
-      <p>Agents, skills, packs, and resources for Claude Code. Open source, community-built.</p>
+      <p>Agents, skills, packs, extensions, and resources for Claude Code and Rundock. Open source, community-built.</p>
     </div>
 
     <div class="controls">
@@ -322,6 +370,7 @@
         <button class="filter-pill" data-filter="agent">Agents</button>
         <button class="filter-pill" data-filter="skill">Skills</button>
         <button class="filter-pill" data-filter="pack">Packs</button>
+        <button class="filter-pill" data-filter="extension">Extensions</button>
         <button class="filter-pill" data-filter="resource">Resources</button>
       </div>
     </div>
@@ -378,7 +427,35 @@
   </footer>
 
 <script>
+// An extension or package entry shows the string to paste into Rundock's
+// Settings, Packages, built from `repo`: "owner/repo", which installs the
+// newest release tag and is offered an update when a newer one is tagged.
+// An entry may carry `ref` to pin an exact tag, release or commit instead.
 const DIRECTORY = [
+  {
+    name: "CSV Viewer",
+    type: "extension",
+    author: "liamdarmody",
+    repo: "https://github.com/liamdarmody/rundock-csv-extension",
+    description: "Opens .csv files in Rundock as a table instead of raw text. Read-only, sandboxed, and small enough to read before you install it.",
+    tags: ["rundock-extension", "data", "csv"]
+  },
+  {
+    name: "Investment Partner",
+    type: "extension",
+    author: "dougseven",
+    repo: "https://github.com/liamdarmody/rundock-investment-partner",
+    description: "A portfolio dashboard, a risk control panel and a decision board on one note, with three agents that stress-test positions against your limits. Your data stays in ordinary notes in your workspace.",
+    tags: ["rundock-extension", "investing", "dashboard"]
+  },
+  {
+    name: "Rundock package starter",
+    type: "resource",
+    author: "liamdarmody",
+    repo: "https://github.com/liamdarmody/rundock-package-starter",
+    description: "A template for sharing what you build for Rundock: a team of agents and skills with no code, or a team that brings its own view built from Rundock UI, with a checker and tests.",
+    tags: ["rundock-extension", "template", "starter"]
+  },
   {
     name: "Dex",
     type: "pack",
@@ -576,6 +653,19 @@ function tagLabel(slug) {
   return slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 }
 
+// "owner/repo@ref", the shorthand Rundock's install field accepts. Built
+// from the repo URL so the listing can never disagree with its own link.
+function pasteString(d) {
+  if (d.type !== 'extension' && !d.ref) return null;
+  const m = /^https:\/\/github\.com\/([^/]+)\/([^/]+?)(?:\.git)?\/?$/.exec(d.repo);
+  if (!m) return null;
+  return d.ref ? `${m[1]}/${m[2]}@${d.ref}` : `${m[1]}/${m[2]}`;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
 function render() {
   const q = searchInput.value.toLowerCase().trim();
   let items = activeFilter === 'all' ? DIRECTORY : DIRECTORY.filter(d => d.type === activeFilter);
@@ -597,7 +687,7 @@ function render() {
     <a href="https://github.com/liamdarmody/rundock-site/issues/new?template=directory-submission.md" class="dir-card-cta" target="_blank" rel="noopener">
       <svg class="dir-card-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
       <div class="dir-card-cta-title">Add yours</div>
-      <div class="dir-card-cta-desc">Built an agent, skill, or pack for Claude Code? Submit it to the directory.</div>
+      <div class="dir-card-cta-desc">Built an agent, skill, pack, or extension? Submit it to the directory.</div>
     </a>
   `;
 
@@ -614,6 +704,7 @@ function render() {
       </div>
       <div class="dir-card-author">${d.author}</div>
       <div class="dir-card-desc">${d.description}</div>
+      ${pasteString(d) ? `<div class="dir-card-paste" title="Paste into Rundock: Settings, Packages"><code>${escapeHtml(pasteString(d))}</code><span class="dir-copy" role="button" tabindex="0" data-copy="${escapeHtml(pasteString(d))}" aria-label="Copy ${escapeHtml(pasteString(d))}">Copy</span></div>` : ''}
       <div class="dir-card-tags">${d.tags.map(t => `<span class="dir-tag${t === activeTag ? ' active' : ''}" data-tag="${t}">${tagLabel(t)}</span>`).join('')}</div>
     </a>
   `).join('');
@@ -632,7 +723,40 @@ filterBtns.forEach(btn => {
 
 searchInput.addEventListener('input', render);
 
+document.addEventListener('keydown', (e) => {
+  const copy = e.target.closest && e.target.closest('.dir-copy');
+  if (copy && (e.key === 'Enter' || e.key === ' ')) {
+    e.preventDefault();
+    copyPaste(copy);
+  }
+});
+
+function copyPaste(el) {
+  const text = el.dataset.copy;
+  const done = () => {
+    el.textContent = 'Copied';
+    el.classList.add('copied');
+    setTimeout(() => { el.textContent = 'Copy'; el.classList.remove('copied'); }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, () => {});
+  }
+}
+
 document.addEventListener('click', (e) => {
+  const copy = e.target.closest('.dir-copy');
+  if (copy) {
+    e.preventDefault();
+    e.stopPropagation();
+    copyPaste(copy);
+    return;
+  }
+  if (e.target.closest('.dir-card-paste')) {
+    // Clicking the string selects it for copying by hand rather than
+    // following the card's link away from the page.
+    e.preventDefault();
+    return;
+  }
   const tag = e.target.closest('.dir-tag');
   if (tag) {
     e.preventDefault();
