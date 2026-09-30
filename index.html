@@ -486,6 +486,16 @@
       max-width: 728px;
     }
 
+    /* A single standalone statement: full container width, centred. */
+    .problem--statement .container {
+      max-width: 960px;
+      text-align: center;
+    }
+
+    .problem--statement .problem-body {
+      max-width: none;
+    }
+
     .problem h2 {
       max-width: 640px;
       margin-bottom: 28px;
@@ -1632,7 +1642,7 @@
   <!-- ===================================================
        4b. WHO IT IS FOR
   ==================================================== -->
-  <section class="problem" aria-label="Who Rundock is for">
+  <section class="problem problem--statement" aria-label="Who Rundock is for">
     <div class="container">
       <div class="problem-body">
         <p><strong>Built for people who run things.</strong> If you have set up your own tools before, you can run a team.</p>
