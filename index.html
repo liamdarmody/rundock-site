@@ -480,6 +480,22 @@
       padding: 80px 0;
     }
 
+    /* Centre the reading column; the text inside stays left-aligned.
+       728px = the 680px body measure plus the container's 24px gutters. */
+    .problem .container {
+      max-width: 728px;
+    }
+
+    /* A single standalone statement: full container width, centred. */
+    .problem--statement .container {
+      max-width: 960px;
+      text-align: center;
+    }
+
+    .problem--statement .problem-body {
+      max-width: none;
+    }
+
     .problem h2 {
       max-width: 640px;
       margin-bottom: 28px;
@@ -1465,6 +1481,13 @@
     font-size: 18px;
     line-height: 1.6;
   }
+  .compare-teaser .compare-teaser-points {
+    max-width: 680px;
+    margin: 0 auto 32px;
+    text-align: left;
+  }
+  .compare-teaser .compare-teaser-points p { font-size: 17px; }
+  .compare-teaser .compare-teaser-points p + p { margin-top: 20px; }
   .compare-teaser .cmp-wrap { text-align: left; }
   .compare-teaser table.cmp { min-width: 620px; margin: 0 auto; }
   .compare-teaser .compare-teaser-cta {
@@ -1472,6 +1495,7 @@
   }
 
   /* === The layer that stays yours === */
+  .layer-yours .container { max-width: 728px; }
   .layer-yours h2 { margin-bottom: 16px; }
   .layer-yours .layer-yours-bridge,
   .layer-yours .layer-yours-body {
@@ -1618,7 +1642,7 @@
   <!-- ===================================================
        4b. WHO IT IS FOR
   ==================================================== -->
-  <section class="problem" aria-label="Who Rundock is for">
+  <section class="problem problem--statement" aria-label="Who Rundock is for">
     <div class="container">
       <div class="problem-body">
         <p><strong>Built for people who run things.</strong> If you have set up your own tools before, you can run a team.</p>
@@ -1896,7 +1920,7 @@
           <p>I started building Rundock because my first child was on the way and time was about to compress. I needed more output from the same hours. So I tried as many AI tools as I could. They were either too complicated or just gave me one assistant. What I needed was a team. The day a beta user sent me a screenshot of his own org chart, I knew the metaphor had clicked. This was closer to hiring people than to chatting with a model.</p>
           <p>Today, I still work most days. The difference is what I am doing in those hours. Cos has the morning briefing waiting. Penn has hooks and a draft for me to push back on. Arlo's weekly digest lands on Saturday whether I open it or not. I am the editor and the orchestrator, not the bottleneck. That is what Rundock is for.</p>
           <div class="story-links">
-            <a href="https://liamdarmody.com/agents" target="_blank" rel="noopener">Get The Agent Kit, free</a>
+            <a href="https://theainativeaccelerator.com/lean-agent-team" target="_blank" rel="noopener">Get the Lean Agent Team, free</a>
             <a href="https://theainativeaccelerator.com/ai-scorecard/" target="_blank" rel="noopener">Take the AI Readiness Scorecard</a>
             <a href="https://liamdarmody.com/services" target="_blank" rel="noopener">How I help businesses build their AI systems</a>
           </div>
@@ -1983,7 +2007,7 @@
       <h2>Something you talk to, or something you run.</h2>
       <p class="compare-teaser-intro">Rundock runs your team on a subscription you probably already pay for. Here is the short version.</p>
 
-      <div class="problem-body">
+      <div class="compare-teaser-points">
         <p><strong>ChatGPT or Claude on its own:</strong> one assistant that forgets how you work. Rundock puts a team on top of the same subscription, in your files.</p>
         <p><strong>Obsidian or Reflect:</strong> they hold what you know. Rundock puts a team to work on it, in the same files.</p>
         <p><strong>Notion:</strong> their agents live in their cloud on their plan. Your team lives in your folder.</p>
@@ -2140,8 +2164,8 @@
   <section class="stay-close">
     <div class="container">
       <h2>Stay close.</h2>
-      <p>Join my newsletter and get instant access to The Agent Kit. A ten-minute setup, a directory of starter packs, my visual cheat sheet, and the server stack I run my own team on. Free.</p>
-      <a href="https://liamdarmody.com/agents" target="_blank" rel="noopener">Sign up at liamdarmody.com/agents</a>
+      <p>Join my newsletter for notes on building and running a team of AI agents. Free.</p>
+      <a href="https://liamdarmody.com" target="_blank" rel="noopener">Sign up at liamdarmody.com</a>
     </div>
   </section>
 
@@ -2177,7 +2201,6 @@
           <p class="footer-col-label">From Liam</p>
           <div class="footer-col-links">
             <a href="https://theainativeaccelerator.com/lean-agent-team" target="_blank" rel="noopener">The Lean Agent Team</a>
-            <a href="https://liamdarmody.com/agents" target="_blank" rel="noopener">The Agent Kit</a>
             <a href="https://theainativeaccelerator.com/ai-scorecard/" target="_blank" rel="noopener">AI Readiness Scorecard</a>
             <a href="https://liamdarmody.com/services" target="_blank" rel="noopener">Services</a>
             <a href="https://linkedin.com/in/liamdarmody" target="_blank" rel="noopener">LinkedIn</a>
