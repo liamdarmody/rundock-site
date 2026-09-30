@@ -10,4 +10,4 @@ To add your project, [open an issue](https://github.com/liamdarmody/rundock-site
 
 ## Deployment
 
-Hosted on Netlify. Pushes to `main` deploy automatically.
+Hosted on Cloudflare Pages. Pushes to `main` deploy automatically.
