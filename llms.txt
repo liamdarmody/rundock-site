@@ -12,7 +12,7 @@ Rundock is a visual workspace for your AI agent team. It is built for solopreneu
 - **For:** Solopreneurs, consultants, coaches, advisors, and operators running their own businesses.
 - **How:** A visual org chart on top of the Claude Code and Codex runtimes. Each agent has a profile, skills, and instructions. They share files, conversations, and context.
 - **Pricing:** Free. Open source. Requires a Claude Pro ($20/mo) or Claude Max ($100/mo) subscription for the AI processing; specialists can also run on a ChatGPT plan via the official Codex CLI.
-- **Platforms:** macOS (Apple Silicon, M1 or later) as a downloadable app. Windows, Linux, and Intel Mac users can run from source.
+- **Platforms:** macOS (Apple Silicon or Intel) and Windows 10 and 11 as downloadable apps. Linux users can run from source.
 - **Maker:** Liam Darmody. Product advisor, executive coach, and AI builder.
 - **Site:** https://rundock.ai
 - **Source:** https://github.com/liamdarmody/rundock
@@ -75,8 +75,8 @@ Your workspace is yours. Agents and skills are markdown files you own. The code 
 ## Get Started
 
 1. **Install Claude Code.** Requires a Claude Pro or Max subscription. https://claude.com/product/claude-code
-2. **Download Rundock for Mac.** One file. Open it and it runs. Apple Silicon (M1 or later). https://github.com/liamdarmody/rundock/releases/latest
+2. **Download Rundock for Mac or Windows.** One file. Open it and it runs. https://rundock.ai/download
 3. **Choose a workspace.** Point Rundock at any folder on your computer. That folder becomes your workspace. Agents, files, and conversations live there.
 4. **Build your team.** Doc, the platform agent, walks you through building your first agents. Named, configured, and ready to work in under ten minutes.
 
-For Windows, Linux, or Intel Mac, see the README for running from source: https://github.com/liamdarmody/rundock#build-from-source
+For Linux, see the README for running from source: https://github.com/liamdarmody/rundock#build-from-source
