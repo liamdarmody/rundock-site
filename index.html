@@ -312,8 +312,13 @@
       align-items: center;
       justify-content: center;
       pointer-events: none;
-      animation: film-in 0.25s ease-out;
+      opacity: 1;
+      transition: opacity 0.35s ease;
     }
+    /* Stays invisible, with the screenshot showing, until the film is
+       actually playing; fades out again before it hands back. */
+    .hero-film.is-waiting,
+    .hero-film.is-leaving { opacity: 0; }
     /* The film is 16:9 and the window 16:10, so the film takes the window's
        full height and runs slightly wider than it, about 5% each side. */
     .hero-film-inner {
@@ -322,12 +327,12 @@
       height: 100%;
       aspect-ratio: 16 / 9;
       pointer-events: auto;
-      border-radius: 4px;
+      /* Matches the app window's corners in the screenshot. */
+      border-radius: 7px;
       overflow: hidden;
       box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 12px 40px rgba(0, 0, 0, 0.55);
     }
     .hero-film[hidden] { display: none; }
-    @keyframes film-in { from { opacity: 0; } to { opacity: 1; } }
     .hero-film video {
       display: block;
       width: 100%;
@@ -342,14 +347,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       padding: 0;
       border-radius: 50%;
       color: #fff;
       background: rgba(20, 20, 20, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.2);
       cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+    /* With a mouse, the close button fades out while the film plays and the
+       pointer is still, and comes back when it moves. Touch keeps it. */
+    @media (hover: hover) {
+      .hero-film.is-idle .film-close:not(:focus-visible) { opacity: 0; pointer-events: none; }
+      .hero-film.is-idle .hero-film-inner { cursor: none; }
     }
     .film-close:hover, .film-close:focus-visible { background: rgba(40, 40, 40, 0.9); border-color: rgba(255, 255, 255, 0.45); }
     .film-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -357,12 +369,14 @@
     @media (max-width: 600px) {
       .hero-play { width: 72px; height: 72px; }
       .hero-play svg { width: 24px; height: 27px; margin-left: 5px; }
-      .film-close { top: 8px; right: 8px; width: 32px; height: 32px; }
+      .film-close { top: 8px; right: 8px; width: 30px; height: 30px; }
+      .film-close svg { width: 13px; height: 13px; }
+      .hero-film-inner { border-radius: 3px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .hero-frame img, .hero-play { transition: none; }
       .hero-film-trigger:hover .hero-play, .hero-film-trigger:focus-visible .hero-play { transform: none; }
-      .hero-film { animation: none; }
+      .hero-film, .film-close { transition: none; }
     }
 
     /* Smaller glow for feature section screenshots */
@@ -1985,7 +1999,7 @@
                no src or poster in the markup. -->
           <div class="hero-film" id="hero-film" hidden>
             <div class="hero-film-inner">
-              <video id="film-video" controls playsinline preload="none" aria-label="Rundock, the 30-second film"></video>
+              <video id="film-video" controls controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback playsinline preload="none" aria-label="Rundock, the 30-second film"></video>
               <button type="button" class="film-close" id="film-close" aria-label="Close the film">
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg>
               </button>
@@ -2681,37 +2695,73 @@
   <script>
   /* Hero film: plays in place over the screenshot. The video is attached
      only on the first press, so visitors who don't press play download
-     nothing. Narrow screens get the 720p file. Closing, Escape or scrolling
-     it out of view stops it; closing also detaches it. */
+     nothing; narrow screens get the 720p file. The screenshot stays in view
+     until the film is actually playing, then the film fades in. At the end
+     it holds the end card for two seconds and fades back to the screenshot.
+     Close, Escape or scrolling it out of view stops it. Plays and finishes
+     are counted in Fathom, which keeps no personal data. */
   (function () {
     var trigger = document.getElementById('film-trigger');
     var player = document.getElementById('hero-film');
     var video = document.getElementById('film-video');
     var closeBtn = document.getElementById('film-close');
     if (!trigger || !player || !video || !closeBtn) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var fade = reduce ? 0 : 350;
+    var counted = false, endTimer = null, idleTimer = null;
+    function track(name) { try { if (window.fathom) window.fathom.trackEvent(name); } catch (e) {} }
+    function setIdle() {
+      clearTimeout(idleTimer);
+      player.classList.remove('is-idle');
+      idleTimer = setTimeout(function () { if (!video.paused) player.classList.add('is-idle'); }, 2000);
+    }
     function open() {
       var small = window.matchMedia('(max-width: 900px)').matches;
-      video.poster = 'rundock-film-poster.jpg';
+      counted = false;
+      player.classList.add('is-waiting');
+      player.classList.remove('is-leaving', 'is-idle');
       video.src = small ? 'rundock-film-720.mp4' : 'rundock-film-1080.mp4';
       player.hidden = false;
       trigger.hidden = true;
-      closeBtn.focus();
+      closeBtn.focus({ preventScroll: true });
       var p = video.play();
-      if (p && p.catch) p.catch(function () {});
+      if (p && p.catch) p.catch(function () { player.classList.remove('is-waiting'); });
     }
-    function close() {
-      if (player.hidden) return;
+    function reset() {
+      clearTimeout(endTimer); clearTimeout(idleTimer);
       video.pause();
       video.removeAttribute('src');
       video.load();
       player.hidden = true;
+      player.classList.remove('is-waiting', 'is-leaving', 'is-idle');
       trigger.hidden = false;
-      trigger.focus();
     }
+    function close(focusBack) {
+      if (player.hidden) return;
+      var hadFocus = player.contains(document.activeElement);
+      player.classList.add('is-leaving');
+      setTimeout(function () {
+        reset();
+        if (focusBack || hadFocus) trigger.focus({ preventScroll: true });
+      }, fade);
+    }
+    video.addEventListener('playing', function () {
+      player.classList.remove('is-waiting');
+      if (!counted) { counted = true; track('Film played'); }
+      setIdle();
+    });
+    video.addEventListener('pause', function () { clearTimeout(idleTimer); player.classList.remove('is-idle'); });
+    video.addEventListener('ended', function () {
+      track('Film finished');
+      if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function () {});
+      endTimer = setTimeout(function () { close(false); }, 2000);
+    });
+    video.addEventListener('seeking', function () { clearTimeout(endTimer); });
+    player.addEventListener('pointermove', setIdle);
     trigger.addEventListener('click', open);
-    closeBtn.addEventListener('click', close);
+    closeBtn.addEventListener('click', function () { close(true); });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !player.hidden && !document.fullscreenElement) close();
+      if (e.key === 'Escape' && !player.hidden && !document.fullscreenElement) close(true);
     });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
