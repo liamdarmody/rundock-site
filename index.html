@@ -1521,6 +1521,7 @@
     <div class="container">
       <a href="/" class="logo">Rundock</a>
       <nav class="header-nav">
+        <a href="/directory" class="header-link">Directory</a>
         <a href="https://docs.rundock.ai" class="header-link">Docs</a>
         <a href="https://github.com/liamdarmody/rundock" class="header-link" target="_blank" rel="noopener">GitHub</a>
       </nav>
@@ -1550,7 +1551,7 @@
       <div class="screenshot">
   <img
     src="rundock-hero-org-chart.png"
-    alt="Rundock showing an example agent team as an org chart. A Chief of Staff sits at the top with the team reporting in below, a Rundock Guide agent, live team status down the left sidebar, and scheduled routines at the bottom."
+    alt="Rundock showing an example agent team as an org chart: a Chief of Staff at the top with the team reporting in below, Doc the Rundock Guide beneath a divider, and live team status in the sidebar."
   >
 </div>
 
@@ -1577,14 +1578,14 @@
   <!-- ===================================================
        3b. LEAN AGENT TEAM CALLOUT
   ==================================================== -->
-  <section class="lean-team-callout" aria-label="Free download: Lean Agent Team">
+  <section class="lean-team-callout" aria-label="Free package: Lean Agent Team">
     <div class="container">
       <div class="lean-team-callout__inner">
-        <p class="lean-team-callout__label">Free download</p>
+        <p class="lean-team-callout__label">Free package</p>
         <h2 class="lean-team-callout__heading">Want a pre-built team to get you started?</h2>
-        <p class="lean-team-callout__body">The Lean Agent Team gives you a Chief of Staff, an EA, and a Content Lead: three agents ready to install today.</p>
-        <a href="https://theainativeaccelerator.com/lean-agent-team" class="btn-primary" target="_blank" rel="noopener">Download the Lean Agent Team</a>
-        <p class="lean-team-callout__footnote">Free &middot; No account required &middot; Works in Rundock out of the box</p>
+        <p class="lean-team-callout__body">The Lean Agent Team gives you a Chief of Staff, an EA, and a Content Lead. Paste one line into Settings, Packages and they join your team.</p>
+        <button type="button" class="btn-primary dir-copy" data-copy="liamdarmody/lean-agent-team">Copy liamdarmody/lean-agent-team</button>
+        <p class="lean-team-callout__footnote">Free &middot; No account required &middot; Prefer a zip? <a href="https://theainativeaccelerator.com/lean-agent-team" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline; text-underline-offset:3px;">Download it</a></p>
       </div>
     </div>
   </section>
@@ -1683,12 +1684,16 @@
 
         <div class="feature-copy">
           <h2>Talk to one. They route the rest.</h2>
-          <p>Run conversations with several agents in parallel. Ask your strategist a question while your writer drafts in the background. Replies stream in as each agent thinks, and they delegate to each other mid-conversation when the task calls for it.</p>
+          <p>Run conversations with several agents in parallel. Ask your strategist a question while your writer drafts in the background. Replies stream in as each agent thinks, and when one hands work to another, it tells you what it is passing on and to whom.</p>
+          <p>Group conversations into lists for each project or area of focus, and one click shows just that list.</p>
         </div>
 
         <div class="feature-screenshots">
           <div class="screenshot-sm">
-            <img src="rundock-streaming.gif" alt="Rundock conversation with a specialist agent replying in real time, the answer streaming in line by line as the agent works.">
+            <img src="rundock-streaming.gif" alt="Rundock conversation: the user asks the orchestrator to shorten a landing hook, the orchestrator says it is handing the work to the Content Lead, and the Content Lead's reply streams in.">
+          </div>
+          <div class="screenshot-sm">
+            <img src="rundock-conversation-lists.png" alt="Rundock conversations sidebar with Launch, Hiring and Ops list pills beside All and Unread, Launch selected so only its three conversations show, and one of them open on the right.">
           </div>
         </div>
 
@@ -1729,12 +1734,12 @@
 
         <div class="feature-copy">
           <h2>Set a routine, and it runs itself.</h2>
-          <p>Pick a skill and say when, and Rundock runs it on its own server: a morning briefing, an end-of-day sync, a weekly digest. Watch a run happen, see exactly what it changed, or stop one that's misbehaving, all from its own screen.</p>
+          <p>Pick a skill and say when, and Rundock runs it on its own server: a morning briefing, an end-of-day sync, a weekly digest. Run one now to try it, then see exactly what a run changed, or stop one that's misbehaving, from the run's own screen.</p>
         </div>
 
         <div class="feature-screenshots">
           <div class="screenshot-sm">
-            <img src="rundock-routines.png" alt="Rundock routines list showing four scheduled routines across different agents, each in a different run state: ran on time, caught up after a missed slot, missed, and failed.">
+            <img src="rundock-routines.png" alt="Rundock routines list showing five scheduled routines across different agents: one still going, and others that ran on time, caught up after a missed slot, missed, and failed, each row with a Run now control.">
           </div>
         </div>
 
@@ -1837,13 +1842,107 @@
 
 
   <!-- ===================================================
+       5i. FEATURE: PINS
+  ==================================================== -->
+  <section class="feature-section">
+    <div class="container">
+      <div class="feature-section-inner">
+
+        <div class="feature-copy">
+          <h2>The files you live in, one click away.</h2>
+          <p>Pin the board you check every morning, the plan you keep returning to, the note your agents update. Pins sit in their own list, in the order you chose, and travel with the workspace to any machine it syncs to.</p>
+        </div>
+
+        <div class="feature-screenshots">
+          <div class="screenshot-sm">
+            <img src="rundock-pinned-dashboard.png" alt="Rundock Pins: four pinned files in the sidebar, an investment dashboard first and open beside them, drawn by an extension with portfolio totals, an over-limit warning, an allocation chart and a risk control panel.">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       5j. FEATURE: MAP
+  ==================================================== -->
+  <section class="feature-section">
+    <div class="container">
+      <div class="feature-section-inner reverse">
+
+        <div class="feature-copy">
+          <h2>See your whole workspace at once.</h2>
+          <p>Map draws every file as a point and every link as a line. Notes that belong together cluster, files nobody links to sit around the edge, and your most recent work glows warmest. Click any point to open the file.</p>
+        </div>
+
+        <div class="feature-screenshots">
+          <div class="screenshot-sm">
+            <img src="rundock-map.png" alt="Rundock Map: the workspace drawn as a graph, with clusters of linked notes, unlinked files scattered around the edge, and recently changed files brightest.">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       5k. FEATURE: PACKAGES AND EXTENSIONS
+  ==================================================== -->
+  <section class="feature-section">
+    <div class="container">
+      <div class="feature-section-inner">
+
+        <div class="feature-copy">
+          <h2>Add a team, or a new way to see a file, from one link.</h2>
+          <p>Paste a GitHub link and Rundock shows you what is inside before anything is written: the agents, the skills, the routines and when they run. Agents and skills become yours to edit. Updates keep your changes.</p>
+          <p>Some packages bring an extension, which opens a kind of file in its own view, such as a portfolio as a dashboard. Extensions run in a sandbox, use Rundock's own components, and switch off with one click. <a href="/directory">Browse the Directory</a>.</p>
+        </div>
+
+        <div class="feature-screenshots">
+          <div class="screenshot-sm">
+            <img src="rundock-pinned-dashboard.png" alt="Rundock opening an investment dashboard note in an extension's view: portfolio totals, an over-limit warning, an allocation chart and a risk control panel, drawn with Rundock's own cards and controls.">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       5l. FEATURE: PERMISSIONS
+  ==================================================== -->
+  <section class="feature-section">
+    <div class="container">
+      <div class="feature-section-inner reverse">
+
+        <div class="feature-copy">
+          <h2>Your agents ask before anything that matters.</h2>
+          <p>When an agent wants to run a command or change a file it has no permission for, it asks with a card: allow it once, always, or not at all. Everything you have always allowed is listed in Settings, and you can take any of it back.</p>
+          <p>Working on notes, agents ask before running commands. Working on code, they get on with everyday development work, and anything that can't be undone still asks, every time.</p>
+        </div>
+
+        <div class="feature-screenshots">
+          <div class="screenshot-sm">
+            <img src="rundock-permissions.png" alt="Rundock Settings open at Permissions: Code mode selected, agents kept inside the workspace with one extra folder named, and a list of tools allowed without asking, each with a remove control.">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================================================
        6. BUILT FOR ANY KIND OF BUSINESS
   ==================================================== -->
   <section class="diversity">
     <div class="container">
 
       <h2>The org chart shapes itself around your business.</h2>
-      <p class="diversity-intro">Every team is different. Your org chart matches what you actually do.</p>
+      <p class="diversity-intro">Every team is different. Your org chart matches what you actually do, top-down or on its side for a deep team.</p>
 
       <div class="diversity-grid">
 
@@ -2220,6 +2319,20 @@
   </footer>
 
   <script>
+  // Copy a package's paste string, as the Directory's copy control does,
+  // and put the button's own label back afterwards.
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest && e.target.closest('.dir-copy');
+    if (!el || !navigator.clipboard || !navigator.clipboard.writeText) return;
+    e.preventDefault();
+    var label = el.dataset.label || el.textContent;
+    el.dataset.label = label;
+    navigator.clipboard.writeText(el.dataset.copy).then(function () {
+      el.textContent = 'Copied';
+      setTimeout(function () { el.textContent = label; }, 1500);
+    }, function () {});
+  });
+
   // Clipboard handler (matches existing site pattern)
   function copyCode(btn) {
     const code = btn.parentElement.querySelector('code').textContent;

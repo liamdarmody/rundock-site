@@ -32,6 +32,15 @@ Rundock is a visual workspace for your AI agent team. It is built for solopreneu
 - **Universal search.** One shortcut (Cmd+K) searches file contents and names, conversation messages, and agent and skill names, with forgiving partial matching and results that open at the right place.
 - **Review agent work in place.** Comment on any passage in a file an agent produced; the agent proposes inline edits you accept or reject. Feedback is stored in the file as plain text, no lock-in.
 - **Kanban boards.** Obsidian-compatible boards open as real column boards you drag cards across, and write back the same markdown so they stay interchangeable with Obsidian.
+- **Pins.** Pin the files you return to and open them from one list. Pins are kept with the workspace.
+- **Map.** The workspace drawn as a graph: files as nodes, links as edges, clusters of related notes, recent files brightest.
+- **Connections.** Every file shows what links to it and what it links to.
+- **Conversation lists.** Group conversations by project or area of focus, and filter the sidebar to one list.
+- **Packages.** Add agents, skills, routines and extensions from a GitHub link, see everything before it is written, update without losing your edits, and uninstall cleanly.
+- **Extensions.** Open a kind of file in its own view, built from Rundock's components and run in a sandbox, with an on and off switch for each.
+- **Permissions you can read.** Agents ask with a card before anything outside their permissions. Notes and Code modes, a switch that keeps agents inside the workspace, named working folders, and a list of every standing answer you can revoke.
+- **Connectors.** One list of every MCP server your agents can reach, across Claude Code and Codex, without showing credential values.
+- **Two chart layouts.** The org chart top-down or on its side.
 - **Local-first by design.** No signup, no account, no telemetry. The app, the server, and your data sit on your machine. Only the active conversation is sent to Anthropic via Claude Code for processing.
 - **Plain markdown ownership.** Agents and skills are markdown files in your workspace. Take them with you to any tool that supports the Claude agent format.
 
