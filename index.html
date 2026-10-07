@@ -144,7 +144,7 @@
         "name": "Where does my data live?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "On your machine. Rundock runs locally and never sends your files, agents, or conversations anywhere. Only the active conversation is sent for processing: to Anthropic via Claude Code, or to OpenAI via Codex if you run specialists on your ChatGPT plan."
+          "text": "On your machine. Rundock keeps your files, agents and history on your machine. Only the active conversation is sent for processing: to Anthropic via Claude Code, or to OpenAI via Codex if you run specialists on your ChatGPT plan."
         }
       },
       {
@@ -1494,18 +1494,6 @@
     margin-top: 36px;
   }
 
-  /* === The layer that stays yours === */
-  .layer-yours .container { max-width: 728px; }
-  .layer-yours h2 { margin-bottom: 16px; }
-  .layer-yours .layer-yours-bridge,
-  .layer-yours .layer-yours-body {
-    max-width: 720px;
-    color: var(--text-2);
-    font-size: 17px;
-    line-height: 1.6;
-  }
-  .layer-yours .layer-yours-bridge { margin-bottom: 20px; }
-
   /* === Announcement strip === */
   .cohort-strip {
     background: var(--surface);
@@ -1879,8 +1867,8 @@
     <div class="container">
       <h2>You're doing the work of five people.</h2>
       <div class="problem-body">
-        <p>You run content, ops, sales, admin, and research. When you started, there was nobody else, so the work fell to you. You're the CEO and the copywriter and the person who remembers to send the invoice. Your working week is full of work that isn't yours to be doing.</p>
-        <p>Existing AI tools haven't solved this. A single chatbot is a single assistant. You still have to hold the context, remember the process, and redo the work each time. Agent platforms built for developers assume you can write code. You shouldn't have to. Rundock gives you a team you can actually manage.</p>
+        <p>You run content, ops, sales, admin and research. When you started, there was nobody else, so the work fell to you. You're the CEO and the copywriter and the person who remembers to send the invoice. Your working week is full of work that isn't yours to be doing.</p>
+        <p>Existing AI tools haven't solved this. A single chatbot is a single assistant. You still have to hold the context, remember the process and redo the work each time. Agent platforms built for developers assume you can write code. You shouldn't have to. Rundock gives you a team you can actually manage.</p>
         <p><strong>Built for people who run things.</strong> If you've set up your own tools before, you can run a team.</p>
       </div>
     </div>
@@ -1928,7 +1916,7 @@
     <div class="container">
       <div class="chapter-head">
         <h2 id="chapter-team">Your team.</h2>
-        <p>A lead who delegates, specialists who deliver, and a team that keeps what it learns.</p>
+        <p>A lead who delegates, specialists who deliver and a team that keeps what it learns.</p>
       </div>
 
       <div class="switcher" role="group" aria-label="Your team features" style="--n: 5">
@@ -2005,7 +1993,7 @@
         <div class="feat">
           <button type="button" class="feat-trigger" id="feat-work-review" aria-controls="shot-work-review" aria-pressed="false">
             <span class="feat-title">Review the work where it lives.</span>
-            <span class="feat-line">Select a passage, leave a comment, and accept or reject the agent's edit with a click.</span>
+            <span class="feat-line">Select a passage, leave a comment and accept or reject the agent's edit with a click.</span>
           </button>
           <figure class="feat-shot" id="shot-work-review">
             <div class="shot-frame"><img src="rundock-feature-review.png" width="1440" height="900" loading="lazy" alt="An HTML page open in Rundock as the finished page, with two numbered review comments beside it, one with a reply, each with Reply and Resolve buttons."></div>
@@ -2094,12 +2082,12 @@
           <div class="org-screenshot">
             <img
               src="rundock-org-chart-beta-user-2.jpeg"
-              alt="Rundock org chart for a consulting business: multi-level hierarchy with content, sales, delivery, and research leads"
+              alt="Rundock org chart for a consulting business: multi-level hierarchy with content, sales, delivery and research leads"
             >
           </div>
           <div class="diversity-caption">
             <strong>A consulting business</strong>
-            A multi-level team with content, sales, delivery, and research leads, each with their own specialists.
+            A multi-level team with content, sales, delivery and research leads, each with their own specialists.
           </div>
         </div>
 
@@ -2108,12 +2096,12 @@
           <div class="org-screenshot">
             <img
               src="rundock-org-chart-beta-user-1-team-1.png"
-              alt="Rundock org chart for a coaching business: eleven-agent team covering content, strategy, coaching, finance, sales, design, and product"
+              alt="Rundock org chart for a coaching business: eleven-agent team covering content, strategy, coaching, finance, sales, design and product"
             >
           </div>
           <div class="diversity-caption">
             <strong>A coaching business</strong>
-            An eleven-strong team covering content, strategy, coaching, finance, sales, design, and product.
+            An eleven-strong team covering content, strategy, coaching, finance, sales, design and product.
           </div>
         </div>
 
@@ -2122,12 +2110,12 @@
           <div class="org-screenshot">
             <img
               src="rundock-org-chart-beta-user-1-team-2.png"
-              alt="Rundock org chart for a school: school director with four specialists running curriculum, lesson creation, and marketing"
+              alt="Rundock org chart for a school: school director with four specialists running curriculum, lesson creation and marketing"
             >
           </div>
           <div class="diversity-caption">
             <strong>A school</strong>
-            A school director and four specialists running curriculum, lesson creation, and marketing.
+            A school director and four specialists running curriculum, lesson creation and marketing.
           </div>
         </div>
 
@@ -2138,7 +2126,7 @@
 
 
   <!-- ===================================================
-       9. YOUR DATA NEVER LEAVES YOUR COMPUTER
+       9. YOUR WORK STAYS ON YOUR COMPUTER
   ==================================================== -->
   <section class="data-privacy">
     <div class="container">
@@ -2148,7 +2136,7 @@
       <div class="flow-columns">
         <div class="flow-card">
           <h3>Browser or app</h3>
-          <p>Visual interface for your agent team. Org chart, conversations, and workspace files.</p>
+          <p>Visual interface for your agent team. Org chart, conversations and workspace files.</p>
         </div>
         <div class="flow-arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><polyline points="9 18 15 12 9 6"/></svg>
@@ -2166,7 +2154,7 @@
         </div>
       </div>
 
-      <p class="how-footer">Everything runs locally. The entire codebase is fully auditable on GitHub. Because the team is files, it's portable. Back it up, move it, sync it, or walk away with it. Nothing here is held hostage.</p>
+      <p class="how-footer">Everything runs locally. The entire codebase is fully auditable on GitHub. Because the team is files, it's portable. Back it up, move it, sync it or walk away with it. Nothing here is held hostage.</p>
     </div>
   </section>
 
@@ -2176,7 +2164,7 @@
   ==================================================== -->
   <section class="pricing-truth">
     <div class="container">
-      <h2>Free, open source, and yours to keep.</h2>
+      <h2>Free, open source and yours to keep.</h2>
       <p class="pricing-truth-intro">Three facts, stated plainly, with no asterisk.</p>
 
       <!-- Editorial three-column: no card chrome, hairline dividers between columns -->
@@ -2209,7 +2197,7 @@
       <div class="lean-team-callout__inner">
         <p class="lean-team-callout__label">Free download</p>
         <h2 class="lean-team-callout__heading">Want a pre-built team to get you started?</h2>
-        <p class="lean-team-callout__body">The Lean Agent Team gives you a Chief of Staff, an EA, and a Content Lead: three agents ready to install today.</p>
+        <p class="lean-team-callout__body">The Lean Agent Team gives you a Chief of Staff, an EA and a Content Lead: three agents ready to install today.</p>
         <a href="https://theainativeaccelerator.com/lean-agent-team" class="btn-primary" target="_blank" rel="noopener">Download the Lean Agent Team</a>
         <p class="lean-team-callout__footnote">Free &middot; No account required &middot; Works in Rundock out of the box</p>
       </div>
@@ -2262,32 +2250,20 @@
   ==================================================== -->
   <section class="compare-teaser">
     <div class="container">
-      <h2>Something you talk to, or something you run.</h2>
-      <p class="compare-teaser-intro">Rundock runs your team on a subscription you probably already pay for. Here's the short version.</p>
+      <h2>Something you talk to, or a team you run.</h2>
+      <p class="compare-teaser-intro">Rundock runs a team on the subscription you probably already pay for. Here's how it compares.</p>
 
       <div class="compare-teaser-points">
-        <p><strong>ChatGPT or Claude on its own:</strong> one assistant that forgets how you work. Rundock puts a team on top of the same subscription, in your files.</p>
-        <p><strong>Obsidian or Reflect:</strong> they hold what you know. Rundock puts a team to work on it, in the same files.</p>
-        <p><strong>Notion:</strong> their agents live in their cloud on their plan. Your team lives in your folder.</p>
-        <p><strong>Claude Code, OpenClaw, CrewAI:</strong> engines. Rundock is the car built around them, and you don't need to be a mechanic.</p>
+        <p><strong>ChatGPT or Claude on its own:</strong> one assistant that forgets how you work. Rundock adds a team on the same subscription.</p>
+        <p><strong>Obsidian or Reflect:</strong> they hold what you know. Rundock puts a team to work on it.</p>
+        <p><strong>Notion:</strong> their agents live in their cloud. Yours live in your folder.</p>
+        <p><strong>Claude Code, OpenClaw, CrewAI:</strong> engines. Rundock is the car, and you don't need to be a mechanic.</p>
       </div>
 
-      <p class="compare-teaser-intro">Ten minutes, guided setup. <a href="/download">Get started.</a></p>
+      <p class="compare-teaser-intro">Your team is plain files you own. It runs on Claude Code or Codex today, and on whatever comes next, without a rebuild.</p>
       <div class="compare-teaser-cta">
         <a href="/compare" class="btn-secondary">See the full comparison</a>
       </div>
-    </div>
-  </section>
-
-
-  <!-- ===================================================
-       10b. THE LAYER THAT STAYS YOURS
-  ==================================================== -->
-  <section class="layer-yours">
-    <div class="container">
-      <h2>The layer that stays yours as the models change.</h2>
-      <p class="layer-yours-bridge">Already tried agents in the terminal? Rundock gives you the same power with an org chart you can see and delegation you can watch, running your team across Claude Code and Codex.</p>
-      <p class="layer-yours-body">Rundock is more than a front end. It's a runtime-agnostic orchestration layer: the control plane that catches each request, routes it to the right specialist, hands context between agents, and keeps the team coordinated. The execution engine underneath is pluggable, Claude Code and Codex today, more later. Because your team is plain markdown you own, the same team runs on whichever engine you choose, switchable without a rebuild. When any one model gets commoditised, the layer you built on top is the part that lasts.</p>
     </div>
   </section>
 
@@ -2334,7 +2310,7 @@
           <div class="step-numeral">02</div>
           <div class="step-content">
             <h3>Choose a workspace</h3>
-            <p>Point Rundock at any folder on your computer. That folder becomes your workspace. Your agents, files, and conversations live there.</p>
+            <p>Point Rundock at any folder on your computer. That folder becomes your workspace. Your agents, files and conversations live there.</p>
           </div>
         </div>
 
@@ -2342,7 +2318,7 @@
           <div class="step-numeral">03</div>
           <div class="step-content">
             <h3>Build your team</h3>
-            <p>Doc, your platform agent, walks you through building your first agents. Named, configured, and ready to work in under ten minutes.</p>
+            <p>Doc, your platform agent, walks you through building your first agents. Named, configured and ready to work in under ten minutes.</p>
           </div>
         </div>
 
@@ -2374,7 +2350,7 @@
         </details>
         <details class="faq-item">
           <summary>Is Rundock a harness or an orchestrator?</summary>
-          <p>Neither: Rundock runs on harnesses. Claude Code and Codex are the harnesses; they own the agentic loop, tool execution, and context management, and they improve without Rundock lifting a finger. Rundock is the layer above: the workspace where a team of harness-run agents is built, managed, observed, and improved. If you want a word for it, it's an orchestration layer, but the orchestration primitive is delegation between named agents on an org chart, not a graph you program.</p>
+          <p>Neither: Rundock runs on harnesses. Claude Code and Codex are the harnesses; they own the agentic loop, tool execution and context management, and they improve without Rundock lifting a finger. Rundock is the layer above: the workspace where a team of harness-run agents is built, managed, observed and improved. If you want a word for it, it's an orchestration layer, but the orchestration primitive is delegation between named agents on an org chart, not a graph you program.</p>
         </details>
         <details class="faq-item">
           <summary>Do I have to design agent graphs or loops?</summary>
@@ -2386,7 +2362,7 @@
         </details>
         <details class="faq-item">
           <summary>Where does my data live?</summary>
-          <p>On your machine. Rundock runs locally and never sends your files, agents, or conversations anywhere. Only the active conversation is sent for processing: to Anthropic via Claude Code, or to OpenAI via Codex if you run specialists on your ChatGPT plan.</p>
+          <p>On your machine. Rundock keeps your files, agents and history on your machine. Only the active conversation is sent for processing: to Anthropic via Claude Code, or to OpenAI via Codex if you run specialists on your ChatGPT plan.</p>
         </details>
         <details class="faq-item">
           <summary>Can I bring my context from ChatGPT, Notion, or Claude?</summary>

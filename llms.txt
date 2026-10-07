@@ -48,7 +48,7 @@ Rundock is a visual workspace for your AI agent team. It is built for solopreneu
 
 ## What Makes Rundock Different
 
-A single chatbot is a single assistant. Useful, but you still hold the context, remember the process, and redo the work each time. Rundock gives you a team you can manage: many agents, each with a role, working in parallel against the same workspace.
+A single chatbot is a single assistant. Useful, but you still hold the context, remember the process and redo the work each time. Rundock gives you a team you can manage: many agents, each with a role, working in parallel against the same workspace.
 
 Agent platforms built for developers assume you can write code. Rundock does not. The platform agent walks you through setup in plain English. If you can describe what you want, the team can build it.
 
@@ -62,7 +62,7 @@ Hosted SaaS agent tools keep your data on their servers. Rundock runs locally. Y
 Rundock is free. You bring the subscription that runs your agents: Claude Pro ($20/mo) or Claude Max ($100/mo) for the default Claude Code runtime, and optionally a ChatGPT plan to run specialists on the Codex CLI. That is the total cost.
 
 **Where does my data live?**
-On your machine. Rundock runs locally and never sends your files, agents, or conversations anywhere. Only the active conversation is sent for processing, to Anthropic via Claude Code or to OpenAI via Codex, under your own subscription.
+On your machine. Rundock keeps your files, agents and history on your machine. Only the active conversation is sent for processing, to Anthropic via Claude Code or to OpenAI via Codex, under your own subscription.
 
 **What if I am not technical?**
 If you can describe what you want, Rundock can build it. You will spend more time naming your agents than writing code. Doc, the built-in platform agent, walks you through setup and builds your first agents with you.
@@ -86,6 +86,6 @@ Your workspace is yours. Agents and skills are markdown files you own. The code 
 1. **Install Claude Code.** Requires a Claude Pro or Max subscription. https://claude.com/product/claude-code
 2. **Download Rundock for Mac or Windows.** One file. Open it and it runs. https://rundock.ai/download
 3. **Choose a workspace.** Point Rundock at any folder on your computer. That folder becomes your workspace. Agents, files, and conversations live there.
-4. **Build your team.** Doc, the platform agent, walks you through building your first agents. Named, configured, and ready to work in under ten minutes.
+4. **Build your team.** Doc, the platform agent, walks you through building your first agents. Named, configured and ready to work in under ten minutes.
 
 For Linux, see the README for running from source: https://github.com/liamdarmody/rundock#build-from-source
