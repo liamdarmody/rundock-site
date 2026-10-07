@@ -28,11 +28,27 @@
   gap: 12px;
 }
 
-/* Tighter positioning on mobile. */
+/* Phones: a floating launcher would sit over body text and captions in
+   the narrow column, so it drops into the page flow instead, centred at
+   the very end of the page below the footer. The menu still opens upwards,
+   now positioned against the launcher rather than pushing the page. */
 @media (max-width: 767px) {
   .sw-root {
-    right: 16px;
-    bottom: 20px;
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: max-content;
+    margin: 0 auto;
+    padding: 8px 0 32px;
+    align-items: center;
+  }
+  .sw-menu {
+    position: absolute;
+    bottom: calc(100% - 4px);
+    left: 50%;
+    margin-left: -120px;
+    width: 240px;
+    transform-origin: bottom center;
   }
   .sw-trigger {
     padding: 8px 14px 8px 11px;

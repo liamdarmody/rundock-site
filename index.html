@@ -1557,73 +1557,167 @@
     .cohort-strip p { text-align: left; }
   }
 
-  /* === Chapters: heading, lead image, card grid === */
+  /* === Chapters: heading, then a feature list beside one switching screenshot ===
+     Desktop: the feature buttons sit in column 1, one row each, and every
+     screenshot shares the column-2 cell (rows 1 to the end), so the stage
+     never jumps in height. The trailing 1fr row absorbs any extra height
+     from the screenshot, which keeps the buttons packed at the top.
+     The first feature's state (aria-pressed and .is-active) ships in the
+     markup, so the page reads correctly before or without the script.
+     Phones: .feat becomes a plain block, so each feature is followed by its
+     own full-width screenshot and every screenshot is visible. */
   .chapter {
-    padding: 96px 0 88px;
-    /* Contain the lead image's glow bleed, as .feature-section did. */
+    padding: 112px 0 104px;
     overflow-x: clip;
   }
+  .chapter .container { max-width: 1180px; }
   .chapter-head {
     max-width: 680px;
-    margin: 0 auto 48px;
+    margin: 0 auto 56px;
     text-align: center;
   }
   .chapter-head h2 { margin-bottom: 12px; }
-  .chapter-head p { font-size: 18px; line-height: 1.6; }
-  .chapter-lead {
-    max-width: 880px;
-    margin: 0 auto;
+  .chapter-head p { font-size: 18px; line-height: 1.6; text-wrap: balance; }
+
+  .switcher {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    grid-template-rows: repeat(var(--n, 5), auto) 1fr;
+    column-gap: 56px;
+    align-items: start;
   }
-  .chapter-lead img { height: auto; }
-  .chapter-lead figcaption {
-    margin-top: 16px;
-    text-align: center;
-    font-size: 14px;
+  .feat { display: contents; }
+  .feat-trigger {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    margin: 0 0 4px;
+    padding: 16px 20px 16px 22px;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    border-left: 2px solid var(--border);
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+  .feat-trigger:hover { background: var(--surface); }
+  .feat-trigger:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .feat-title {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: var(--text-2);
+    transition: color 0.15s ease;
+  }
+  .feat-line {
+    font-size: 15px;
     line-height: 1.6;
     color: var(--text-2);
   }
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
-    margin-top: 64px;
+  .feat-trigger[aria-pressed="true"] {
+    border-left-color: var(--accent);
+    background: var(--accent-glow);
   }
-  .fcard {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    background: var(--surface);
-    border: 1px solid var(--border);
+  .feat-trigger[aria-pressed="true"] .feat-title { color: var(--text-1); }
+
+  .feat-shot {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: start;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .feat-shot.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+  /* Crossfade: the outgoing shot fades while the incoming one fades in;
+     visibility flips after the fade so hidden shots leave the
+     accessibility tree and take no clicks. The script adds .is-live on the
+     first hover or focus, so a resize across the phone breakpoint (or a
+     full-page capture) never plays a fade nobody asked for. */
+  .switcher.is-live .feat-shot { transition: opacity 0.25s ease, visibility 0s linear 0.25s; }
+  .switcher.is-live .feat-shot.is-active { transition: opacity 0.25s ease, visibility 0s linear 0s; }
+  /* One frame per screenshot: the image runs right to the border. The
+     lighter hairline, outer ring and soft accent glow separate a dark
+     screenshot from the dark page. */
+  .shot-frame {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 12px;
-    overflow: hidden;
+    background: #262626;
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.6),
+      0 16px 40px rgba(0, 0, 0, 0.5);
   }
-  .fcard-media {
-    aspect-ratio: 16 / 10;
-    background: #262626; /* the app's canvas behind each tile */
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
+  /* A soft accent wash behind the frame, painted as a gradient rather than
+     a large blurred shadow so it stays cheap and renders the same in every
+     capture. */
+  .feat-shot { position: relative; }
+  .feat-shot::before {
+    content: '';
+    position: absolute;
+    inset: -12% -8%;
+    z-index: -1;
+    background: radial-gradient(ellipse at center, rgba(232, 122, 90, 0.16) 0%, rgba(232, 122, 90, 0.05) 45%, transparent 70%);
+    pointer-events: none;
   }
-  .fcard-media img {
-    width: 100%;
-    height: 100%;
+  .shot-frame img {
     display: block;
-    object-fit: cover;
-    object-position: left top;
+    width: 100%;
+    height: auto;
   }
-  .fcard-media--center img { object-position: center; }
-  .fcard-media--contain img { object-fit: contain; padding: 0 16px; }
-  .fcard-body {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 20px 22px 24px;
+  .switcher-aside {
+    grid-column: 1;
+    margin-top: 16px;
+    padding-left: 24px;
+    font-size: 15px;
   }
-  .fcard-body h3 { font-size: 17px; margin-bottom: 0; }
-  .fcard-body p { font-size: 15px; line-height: 1.65; }
-  @media (max-width: 768px) {
-    .chapter { padding: 64px 0; }
+  @media (prefers-reduced-motion: reduce) {
+    .feat-trigger, .feat-title,
+    .switcher.is-live .feat-shot,
+    .switcher.is-live .feat-shot.is-active { transition: none; }
+  }
+
+  @media (max-width: 860px) {
+    .chapter { padding: 72px 0; }
+    .chapter-head { margin-bottom: 40px; }
     .chapter-head p { font-size: 16px; }
-    .card-grid { margin-top: 40px; gap: 20px; }
+    .switcher { display: block; }
+    .feat { display: block; }
+    .feat + .feat { margin-top: 48px; }
+    .feat-trigger,
+    .feat-trigger:hover,
+    .feat-trigger[aria-pressed="true"] {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      cursor: default;
+    }
+    .feat-trigger .feat-title,
+    .feat-trigger[aria-pressed="true"] .feat-title { color: var(--text-1); }
+    .feat-shot,
+    .feat-shot.is-active,
+    .switcher.is-live .feat-shot {
+      margin-top: 16px;
+      opacity: 1;
+      visibility: visible;
+      transition: none;
+    }
+    .shot-frame { border-radius: 10px; }
+    .switcher-aside { margin-top: 40px; padding-left: 0; }
   }
 
   /* === Get started: install sub-step === */
@@ -1675,6 +1769,31 @@
   .install-cmd-copy:hover { color: var(--text-1); border-color: var(--text-2); }
   .install-cmd-copy.copied { color: var(--success); border-color: var(--success); }
   .install-cmd-copy svg { width: 16px; height: 16px; }
+
+  /* === Hero headline: two lines on wide screens, natural wrap on phones === */
+  .hero { padding-top: 56px; }
+  .hero h1 { max-width: 920px; text-wrap: wrap; }
+  @media (max-width: 960px) {
+    .hero h1 .br-wide { display: none; }
+    .hero h1 { text-wrap: balance; }
+  }
+  @media (max-width: 768px) {
+    .hero { padding-top: 40px; }
+  }
+
+  /* === Section density: tight proof, generous chapters, compact trust === */
+  .wall-of-love { padding: 64px 0; }
+  .wall-of-love h2 { margin-bottom: 32px; }
+  .data-privacy,
+  .pricing-truth { padding: 64px 0; }
+  .data-privacy-intro,
+  .pricing-truth-intro { margin-bottom: 32px; }
+  .flow-columns { margin-bottom: 32px; }
+  @media (max-width: 768px) {
+    .wall-of-love,
+    .data-privacy,
+    .pricing-truth { padding: 48px 0; }
+  }
 
   </style>
 
@@ -1729,7 +1848,7 @@
   <section class="hero">
     <div class="container">
 
-      <h1>Rundock gives you an AI team, with roles, a lead and a way of working.</h1>
+      <h1>Rundock gives you an AI team,<br class="br-wide"> with roles, a lead and a way of working.</h1>
 
       <p class="hero-subhead">Run it from one workspace, no terminal needed. The team lives in files you own, and nothing it learns resets.</p>
 
@@ -1753,38 +1872,6 @@
   </section>
 
 
-
-  <!-- ===================================================
-       3a. YOUR TEAM KEEPS WHAT IT LEARNS
-  ==================================================== -->
-  <section class="problem" aria-label="Your team keeps what it learns">
-    <div class="container">
-      <h2>Your team keeps what it learns.</h2>
-      <div class="problem-body">
-        <p>You explained your business to a chatbot last week. You'll explain it again tomorrow, because every session starts from zero. Your Rundock team starts from everything you've taught it. Skills, preferences, the way you want things done: it all lives in the workspace as files, so nothing disappears when a conversation ends. Teach a workflow once and any agent can use it. Correct something once and the correction is written down, in plain language, where you can read it and change it.</p>
-        <p><strong>Skills are files.</strong> Research workflows, writing processes, analysis frameworks: written once, attached to the agents who use them, improved any time.</p>
-        <p><strong>What the team knows is written down.</strong> Your ICP, your voice, your decisions and preferences sit in the workspace as context every agent draws on.</p>
-        <p><strong>You can read all of it.</strong> The whole memory of your team is in the folder, in plain language. Nothing is hidden, and anything wrong you can fix yourself.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================================================
-       3b. LEAN AGENT TEAM CALLOUT
-  ==================================================== -->
-  <section class="lean-team-callout" aria-label="Free download: Lean Agent Team">
-    <div class="container">
-      <div class="lean-team-callout__inner">
-        <p class="lean-team-callout__label">Free download</p>
-        <h2 class="lean-team-callout__heading">Want a pre-built team to get you started?</h2>
-        <p class="lean-team-callout__body">The Lean Agent Team gives you a Chief of Staff, an EA, and a Content Lead: three agents ready to install today.</p>
-        <a href="https://theainativeaccelerator.com/lean-agent-team" class="btn-primary" target="_blank" rel="noopener">Download the Lean Agent Team</a>
-        <p class="lean-team-callout__footnote">Free &middot; No account required &middot; Works in Rundock out of the box</p>
-      </div>
-    </div>
-  </section>
-
-
   <!-- ===================================================
        4. THE PROBLEM
   ==================================================== -->
@@ -1794,125 +1881,7 @@
       <div class="problem-body">
         <p>You run content, ops, sales, admin, and research. When you started, there was nobody else, so the work fell to you. You're the CEO and the copywriter and the person who remembers to send the invoice. Your working week is full of work that isn't yours to be doing.</p>
         <p>Existing AI tools haven't solved this. A single chatbot is a single assistant. You still have to hold the context, remember the process, and redo the work each time. Agent platforms built for developers assume you can write code. You shouldn't have to. Rundock gives you a team you can actually manage.</p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================================================
-       9. YOUR DATA NEVER LEAVES YOUR COMPUTER
-  ==================================================== -->
-  <section class="data-privacy">
-    <div class="container">
-      <h2>Your data never leaves your computer.</h2>
-      <p class="data-privacy-intro">The entire stack runs on your machine. Rundock never sends your files, your agents, or your conversations anywhere.</p>
-
-      <div class="flow-columns">
-        <div class="flow-card">
-          <h3>Browser or app</h3>
-          <p>Visual interface for your agent team. Org chart, conversations, and workspace files.</p>
-        </div>
-        <div class="flow-arrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><polyline points="9 18 15 12 9 6"/></svg>
-        </div>
-        <div class="flow-card">
-          <h3>Local server</h3>
-          <p>Discovers agents, manages conversations, reads your workspace files.</p>
-        </div>
-        <div class="flow-arrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><polyline points="9 18 15 12 9 6"/></svg>
-        </div>
-        <div class="flow-card">
-          <h3>Two runtimes</h3>
-          <p>Agents run on Claude Code, and optionally Codex. Only the active conversation is sent for processing, to Anthropic or OpenAI, under your own subscription.</p>
-        </div>
-      </div>
-
-      <p class="how-footer">Everything runs locally. The entire codebase is fully auditable on GitHub. Because the team is files, it's portable. Back it up, move it, sync it, or walk away with it. Nothing here is held hostage.</p>
-    </div>
-  </section>
-
-
-
-  <!-- ===================================================
-       4b. WHO IT IS FOR
-  ==================================================== -->
-  <section class="problem problem--statement" aria-label="Who Rundock is for">
-    <div class="container">
-      <div class="problem-body">
         <p><strong>Built for people who run things.</strong> If you've set up your own tools before, you can run a team.</p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================================================
-       5a. CHAPTER: YOUR TEAM
-  ==================================================== -->
-  <section class="chapter" aria-labelledby="chapter-team">
-    <div class="container">
-      <div class="chapter-head">
-        <h2 id="chapter-team">Your team.</h2>
-        <p>A lead who delegates, specialists who deliver, and every handover in plain view.</p>
-      </div>
-
-      <figure class="chapter-lead">
-        <div class="screenshot-sm">
-          <img src="rundock-streaming.gif" width="1080" height="675" loading="lazy" decoding="async" alt="Rundock conversation: the user asks the orchestrator to shorten a landing hook, the orchestrator says it is handing the work to the Content Lead, and the Content Lead's reply streams in.">
-        </div>
-        <figcaption>One request, one handover: the lead passes the work on, and the Content Lead's reply streams in.</figcaption>
-      </figure>
-
-      <div class="card-grid">
-        <article class="fcard">
-          <div class="fcard-media fcard-media--center">
-            <img src="rundock-tile-org-chart.png" width="1120" height="865" loading="lazy" decoding="async" alt="Rundock org chart: Cos the Chief of Staff at the top, six leads reporting in below, two specialists under their leads, and Doc the Rundock Guide beneath a divider.">
-          </div>
-          <div class="fcard-body">
-            <h3>Your team, on one org chart.</h3>
-            <p>Every agent has a role, a lead and a place on the chart. Turn it on its side when the team runs deep.</p>
-          </div>
-        </article>
-
-        <article class="fcard">
-          <div class="fcard-media">
-            <img src="rundock-tile-agent-profile.png" width="1120" height="700" loading="lazy" decoding="async" alt="Rundock agent profile for Dev, the Engineering Lead: a role description, a New conversation button, three attached skills, a nightly routine, and the model and runtime.">
-          </div>
-          <div class="fcard-body">
-            <h3>Every agent has a profile.</h3>
-            <p>Role, skills, model, runtime and instructions in one place, with every conversation you've had with them.</p>
-          </div>
-        </article>
-
-        <article class="fcard">
-          <div class="fcard-media">
-            <img src="rundock-tile-conversations.png" width="560" height="1286" loading="lazy" decoding="async" alt="Rundock conversations list: Plan the week pinned at the top with Cos, then conversations with Cleo, Dev and Reese, each showing its agent and when it last moved.">
-          </div>
-          <div class="fcard-body">
-            <h3>Talk to one. They route the rest.</h3>
-            <p>Run several conversations at once while replies stream in. Group conversations into lists by project or area of focus.</p>
-          </div>
-        </article>
-
-        <article class="fcard">
-          <div class="fcard-media">
-            <img src="rundock-tile-skills.png" width="1120" height="865" loading="lazy" decoding="async" alt="Rundock skill page for Code Reviewer: its description, the two agents who use it, and a button to schedule it as a routine.">
-          </div>
-          <div class="fcard-body">
-            <h3>Skills, attached to the agents who use them.</h3>
-            <p>Research workflows, writing processes, analysis frameworks: written once, improved any time. See who can do what.</p>
-          </div>
-        </article>
-
-        <article class="fcard">
-          <div class="fcard-media fcard-media--contain">
-            <img src="rundock-tile-routines.png" width="1120" height="170" loading="lazy" decoding="async" alt="A Rundock routine: every day at 8:00am, Cos runs Daily brief. It ran today and runs again tomorrow, with controls to run it now, pause, edit or delete it.">
-          </div>
-          <div class="fcard-body">
-            <h3>Set a routine, and it runs itself.</h3>
-            <p>Pick a skill and say when: a morning briefing, a weekly digest. Run one now to try it, then see exactly what it changed.</p>
-          </div>
-        </article>
       </div>
     </div>
   </section>
@@ -1951,8 +1920,70 @@
     </div>
   </section>
 
+
   <!-- ===================================================
-       5c. CHAPTER: YOUR WORK
+       5a. CHAPTER: YOUR TEAM
+  ==================================================== -->
+  <section class="chapter" aria-labelledby="chapter-team">
+    <div class="container">
+      <div class="chapter-head">
+        <h2 id="chapter-team">Your team.</h2>
+        <p>A lead who delegates, specialists who deliver, and a team that keeps what it learns.</p>
+      </div>
+
+      <div class="switcher" role="group" aria-label="Your team features" style="--n: 5">
+        <div class="feat">
+          <button type="button" class="feat-trigger" id="feat-team-handover" aria-controls="shot-team-handover" aria-pressed="true">
+            <span class="feat-title">Talk to one. They route the rest.</span>
+            <span class="feat-line">Ask the lead and watch the handover to the right specialist. Group conversations into lists by project or area of focus.</span>
+          </button>
+          <figure class="feat-shot is-active" id="shot-team-handover">
+            <div class="shot-frame"><img src="rundock-feature-handover.png" width="1080" height="675" loading="lazy" alt="Rundock conversation: the user asks Cos to make the landing hook shorter, Cos passes the work to Cleo, and Cleo joins and replies with two shorter options."></div>
+          </figure>
+        </div>
+        <div class="feat">
+          <button type="button" class="feat-trigger" id="feat-team-org-chart" aria-controls="shot-team-org-chart" aria-pressed="false">
+            <span class="feat-title">Your team, on one org chart.</span>
+            <span class="feat-line">Every agent has a role, a lead and a place on the chart. Turn it on its side when the team runs deep.</span>
+          </button>
+          <figure class="feat-shot" id="shot-team-org-chart">
+            <div class="shot-frame"><img src="rundock-feature-org-chart.png" width="1440" height="900" loading="lazy" alt="Rundock org chart turned on its side: Cos the Chief of Staff on the left, six leads in a column beside it, and the Content Analyst and Code Reviewer beside their leads."></div>
+          </figure>
+        </div>
+        <div class="feat">
+          <button type="button" class="feat-trigger" id="feat-team-agent-profile" aria-controls="shot-team-agent-profile" aria-pressed="false">
+            <span class="feat-title">Every agent has a profile.</span>
+            <span class="feat-line">Role, skills, model, runtime and instructions in one place, with every conversation you've had with them.</span>
+          </button>
+          <figure class="feat-shot" id="shot-team-agent-profile">
+            <div class="shot-frame"><img src="rundock-feature-agent-profile.png" width="1440" height="900" loading="lazy" alt="Rundock agent profile for Dev, the Engineering Lead: a role description, a New conversation button, three attached skills, a nightly routine, and the model and runtime."></div>
+          </figure>
+        </div>
+        <div class="feat">
+          <button type="button" class="feat-trigger" id="feat-team-skills" aria-controls="shot-team-skills" aria-pressed="false">
+            <span class="feat-title">Skills, attached to the agents who use them.</span>
+            <span class="feat-line">Research workflows, writing processes, analysis frameworks: written once, improved any time.</span>
+          </button>
+          <figure class="feat-shot" id="shot-team-skills">
+            <div class="shot-frame"><img src="rundock-feature-skills.png" width="1440" height="900" loading="lazy" alt="Rundock skill page for Code Reviewer: its description, the two agents who use it, and a button to schedule it as a routine."></div>
+          </figure>
+        </div>
+        <div class="feat">
+          <button type="button" class="feat-trigger" id="feat-team-routines" aria-controls="shot-team-routines" aria-pressed="false">
+            <span class="feat-title">Set a routine, and it runs itself.</span>
+            <span class="feat-line">Pick a skill and say when: a morning briefing, a weekly digest. Run one now and see exactly what it changed.</span>
+          </button>
+          <figure class="feat-shot" id="shot-team-routines">
+            <div class="shot-frame"><img src="rundock-feature-routines.png" width="1440" height="900" loading="lazy" alt="Rundock routines: five scheduled skills across the team, each showing who runs it, when it last ran and when it runs next."></div>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       5b. CHAPTER: YOUR WORK
   ==================================================== -->
   <section class="chapter" aria-labelledby="chapter-work">
     <div class="container">
@@ -1961,60 +1992,59 @@
         <p>Everything the team makes opens where you can read it, review it and find it again.</p>
       </div>
 
-      <figure class="chapter-lead">
-        <div class="screenshot-sm">
-          <img src="rundock-map.png" width="2880" height="1800" loading="lazy" decoding="async" alt="Rundock Map: the workspace drawn as a graph, with clusters of linked notes, unlinked files scattered around the edge, and recently changed files brightest.">
+      <div class="switcher" role="group" aria-label="Your work features" style="--n: 5">
+        <div class="feat">
+          <button type="button" class="feat-trigger" id="feat-work-files" aria-controls="shot-work-files" aria-pressed="true">
+            <span class="feat-title">Any file, shown the way you expect.</span>
+            <span class="feat-line">Notes format as you type, with callouts and clickable wikilinks. HTML and SVG files open as the finished page.</span>
+          </button>
+          <figure class="feat-shot is-active" id="shot-work-files">
+            <div class="shot-frame"><img src="rundock-feature-files.png" width="1440" height="900" loading="lazy" alt="A markdown note open in Rundock: its properties as a panel with tags as chips, a callout, clickable wikilinks, and the workspace file tree beside it."></div>
+          </figure>
         </div>
-        <figcaption>Map draws every file as a point and every link as a line. Linked notes cluster, and your most recent work glows warmest.</figcaption>
-      </figure>
-
-      <div class="card-grid">
-        <article class="fcard">
-          <div class="fcard-media">
-            <img src="rundock-tile-files.png" width="560" height="1598" loading="lazy" decoding="async" alt="Rundock file tree: workspace folders such as Clients, Launch and Notes, then markdown files, with boards and notes each carrying their own icon.">
-          </div>
-          <div class="fcard-body">
-            <h3>Any file, shown the way you expect.</h3>
-            <p>Notes format as you type, with tables, callouts and clickable wikilinks. HTML and SVG files open as the finished page, ready for you to review.</p>
-          </div>
-        </article>
-
-        <article class="fcard">
-          <div class="fcard-media">
-            <img src="rundock-tile-review.png" width="536" height="890" loading="lazy" decoding="async" alt="Rundock review panel: two numbered comments on quoted passages, from Cos and Ana, one with a reply from Des, each with Reply and Resolve buttons.">
-          </div>
-          <div class="fcard-body">
-            <h3>Review the work where it lives.</h3>
-            <p>Select a passage, leave a comment, and accept or reject the agent's edit with a click. The feedback stays in the file as plain text.</p>
-          </div>
-        </article>
-
-        <article class="fcard">
-          <div class="fcard-media">
-            <img src="rundock-tile-boards.png" width="1120" height="700" loading="lazy" decoding="async" alt="A Kanban board in Rundock with Backlog, In Progress and Done columns, tagged and dated cards, and three ticked-off cards under Done.">
-          </div>
-          <div class="fcard-body">
-            <h3>Your boards open as real columns.</h3>
-            <p>Drag cards, tick them off, rename and reorder columns. It writes the same markdown Obsidian uses.</p>
-          </div>
-        </article>
-
-        <article class="fcard">
-          <div class="fcard-media">
-            <img src="rundock-tile-search.png" width="1120" height="1055" loading="lazy" decoding="async" alt="Rundock search for launch: results grouped into files and conversations with the matching word marked, and filters for files, conversations, agents and skills.">
-          </div>
-          <div class="fcard-body">
-            <h3>One shortcut finds everything.</h3>
-            <p>Press Cmd+K to search every file, conversation, agent and skill at once. Pick a result and it opens at the right place.</p>
-          </div>
-        </article>
+        <div class="feat">
+          <button type="button" class="feat-trigger" id="feat-work-review" aria-controls="shot-work-review" aria-pressed="false">
+            <span class="feat-title">Review the work where it lives.</span>
+            <span class="feat-line">Select a passage, leave a comment, and accept or reject the agent's edit with a click.</span>
+          </button>
+          <figure class="feat-shot" id="shot-work-review">
+            <div class="shot-frame"><img src="rundock-feature-review.png" width="1440" height="900" loading="lazy" alt="An HTML page open in Rundock as the finished page, with two numbered review comments beside it, one with a reply, each with Reply and Resolve buttons."></div>
+          </figure>
+        </div>
+        <div class="feat">
+          <button type="button" class="feat-trigger" id="feat-work-boards" aria-controls="shot-work-boards" aria-pressed="false">
+            <span class="feat-title">Your boards open as real columns.</span>
+            <span class="feat-line">Drag cards, tick them off and reorder columns. It writes the same markdown Obsidian uses.</span>
+          </button>
+          <figure class="feat-shot" id="shot-work-boards">
+            <div class="shot-frame"><img src="rundock-feature-boards.png" width="1440" height="900" loading="lazy" alt="A Kanban board in Rundock with Backlog, In Progress and Done columns, tagged and dated cards, and three ticked-off cards under Done."></div>
+          </figure>
+        </div>
+        <div class="feat">
+          <button type="button" class="feat-trigger" id="feat-work-map" aria-controls="shot-work-map" aria-pressed="false">
+            <span class="feat-title">See how your work connects.</span>
+            <span class="feat-line">The Map draws every file as a point and every link as a line. Linked notes cluster, and recent work glows warmest.</span>
+          </button>
+          <figure class="feat-shot" id="shot-work-map">
+            <div class="shot-frame"><img src="rundock-feature-map.png" width="1440" height="900" loading="lazy" alt="Rundock Map: the workspace drawn as a graph, with clusters of linked notes, unlinked files scattered around the edge, and recently changed files brightest."></div>
+          </figure>
+        </div>
+        <div class="feat">
+          <button type="button" class="feat-trigger" id="feat-work-search" aria-controls="shot-work-search" aria-pressed="false">
+            <span class="feat-title">One shortcut finds everything.</span>
+            <span class="feat-line">Press Cmd+K to search every file, conversation, agent and skill at once, and open the result in the right place.</span>
+          </button>
+          <figure class="feat-shot" id="shot-work-search">
+            <div class="shot-frame"><img src="rundock-feature-search.png" width="1440" height="900" loading="lazy" alt="Rundock search for launch: results grouped into files and conversations with the matching word marked, and filters for files, conversations, agents and skills."></div>
+          </figure>
+        </div>
       </div>
     </div>
   </section>
 
 
   <!-- ===================================================
-       5d. CHAPTER: MAKE IT YOURS
+       5c. CHAPTER: MAKE IT YOURS
   ==================================================== -->
   <section class="chapter" aria-labelledby="chapter-yours">
     <div class="container">
@@ -2023,33 +2053,26 @@
         <p>Add agents and new views from a link, and decide how much your team asks.</p>
       </div>
 
-      <figure class="chapter-lead">
-        <div class="screenshot-sm">
-          <img src="rundock-pinned-dashboard.png" width="2880" height="1800" loading="lazy" decoding="async" alt="Rundock Pins: four pinned files in the sidebar, an investment dashboard first and open beside them, drawn by an extension with portfolio totals, an over-limit warning, an allocation chart and a risk control panel.">
+      <div class="switcher" role="group" aria-label="Make it yours features" style="--n: 2">
+        <div class="feat">
+          <button type="button" class="feat-trigger" id="feat-yours-pins" aria-controls="shot-yours-pins" aria-pressed="true">
+            <span class="feat-title">Add a team, or a new view, from one link.</span>
+            <span class="feat-line">Paste a GitHub link and see what's inside before anything is written. Extensions draw a file as its own view, and Pins keep it one click away.</span>
+          </button>
+          <figure class="feat-shot is-active" id="shot-yours-pins">
+            <div class="shot-frame"><img src="rundock-feature-pins.png" width="1440" height="900" loading="lazy" alt="Rundock Pins: four pinned files in the sidebar, an investment dashboard first and open beside them, drawn by an extension with portfolio totals, an over-limit warning, an allocation chart and a risk control panel."></div>
+          </figure>
         </div>
-        <figcaption>A portfolio note, pinned in the sidebar and drawn by an extension as a dashboard.</figcaption>
-      </figure>
-
-      <div class="card-grid">
-        <article class="fcard">
-          <div class="fcard-media">
-            <img src="rundock-tile-extensions.png" width="1120" height="976" loading="lazy" decoding="async" alt="Rundock Settings, Extensions: a CSV table extension switched off and an Investment Partner extension switched on, each naming the package it came from, and a Pause all extensions button.">
-          </div>
-          <div class="fcard-body">
-            <h3>Add a team, or a new view, from one link.</h3>
-            <p>Paste a GitHub link and Rundock shows what's inside before anything is written. Extensions open a kind of file in its own sandboxed view. Pin any file, an extension's view included, to keep it one click away. <a href="/directory">Browse the Directory</a>.</p>
-          </div>
-        </article>
-
-        <article class="fcard">
-          <div class="fcard-media">
-            <img src="rundock-tile-permissions.png" width="1120" height="2098" loading="lazy" decoding="async" alt="Rundock Settings open at Permissions: Code mode selected, agents kept inside the workspace with one extra folder named, and a list of tools allowed without asking, each with a remove control.">
-          </div>
-          <div class="fcard-body">
-            <h3>You stay in control, without the constant questions.</h3>
-            <p>Code mode runs everyday development commands without a prompt, and anything that can't be undone still asks. Name the folders agents can also change, and revoke any Always allow in Settings, Permissions.</p>
-          </div>
-        </article>
+        <div class="feat">
+          <button type="button" class="feat-trigger" id="feat-yours-permissions" aria-controls="shot-yours-permissions" aria-pressed="false">
+            <span class="feat-title">You stay in control, without the constant questions.</span>
+            <span class="feat-line">Code mode runs everyday development commands without asking, and anything that can't be undone still asks. Revoke any Always allow in Settings.</span>
+          </button>
+          <figure class="feat-shot" id="shot-yours-permissions">
+            <div class="shot-frame"><img src="rundock-feature-permissions.png" width="1440" height="900" loading="lazy" alt="Rundock Settings open at Permissions: Code mode selected, agents kept inside the workspace by the macOS sandbox, and one extra folder they can also change."></div>
+          </figure>
+        </div>
+        <p class="switcher-aside"><a href="/directory">Browse the Directory</a></p>
       </div>
     </div>
   </section>
@@ -2115,6 +2138,86 @@
 
 
   <!-- ===================================================
+       9. YOUR DATA NEVER LEAVES YOUR COMPUTER
+  ==================================================== -->
+  <section class="data-privacy">
+    <div class="container">
+      <h2>Your data never leaves your computer.</h2>
+      <p class="data-privacy-intro">The entire stack runs on your machine. Rundock never sends your files, your agents, or your conversations anywhere.</p>
+
+      <div class="flow-columns">
+        <div class="flow-card">
+          <h3>Browser or app</h3>
+          <p>Visual interface for your agent team. Org chart, conversations, and workspace files.</p>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <div class="flow-card">
+          <h3>Local server</h3>
+          <p>Discovers agents, manages conversations, reads your workspace files.</p>
+        </div>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <div class="flow-card">
+          <h3>Two runtimes</h3>
+          <p>Agents run on Claude Code, and Codex if you add it. Only the active conversation is sent, under your own subscription.</p>
+        </div>
+      </div>
+
+      <p class="how-footer">Everything runs locally. The entire codebase is fully auditable on GitHub. Because the team is files, it's portable. Back it up, move it, sync it, or walk away with it. Nothing here is held hostage.</p>
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       10. FREE. OPEN SOURCE. NO ACCOUNT.
+  ==================================================== -->
+  <section class="pricing-truth">
+    <div class="container">
+      <h2>Free, open source, and yours to keep.</h2>
+      <p class="pricing-truth-intro">Three facts, stated plainly, with no asterisk.</p>
+
+      <!-- Editorial three-column: no card chrome, hairline dividers between columns -->
+      <div class="pricing-columns">
+        <div class="pricing-col">
+          <h3>Free.</h3>
+          <p>The desktop app costs nothing to download and nothing to run. That's the product. The whole thing.</p>
+        </div>
+        <div class="pricing-col">
+          <h3>Open source.</h3>
+          <p>Fork it, audit it, learn from it. One restriction: you cannot use the source to build a competing product.</p>
+        </div>
+        <div class="pricing-col">
+          <h3>No account.</h3>
+          <p>No signup. No email. No telemetry. Your workspace stays on your machine. Rundock has no idea you're using it.</p>
+        </div>
+      </div>
+
+      <p class="pricing-callout"><em>And it stays yours.</em> <span>Your agents and skills are plain markdown files. Take them with you whenever you like.</span></p>
+
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       3b. LEAN AGENT TEAM CALLOUT
+  ==================================================== -->
+  <section class="lean-team-callout" aria-label="Free download: Lean Agent Team">
+    <div class="container">
+      <div class="lean-team-callout__inner">
+        <p class="lean-team-callout__label">Free download</p>
+        <h2 class="lean-team-callout__heading">Want a pre-built team to get you started?</h2>
+        <p class="lean-team-callout__body">The Lean Agent Team gives you a Chief of Staff, an EA, and a Content Lead: three agents ready to install today.</p>
+        <a href="https://theainativeaccelerator.com/lean-agent-team" class="btn-primary" target="_blank" rel="noopener">Download the Lean Agent Team</a>
+        <p class="lean-team-callout__footnote">Free &middot; No account required &middot; Works in Rundock out of the box</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================================================
        7. BUILT BY SOMEONE WHO NEEDED IT
   ==================================================== -->
   <section class="personal-story">
@@ -2146,38 +2249,6 @@
         </div>
 
       </div>
-    </div>
-  </section>
-
-
-
-
-  <!-- ===================================================
-       10. FREE. OPEN SOURCE. NO ACCOUNT.
-  ==================================================== -->
-  <section class="pricing-truth">
-    <div class="container">
-      <h2>Free, open source, and yours to keep.</h2>
-      <p class="pricing-truth-intro">Three facts, stated plainly, with no asterisk.</p>
-
-      <!-- Editorial three-column: no card chrome, hairline dividers between columns -->
-      <div class="pricing-columns">
-        <div class="pricing-col">
-          <h3>Free.</h3>
-          <p>The desktop app costs nothing to download and nothing to run. That's the product. The whole thing.</p>
-        </div>
-        <div class="pricing-col">
-          <h3>Open source.</h3>
-          <p>Fork it, audit it, learn from it. One restriction: you cannot use the source to build a competing product.</p>
-        </div>
-        <div class="pricing-col">
-          <h3>No account.</h3>
-          <p>No signup. No email. No telemetry. Your workspace stays on your machine. Rundock has no idea you're using it.</p>
-        </div>
-      </div>
-
-      <p class="pricing-callout"><em>And it stays yours.</em> <span>Your agents and skills are plain markdown files. Take them with you whenever you like.</span></p>
-
     </div>
   </section>
 
@@ -2421,6 +2492,43 @@
       }, 2000);
     });
   }
+  </script>
+
+  <script>
+  /* Chapter switchers. Hover, focus or click a feature to show its
+     screenshot; Up and Down arrows move between features. No auto-rotation.
+     The first feature's state ships in the markup, so this only enhances. */
+  (function () {
+    var canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+    document.querySelectorAll('.switcher').forEach(function (sw) {
+      var triggers = Array.prototype.slice.call(sw.querySelectorAll('.feat-trigger'));
+      function live() { sw.classList.add('is-live'); }
+      sw.addEventListener('pointerenter', live, { once: true });
+      sw.addEventListener('focusin', live, { once: true });
+      function show(t) {
+        if (t.getAttribute('aria-pressed') === 'true') return;
+        triggers.forEach(function (o) {
+          var on = o === t;
+          o.setAttribute('aria-pressed', on ? 'true' : 'false');
+          var shot = document.getElementById(o.getAttribute('aria-controls'));
+          if (shot) shot.classList.toggle('is-active', on);
+        });
+      }
+      triggers.forEach(function (t, i) {
+        t.addEventListener('click', function () { show(t); });
+        t.addEventListener('focus', function () { show(t); });
+        t.addEventListener('mouseenter', function () { if (canHover.matches) show(t); });
+        t.addEventListener('keydown', function (e) {
+          var next = null;
+          if (e.key === 'ArrowDown') next = triggers[(i + 1) % triggers.length];
+          else if (e.key === 'ArrowUp') next = triggers[(i - 1 + triggers.length) % triggers.length];
+          else if (e.key === 'Home') next = triggers[0];
+          else if (e.key === 'End') next = triggers[triggers.length - 1];
+          if (next) { e.preventDefault(); next.focus(); }
+        });
+      });
+    });
+  }());
   </script>
 
   <!-- Summarise-with-LLM widget. Self-contained; bottom-right floating launcher. -->
