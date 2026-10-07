@@ -245,6 +245,118 @@
          Feature-section screenshots keep the border via .screenshot-sm img. */
     }
 
+    /* =====================================================
+       HERO FILM: a round play button over the hero screenshot
+       and a native dialog player. The whole screenshot is the
+       button; hovering dims it slightly and brightens the circle.
+    ===================================================== */
+    .hero-frame { position: relative; }
+    .hero-film-trigger {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 0;
+      border-radius: 10px;
+      background: transparent;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .hero-film-trigger[hidden] { display: none; }
+    .hero-film-trigger:hover { background: rgba(0, 0, 0, 0.12); }
+    .hero-film-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    .hero-play {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.10);
+      -webkit-backdrop-filter: blur(6px) saturate(1.3);
+      backdrop-filter: blur(6px) saturate(1.3);
+      border: 1.5px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .hero-play svg {
+      width: 38px;
+      height: 42px;
+      margin-left: 8px;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+    }
+    .hero-film-trigger:hover .hero-play,
+    .hero-film-trigger:focus-visible .hero-play {
+      transform: scale(1.06);
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .film-dialog {
+      width: min(1120px, calc(100vw - 48px));
+      max-width: none;
+      max-height: none;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      overflow: visible;
+    }
+    .film-dialog::backdrop {
+      background: rgba(8, 8, 8, 0.82);
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+    }
+    .film-panel {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #0d0d0d;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    }
+    .film-dialog[open] .film-panel { animation: film-in 0.22s ease-out; }
+    @keyframes film-in { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+    .film-panel video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #0d0d0d;
+    }
+    .film-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border-radius: 50%;
+      color: #fff;
+      background: rgba(20, 20, 20, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+    }
+    .film-close:hover, .film-close:focus-visible { background: rgba(40, 40, 40, 0.9); border-color: rgba(255, 255, 255, 0.45); }
+    .film-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .film-close svg { width: 15px; height: 15px; }
+    @media (max-width: 600px) {
+      .hero-play { width: 72px; height: 72px; }
+      .hero-play svg { width: 24px; height: 27px; margin-left: 5px; }
+      .film-dialog { width: calc(100vw - 24px); }
+      .film-close { top: 8px; right: 8px; width: 32px; height: 32px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-film-trigger, .hero-play { transition: none; }
+      .hero-film-trigger:hover .hero-play, .hero-film-trigger:focus-visible .hero-play { transform: none; }
+      .film-dialog[open] .film-panel { animation: none; }
+    }
+
     /* Smaller glow for feature section screenshots */
     .screenshot-sm {
       position: relative;
@@ -1850,15 +1962,35 @@
       <p style="font-size:13px; color:var(--text-2); margin-bottom:32px;">Rundock is free. Bring your own Claude Pro or Max subscription. Add a ChatGPT plan if you want specialists on Codex.</p>
 
       <div class="screenshot">
-  <img
-    src="rundock-hero-org-chart.png"
-    alt="Rundock showing an example agent team as an org chart: a Chief of Staff at the top with the team reporting in below, Doc the Rundock Guide beneath a divider, and live team status in the sidebar."
-  >
-</div>
+        <div class="hero-frame">
+          <img
+            src="rundock-hero-org-chart.png"
+            alt="Rundock showing an example agent team as an org chart: a Chief of Staff at the top with the team reporting in below, Doc the Rundock Guide beneath a divider, and live team status in the sidebar."
+          >
+          <button type="button" class="hero-film-trigger" id="film-trigger" aria-haspopup="dialog" aria-controls="film-dialog" aria-label="Watch the film, 30 seconds">
+            <span class="hero-play" aria-hidden="true">
+              <svg viewBox="0 0 9 10" fill="currentColor"><path d="M0 0.8C0 0.1 0.8-0.3 1.4 0.1L8.4 4.3C9 4.6 9 5.4 8.4 5.7L1.4 9.9C0.8 10.3 0 9.9 0 9.2V0.8Z"/></svg>
+            </span>
+          </button>
+        </div>
+      </div>
 
     </div>
   </section>
 
+
+
+  <!-- The film. Nothing loads until the play button is pressed: the video
+       has no src and no poster in the markup; the script attaches the right
+       size on open (720p on narrow screens) and detaches it on close. -->
+  <dialog class="film-dialog" id="film-dialog" aria-label="Rundock, the 30-second film">
+    <div class="film-panel">
+      <button type="button" class="film-close" id="film-close" aria-label="Close the film">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg>
+      </button>
+      <video id="film-video" controls playsinline preload="none"></video>
+    </div>
+  </dialog>
 
   <!-- ===================================================
        4. THE PROBLEM
@@ -2540,6 +2672,38 @@
   </script>
 
   <script>
+  /* Hero film: open a native dialog and attach the video only now, so the
+     page never downloads it for visitors who don't press play. Narrow
+     screens get the 720p file. Closing pauses and detaches it. */
+  (function () {
+    var trigger = document.getElementById('film-trigger');
+    var dialog = document.getElementById('film-dialog');
+    var video = document.getElementById('film-video');
+    var closeBtn = document.getElementById('film-close');
+    if (!trigger || !dialog || !video || typeof dialog.showModal !== 'function') {
+      if (trigger) trigger.hidden = true;
+      return;
+    }
+    function open() {
+      var small = window.matchMedia('(max-width: 900px)').matches;
+      video.poster = 'rundock-film-poster.jpg';
+      video.src = small ? 'rundock-film-720.mp4' : 'rundock-film-1080.mp4';
+      dialog.showModal();
+      var p = video.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+    function close() { if (dialog.open) dialog.close(); }
+    trigger.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    dialog.addEventListener('click', function (e) { if (e.target === dialog) close(); });
+    dialog.addEventListener('close', function () {
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+      trigger.focus();
+    });
+  }());
+
   /* Smart download button. OS-detect (not architecture) for the label, and
      resolve the direct installer URL from the latest GitHub release at runtime,
      so these links never need editing on release. The button defaults to the
