@@ -9,3 +9,6 @@
 wrangler.jsonc
 wrangler.toml
 README.md
+
+# Pages Functions source (deployed as functions, not as static files)
+functions
