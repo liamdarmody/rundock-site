@@ -310,14 +310,17 @@
       z-index: 2;
       display: flex;
       align-items: center;
+      justify-content: center;
       pointer-events: none;
       animation: film-in 0.25s ease-out;
     }
-    /* The film is 16:9 and the window 16:10, so the film spans the window's
-       width and the screenshot stays visible in a strip above and below. */
+    /* The film is 16:9 and the window 16:10, so the film takes the window's
+       full height and runs slightly wider than it, about 5% each side. */
     .hero-film-inner {
       position: relative;
-      width: 100%;
+      flex: none;
+      height: 100%;
+      aspect-ratio: 16 / 9;
       pointer-events: auto;
       border-radius: 4px;
       overflow: hidden;
@@ -328,7 +331,7 @@
     .hero-film video {
       display: block;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      height: 100%;
       background: #0b0b0b;
     }
     .film-close {
