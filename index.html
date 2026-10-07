@@ -298,39 +298,30 @@
       border-color: rgba(255, 255, 255, 0.7);
     }
 
-    .film-dialog {
-      position: fixed;
-      inset: 0;
-      margin: auto;
-      height: fit-content;
-      width: min(1120px, calc(100vw - 48px));
-      max-width: none;
-      max-height: none;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      overflow: visible;
-    }
-    .film-dialog::backdrop {
-      background: rgba(8, 8, 8, 0.82);
-      -webkit-backdrop-filter: blur(4px);
-      backdrop-filter: blur(4px);
-    }
-    .film-panel {
-      position: relative;
-      border-radius: 14px;
+    /* The player covers exactly the app window inside the PNG, which has a
+       transparent margin: the window runs from 144px to 3023px across and
+       144px to 1943px down in the 3168 x 2088 image. */
+    .hero-film {
+      position: absolute;
+      left: 4.545%;
+      top: 6.897%;
+      width: 90.909%;
+      height: 86.207%;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      background: #0b0b0b;
+      border-radius: 7px;
       overflow: hidden;
-      background: #0d0d0d;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+      animation: film-in 0.25s ease-out;
     }
-    .film-dialog[open] .film-panel { animation: film-in 0.22s ease-out; }
-    @keyframes film-in { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
-    .film-panel video {
+    .hero-film[hidden] { display: none; }
+    @keyframes film-in { from { opacity: 0; } to { opacity: 1; } }
+    .hero-film video {
       display: block;
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: #0d0d0d;
+      background: #0b0b0b;
     }
     .film-close {
       position: absolute;
@@ -355,13 +346,12 @@
     @media (max-width: 600px) {
       .hero-play { width: 72px; height: 72px; }
       .hero-play svg { width: 24px; height: 27px; margin-left: 5px; }
-      .film-dialog { width: calc(100vw - 24px); }
       .film-close { top: 8px; right: 8px; width: 32px; height: 32px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .hero-frame img, .hero-play { transition: none; }
       .hero-film-trigger:hover .hero-play, .hero-film-trigger:focus-visible .hero-play { transform: none; }
-      .film-dialog[open] .film-panel { animation: none; }
+      .hero-film { animation: none; }
     }
 
     /* Smaller glow for feature section screenshots */
@@ -1974,11 +1964,20 @@
             src="rundock-hero-org-chart.png"
             alt="Rundock showing an example agent team as an org chart: a Chief of Staff at the top with the team reporting in below, Doc the Rundock Guide beneath a divider, and live team status in the sidebar."
           >
-          <button type="button" class="hero-film-trigger" id="film-trigger" aria-haspopup="dialog" aria-controls="film-dialog" aria-label="Watch the film, 30 seconds">
+          <button type="button" class="hero-film-trigger" id="film-trigger" aria-controls="hero-film" aria-label="Watch the film, 30 seconds">
             <span class="hero-play" aria-hidden="true">
               <svg viewBox="0 0 9 10" fill="currentColor"><path d="M0 0.8C0 0.1 0.8-0.3 1.4 0.1L8.4 4.3C9 4.6 9 5.4 8.4 5.7L1.4 9.9C0.8 10.3 0 9.9 0 9.2V0.8Z"/></svg>
             </span>
           </button>
+          <!-- The film plays in place, over the app window in the screenshot.
+               Nothing loads until the play button is pressed: the video has
+               no src or poster in the markup. -->
+          <div class="hero-film" id="hero-film" hidden>
+            <video id="film-video" controls playsinline preload="none" aria-label="Rundock, the 30-second film"></video>
+            <button type="button" class="film-close" id="film-close" aria-label="Close the film">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -1986,18 +1985,6 @@
   </section>
 
 
-
-  <!-- The film. Nothing loads until the play button is pressed: the video
-       has no src and no poster in the markup; the script attaches the right
-       size on open (720p on narrow screens) and detaches it on close. -->
-  <dialog class="film-dialog" id="film-dialog" aria-label="Rundock, the 30-second film">
-    <div class="film-panel">
-      <button type="button" class="film-close" id="film-close" aria-label="Close the film">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg>
-      </button>
-      <video id="film-video" controls playsinline preload="none"></video>
-    </div>
-  </dialog>
 
   <!-- ===================================================
        4. THE PROBLEM
@@ -2679,36 +2666,45 @@
   </script>
 
   <script>
-  /* Hero film: open a native dialog and attach the video only now, so the
-     page never downloads it for visitors who don't press play. Narrow
-     screens get the 720p file. Closing pauses and detaches it. */
+  /* Hero film: plays in place over the screenshot. The video is attached
+     only on the first press, so visitors who don't press play download
+     nothing. Narrow screens get the 720p file. Closing, Escape or scrolling
+     it out of view stops it; closing also detaches it. */
   (function () {
     var trigger = document.getElementById('film-trigger');
-    var dialog = document.getElementById('film-dialog');
+    var player = document.getElementById('hero-film');
     var video = document.getElementById('film-video');
     var closeBtn = document.getElementById('film-close');
-    if (!trigger || !dialog || !video || typeof dialog.showModal !== 'function') {
-      if (trigger) trigger.hidden = true;
-      return;
-    }
+    if (!trigger || !player || !video || !closeBtn) return;
     function open() {
       var small = window.matchMedia('(max-width: 900px)').matches;
       video.poster = 'rundock-film-poster.jpg';
       video.src = small ? 'rundock-film-720.mp4' : 'rundock-film-1080.mp4';
-      dialog.showModal();
+      player.hidden = false;
+      trigger.hidden = true;
+      closeBtn.focus();
       var p = video.play();
       if (p && p.catch) p.catch(function () {});
     }
-    function close() { if (dialog.open) dialog.close(); }
-    trigger.addEventListener('click', open);
-    closeBtn.addEventListener('click', close);
-    dialog.addEventListener('click', function (e) { if (e.target === dialog) close(); });
-    dialog.addEventListener('close', function () {
+    function close() {
+      if (player.hidden) return;
       video.pause();
       video.removeAttribute('src');
       video.load();
+      player.hidden = true;
+      trigger.hidden = false;
       trigger.focus();
+    }
+    trigger.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !player.hidden && !document.fullscreenElement) close();
     });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (!en.isIntersecting && !video.paused) video.pause(); });
+      }, { threshold: 0.25 }).observe(player);
+    }
   }());
 
   /* Smart download button. OS-detect (not architecture) for the label, and
