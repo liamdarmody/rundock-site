@@ -1,6 +1,6 @@
 # Rundock
 
-> Most AI tools give you a chatbot. Rundock gives you a team.
+> Rundock gives you an AI team, with roles, a lead and a way of working.
 
 Rundock is a visual workspace for your AI agent team. It is built for solopreneurs, consultants, and operators who run their own businesses and end up doing the work of five people. Agents run on the Claude Code or Codex runtimes, so it works with a Claude (Pro/Max) or ChatGPT subscription. Free, open source, and local-first.
 

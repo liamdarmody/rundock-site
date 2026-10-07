@@ -120,15 +120,15 @@
         "name": "What does Rundock cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Rundock is free. You will need a Claude Pro ($20/mo) or Max ($100/mo) subscription for the AI processing, since Rundock runs on top of Claude Code. Add a ChatGPT plan if you want specialist agents on Codex too. That is the total cost."
+          "text": "Rundock is free. You'll need a Claude Pro ($20/mo) or Max ($100/mo) subscription for the AI processing, since Rundock runs on top of Claude Code. Add a ChatGPT plan if you want specialist agents on Codex too. That's the total cost."
         }
       },
       {
         "@type": "Question",
-        "name": "What if I am not technical?",
+        "name": "What if I'm not technical?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "If you can describe what you want, Rundock can build it. You will spend more time naming your agents than writing code. Doc, the built-in platform agent, walks you through setup and builds your first agents with you."
+          "text": "If you can describe what you want, Rundock can build it. You'll spend more time naming your agents than writing code. Doc, the built-in platform agent, walks you through setup and builds your first agents with you."
         }
       },
       {
@@ -160,7 +160,7 @@
         "name": "Can my agents work on a schedule?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Set up routines so your team runs on its own. The weekly research digest, the Monday content review, the overnight email triage. Pick the schedule, walk away, get the output when it is ready."
+          "text": "Yes. Set up routines so your team runs on its own. The weekly research digest, the Monday content review, the overnight email triage. Pick the schedule, walk away, get the output when it's ready."
         }
       },
       {
@@ -173,10 +173,10 @@
       },
       {
         "@type": "Question",
-        "name": "How long until I am up and running?",
+        "name": "How long until I'm up and running?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Around an evening. Install Claude Code (10 minutes). Download Rundock and pick a workspace folder (5 minutes). Talk to Doc and let him build your first three agents (30 to 60 minutes). You are running."
+          "text": "Around an evening. Install Claude Code (10 minutes). Download Rundock and pick a workspace folder (5 minutes). Talk to Doc and let him build your first three agents (30 to 60 minutes). You're running."
         }
       }
     ]
@@ -1506,6 +1506,176 @@
   }
   .layer-yours .layer-yours-bridge { margin-bottom: 20px; }
 
+  /* === Announcement strip === */
+  .cohort-strip {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .cohort-strip .container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 52px;
+    padding-left: 52px;
+  }
+  .cohort-strip p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-2);
+    text-align: center;
+  }
+  .cohort-strip p a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+  }
+  .cohort-strip-close {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--text-2);
+    cursor: pointer;
+  }
+  .cohort-strip-close:hover { color: var(--text-1); background: var(--card); }
+  .cohort-strip-close svg { width: 16px; height: 16px; }
+  @media (max-width: 480px) {
+    .cohort-strip .container { padding-left: 16px; justify-content: flex-start; }
+    .cohort-strip p { text-align: left; }
+  }
+
+  /* === Chapters: heading, lead image, card grid === */
+  .chapter {
+    padding: 96px 0 88px;
+    /* Contain the lead image's glow bleed, as .feature-section did. */
+    overflow-x: clip;
+  }
+  .chapter-head {
+    max-width: 680px;
+    margin: 0 auto 48px;
+    text-align: center;
+  }
+  .chapter-head h2 { margin-bottom: 12px; }
+  .chapter-head p { font-size: 18px; line-height: 1.6; }
+  .chapter-lead {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .chapter-lead img { height: auto; }
+  .chapter-lead figcaption {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-2);
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 64px;
+  }
+  .fcard {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .fcard-media {
+    aspect-ratio: 16 / 10;
+    background: #262626; /* the app's canvas behind each tile */
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .fcard-media img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: left top;
+  }
+  .fcard-media--center img { object-position: center; }
+  .fcard-media--contain img { object-fit: contain; padding: 0 16px; }
+  .fcard-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px 22px 24px;
+  }
+  .fcard-body h3 { font-size: 17px; margin-bottom: 0; }
+  .fcard-body p { font-size: 15px; line-height: 1.65; }
+  @media (max-width: 768px) {
+    .chapter { padding: 64px 0; }
+    .chapter-head p { font-size: 16px; }
+    .card-grid { margin-top: 40px; gap: 20px; }
+  }
+
+  /* === Get started: install sub-step === */
+  .step-content { min-width: 0; }
+  .step-content h3 .step-title-link { color: var(--text-1); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+  .step-content h3 .step-title-link:hover { color: var(--accent); }
+  .step-sub {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+    padding-left: 16px;
+    border-left: 2px solid var(--border);
+  }
+  .step-note { font-size: 14px; }
+  .install-cmd {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    background: var(--base);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 6px 6px 14px;
+  }
+  .install-cmd code {
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 13px;
+    color: var(--text-1);
+    padding: 6px 0;
+  }
+  .install-cmd-copy {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-2);
+    cursor: pointer;
+  }
+  .install-cmd-copy:hover { color: var(--text-1); border-color: var(--text-2); }
+  .install-cmd-copy.copied { color: var(--success); border-color: var(--success); }
+  .install-cmd-copy svg { width: 16px; height: 16px; }
+
   </style>
 
   <!-- Fathom - beautiful, simple website analytics -->
@@ -1513,6 +1683,30 @@
   <!-- / Fathom -->
 </head>
 <body>
+
+  <!-- ===================================================
+       0. ANNOUNCEMENT STRIP (dismissible, remembered per browser)
+  ==================================================== -->
+  <div class="cohort-strip" id="cohort-strip" role="region" aria-label="Announcement">
+    <div class="container">
+      <p>The AI-Native Accelerator: the first cohort starts later this month. <a href="https://theainativeaccelerator.com" target="_blank" rel="noopener">Find out more</a></p>
+      <button type="button" class="cohort-strip-close" aria-label="Dismiss announcement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var KEY = 'rundock.cohortStrip.dismissed';
+    var strip = document.getElementById('cohort-strip');
+    if (!strip) return;
+    try { if (localStorage.getItem(KEY) === '1') { strip.remove(); return; } } catch (e) {}
+    strip.querySelector('.cohort-strip-close').addEventListener('click', function () {
+      strip.remove();
+      try { localStorage.setItem(KEY, '1'); } catch (e) {}
+      var logo = document.querySelector('header .logo');
+      if (logo) logo.focus();
+    });
+  }());
+  </script>
 
   <!-- ===================================================
        1. HEADER
@@ -1535,9 +1729,9 @@
   <section class="hero">
     <div class="container">
 
-      <h1>Most AI tools give you a chatbot. Rundock gives you a team.</h1>
+      <h1>Rundock gives you an AI team, with roles, a lead and a way of working.</h1>
 
-      <p class="hero-subhead">Run a team of named agents from one workspace, no terminal needed. The team lives in files you own, and nothing it learns resets.</p>
+      <p class="hero-subhead">Run it from one workspace, no terminal needed. The team lives in files you own, and nothing it learns resets.</p>
 
       <div class="hero-ctas">
         <a href="https://github.com/liamdarmody/rundock/releases/latest"
@@ -1546,7 +1740,7 @@
         <a href="https://github.com/liamdarmody/rundock" class="btn-secondary" target="_blank" rel="noopener">View on GitHub</a>
       </div>
       <p style="font-size:13px; color:var(--text-2); margin-bottom:6px;">Free for macOS and Windows. <a href="/download" style="color:var(--text-2); text-decoration:underline; text-underline-offset:3px;">All download options.</a></p>
-      <p style="font-size:13px; color:var(--text-2); margin-bottom:32px;">Rundock is free. Bring your own Claude Pro or Max subscription; add a ChatGPT plan if you want specialists on Codex.</p>
+      <p style="font-size:13px; color:var(--text-2); margin-bottom:32px;">Rundock is free. Bring your own Claude Pro or Max subscription. Add a ChatGPT plan if you want specialists on Codex.</p>
 
       <div class="screenshot">
   <img
@@ -1567,7 +1761,7 @@
     <div class="container">
       <h2>Your team keeps what it learns.</h2>
       <div class="problem-body">
-        <p>You explained your business to a chatbot last week. You will explain it again tomorrow, because every session starts from zero. Your Rundock team starts from everything you have taught it. Skills, preferences, the way you want things done: it all lives in the workspace as files, so nothing disappears when a conversation ends. Teach a workflow once and any agent can use it. Correct something once and the correction is written down, in plain language, where you can read it and change it.</p>
+        <p>You explained your business to a chatbot last week. You'll explain it again tomorrow, because every session starts from zero. Your Rundock team starts from everything you've taught it. Skills, preferences, the way you want things done: it all lives in the workspace as files, so nothing disappears when a conversation ends. Teach a workflow once and any agent can use it. Correct something once and the correction is written down, in plain language, where you can read it and change it.</p>
         <p><strong>Skills are files.</strong> Research workflows, writing processes, analysis frameworks: written once, attached to the agents who use them, improved any time.</p>
         <p><strong>What the team knows is written down.</strong> Your ICP, your voice, your decisions and preferences sit in the workspace as context every agent draws on.</p>
         <p><strong>You can read all of it.</strong> The whole memory of your team is in the folder, in plain language. Nothing is hidden, and anything wrong you can fix yourself.</p>
@@ -1578,14 +1772,14 @@
   <!-- ===================================================
        3b. LEAN AGENT TEAM CALLOUT
   ==================================================== -->
-  <section class="lean-team-callout" aria-label="Free package: Lean Agent Team">
+  <section class="lean-team-callout" aria-label="Free download: Lean Agent Team">
     <div class="container">
       <div class="lean-team-callout__inner">
-        <p class="lean-team-callout__label">Free package</p>
+        <p class="lean-team-callout__label">Free download</p>
         <h2 class="lean-team-callout__heading">Want a pre-built team to get you started?</h2>
-        <p class="lean-team-callout__body">The Lean Agent Team gives you a Chief of Staff, an EA, and a Content Lead. Paste one line into Settings, Packages and they join your team.</p>
-        <button type="button" class="btn-primary dir-copy" data-copy="liamdarmody/lean-agent-team">Copy liamdarmody/lean-agent-team</button>
-        <p class="lean-team-callout__footnote">Free &middot; No account required &middot; Prefer a zip? <a href="https://theainativeaccelerator.com/lean-agent-team" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline; text-underline-offset:3px;">Download it</a></p>
+        <p class="lean-team-callout__body">The Lean Agent Team gives you a Chief of Staff, an EA, and a Content Lead: three agents ready to install today.</p>
+        <a href="https://theainativeaccelerator.com/lean-agent-team" class="btn-primary" target="_blank" rel="noopener">Download the Lean Agent Team</a>
+        <p class="lean-team-callout__footnote">Free &middot; No account required &middot; Works in Rundock out of the box</p>
       </div>
     </div>
   </section>
@@ -1598,7 +1792,7 @@
     <div class="container">
       <h2>You're doing the work of five people.</h2>
       <div class="problem-body">
-        <p>You run content, ops, sales, admin, and research. When you started, there was nobody else, so the work fell to you. You are the CEO and the copywriter and the person who remembers to send the invoice. Your working week is full of work that isn't yours to be doing.</p>
+        <p>You run content, ops, sales, admin, and research. When you started, there was nobody else, so the work fell to you. You're the CEO and the copywriter and the person who remembers to send the invoice. Your working week is full of work that isn't yours to be doing.</p>
         <p>Existing AI tools haven't solved this. A single chatbot is a single assistant. You still have to hold the context, remember the process, and redo the work each time. Agent platforms built for developers assume you can write code. You shouldn't have to. Rundock gives you a team you can actually manage.</p>
       </div>
     </div>
@@ -1634,7 +1828,7 @@
         </div>
       </div>
 
-      <p class="how-footer">Everything runs locally. The entire codebase is fully auditable on GitHub. Because the team is files, it is portable. Back it up, move it, sync it, or walk away with it. Nothing here is held hostage.</p>
+      <p class="how-footer">Everything runs locally. The entire codebase is fully auditable on GitHub. Because the team is files, it's portable. Back it up, move it, sync it, or walk away with it. Nothing here is held hostage.</p>
     </div>
   </section>
 
@@ -1646,290 +1840,216 @@
   <section class="problem problem--statement" aria-label="Who Rundock is for">
     <div class="container">
       <div class="problem-body">
-        <p><strong>Built for people who run things.</strong> If you have set up your own tools before, you can run a team.</p>
+        <p><strong>Built for people who run things.</strong> If you've set up your own tools before, you can run a team.</p>
       </div>
     </div>
   </section>
 
 
   <!-- ===================================================
-       5a. FEATURE: YOUR TEAM
+       5a. CHAPTER: YOUR TEAM
   ==================================================== -->
-  <section class="feature-section">
+  <section class="chapter" aria-labelledby="chapter-team">
     <div class="container">
-      <div class="feature-section-inner">
+      <div class="chapter-head">
+        <h2 id="chapter-team">Your team.</h2>
+        <p>A lead who delegates, specialists who deliver, and every handover in plain view.</p>
+      </div>
 
-        <div class="feature-copy">
-          <h2>Every agent on your org chart has a profile.</h2>
-          <p>Click into any agent. Role, skills, model, runtime, and instructions in one place, with every conversation you have had with them.</p>
+      <figure class="chapter-lead">
+        <div class="screenshot-sm">
+          <img src="rundock-streaming.gif" width="1080" height="675" loading="lazy" decoding="async" alt="Rundock conversation: the user asks the orchestrator to shorten a landing hook, the orchestrator says it is handing the work to the Content Lead, and the Content Lead's reply streams in.">
         </div>
+        <figcaption>One request, one handover: the lead passes the work on, and the Content Lead's reply streams in.</figcaption>
+      </figure>
 
-        <div class="feature-screenshots">
-          <div class="screenshot-sm">
-            <img src="rundock-agent-profile.png" alt="Rundock agent profile for an Engineering Lead, showing the role description, three attached skills, the model and runtime, the editable instructions, and past conversations.">
+      <div class="card-grid">
+        <article class="fcard">
+          <div class="fcard-media fcard-media--center">
+            <img src="rundock-tile-org-chart.png" width="1120" height="865" loading="lazy" decoding="async" alt="Rundock org chart: Cos the Chief of Staff at the top, six leads reporting in below, two specialists under their leads, and Doc the Rundock Guide beneath a divider.">
           </div>
-        </div>
+          <div class="fcard-body">
+            <h3>Your team, on one org chart.</h3>
+            <p>Every agent has a role, a lead and a place on the chart. Turn it on its side when the team runs deep.</p>
+          </div>
+        </article>
 
+        <article class="fcard">
+          <div class="fcard-media">
+            <img src="rundock-tile-agent-profile.png" width="1120" height="700" loading="lazy" decoding="async" alt="Rundock agent profile for Dev, the Engineering Lead: a role description, a New conversation button, three attached skills, a nightly routine, and the model and runtime.">
+          </div>
+          <div class="fcard-body">
+            <h3>Every agent has a profile.</h3>
+            <p>Role, skills, model, runtime and instructions in one place, with every conversation you've had with them.</p>
+          </div>
+        </article>
+
+        <article class="fcard">
+          <div class="fcard-media">
+            <img src="rundock-tile-conversations.png" width="560" height="1286" loading="lazy" decoding="async" alt="Rundock conversations list: Plan the week pinned at the top with Cos, then conversations with Cleo, Dev and Reese, each showing its agent and when it last moved.">
+          </div>
+          <div class="fcard-body">
+            <h3>Talk to one. They route the rest.</h3>
+            <p>Run several conversations at once while replies stream in. Group conversations into lists by project or area of focus.</p>
+          </div>
+        </article>
+
+        <article class="fcard">
+          <div class="fcard-media">
+            <img src="rundock-tile-skills.png" width="1120" height="865" loading="lazy" decoding="async" alt="Rundock skill page for Code Reviewer: its description, the two agents who use it, and a button to schedule it as a routine.">
+          </div>
+          <div class="fcard-body">
+            <h3>Skills, attached to the agents who use them.</h3>
+            <p>Research workflows, writing processes, analysis frameworks: written once, improved any time. See who can do what.</p>
+          </div>
+        </article>
+
+        <article class="fcard">
+          <div class="fcard-media fcard-media--contain">
+            <img src="rundock-tile-routines.png" width="1120" height="170" loading="lazy" decoding="async" alt="A Rundock routine: every day at 8:00am, Cos runs Daily brief. It ran today and runs again tomorrow, with controls to run it now, pause, edit or delete it.">
+          </div>
+          <div class="fcard-body">
+            <h3>Set a routine, and it runs itself.</h3>
+            <p>Pick a skill and say when: a morning briefing, a weekly digest. Run one now to try it, then see exactly what it changed.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
 
   <!-- ===================================================
-       5b. FEATURE: YOUR CONVERSATIONS
+       5b. WALL OF LOVE
   ==================================================== -->
-  <section class="feature-section">
+  <section class="wall-of-love" aria-label="User testimonials">
     <div class="container">
-      <div class="feature-section-inner reverse">
+      <h2>What people are saying</h2>
 
-        <div class="feature-copy">
-          <h2>Talk to one. They route the rest.</h2>
-          <p>Run conversations with several agents in parallel. Ask your strategist a question while your writer drafts in the background. Replies stream in as each agent thinks, and when one hands work to another, it tells you what it is passing on and to whom.</p>
-          <p>Group conversations into lists for each project or area of focus, and one click shows just that list.</p>
-        </div>
-
-        <div class="feature-screenshots">
-          <div class="screenshot-sm">
-            <img src="rundock-streaming.gif" alt="Rundock conversation: the user asks the orchestrator to shorten a landing hook, the orchestrator says it is handing the work to the Content Lead, and the Content Lead's reply streams in.">
+      <div class="opt-b-grid">
+        <figure class="tcard">
+          <blockquote>Rundock removed the intimidation of Claude Code. You stop thinking in coding terms and start thinking in team terms. It's like having your own virtual team of highly paid experts, running in parallel. I've built my entire business DNA in the box.</blockquote>
+          <div class="tcard-attr">
+            <img class="tcard-avatar" src="james-compton.jpeg" alt="James Compton">
+            <div class="tcard-meta">
+              <cite><a href="https://www.linkedin.com/in/jamescomptonofficial/" target="_blank" rel="noopener noreferrer">James Compton</a></cite>
+              <span class="tcard-usage">Founder, Limitless Coaching</span>
+            </div>
           </div>
-          <div class="screenshot-sm">
-            <img src="rundock-conversation-lists.png" alt="Rundock conversations sidebar with Launch, Hiring and Ops list pills beside All and Unread, Launch selected so only its three conversations show, and one of them open on the right.">
+        </figure>
+        <figure class="tcard">
+          <blockquote>My previous AI stack was advanced but not cohesive. Every tool had its own context. With Rundock the context is shared, but each agent keeps their skills. I think of an agent I need and I build, hire, create. I see this running my entire business. This is a true operating system.</blockquote>
+          <div class="tcard-attr">
+            <img class="tcard-avatar" src="patrick-giwa.jpeg" alt="Patrick Giwa">
+            <div class="tcard-meta">
+              <cite><a href="https://www.linkedin.com/in/patrickgiwa/" target="_blank" rel="noopener noreferrer">Patrick Giwa</a></cite>
+              <span class="tcard-usage">Founder, AI Impact</span>
+            </div>
           </div>
-        </div>
+        </figure>
+      </div>
 
+    </div>
+  </section>
+
+  <!-- ===================================================
+       5c. CHAPTER: YOUR WORK
+  ==================================================== -->
+  <section class="chapter" aria-labelledby="chapter-work">
+    <div class="container">
+      <div class="chapter-head">
+        <h2 id="chapter-work">Your work.</h2>
+        <p>Everything the team makes opens where you can read it, review it and find it again.</p>
+      </div>
+
+      <figure class="chapter-lead">
+        <div class="screenshot-sm">
+          <img src="rundock-map.png" width="2880" height="1800" loading="lazy" decoding="async" alt="Rundock Map: the workspace drawn as a graph, with clusters of linked notes, unlinked files scattered around the edge, and recently changed files brightest.">
+        </div>
+        <figcaption>Map draws every file as a point and every link as a line. Linked notes cluster, and your most recent work glows warmest.</figcaption>
+      </figure>
+
+      <div class="card-grid">
+        <article class="fcard">
+          <div class="fcard-media">
+            <img src="rundock-tile-files.png" width="560" height="1598" loading="lazy" decoding="async" alt="Rundock file tree: workspace folders such as Clients, Launch and Notes, then markdown files, with boards and notes each carrying their own icon.">
+          </div>
+          <div class="fcard-body">
+            <h3>Any file, shown the way you expect.</h3>
+            <p>Notes format as you type, with tables, callouts and clickable wikilinks. HTML and SVG files open as the finished page, ready for you to review.</p>
+          </div>
+        </article>
+
+        <article class="fcard">
+          <div class="fcard-media">
+            <img src="rundock-tile-review.png" width="536" height="890" loading="lazy" decoding="async" alt="Rundock review panel: two numbered comments on quoted passages, from Cos and Ana, one with a reply from Des, each with Reply and Resolve buttons.">
+          </div>
+          <div class="fcard-body">
+            <h3>Review the work where it lives.</h3>
+            <p>Select a passage, leave a comment, and accept or reject the agent's edit with a click. The feedback stays in the file as plain text.</p>
+          </div>
+        </article>
+
+        <article class="fcard">
+          <div class="fcard-media">
+            <img src="rundock-tile-boards.png" width="1120" height="700" loading="lazy" decoding="async" alt="A Kanban board in Rundock with Backlog, In Progress and Done columns, tagged and dated cards, and three ticked-off cards under Done.">
+          </div>
+          <div class="fcard-body">
+            <h3>Your boards open as real columns.</h3>
+            <p>Drag cards, tick them off, rename and reorder columns. It writes the same markdown Obsidian uses.</p>
+          </div>
+        </article>
+
+        <article class="fcard">
+          <div class="fcard-media">
+            <img src="rundock-tile-search.png" width="1120" height="1055" loading="lazy" decoding="async" alt="Rundock search for launch: results grouped into files and conversations with the matching word marked, and filters for files, conversations, agents and skills.">
+          </div>
+          <div class="fcard-body">
+            <h3>One shortcut finds everything.</h3>
+            <p>Press Cmd+K to search every file, conversation, agent and skill at once. Pick a result and it opens at the right place.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
 
   <!-- ===================================================
-       5c. FEATURE: YOUR SKILLS
+       5d. CHAPTER: MAKE IT YOURS
   ==================================================== -->
-  <section class="feature-section">
+  <section class="chapter" aria-labelledby="chapter-yours">
     <div class="container">
-      <div class="feature-section-inner">
-
-        <div class="feature-copy">
-          <h2>Your skills, attached to the agents who use them.</h2>
-          <p>Each agent has specialised skills: research workflows, writing processes, analysis frameworks. See the full map of who can do what.</p>
-        </div>
-
-        <div class="feature-screenshots">
-          <div class="screenshot-sm">
-            <img src="rundock-skills.png" alt="Rundock skills view showing the list of workspace skills with one skill open, its description, and the agents it is attached to.">
-          </div>
-        </div>
-
+      <div class="chapter-head">
+        <h2 id="chapter-yours">Make it yours.</h2>
+        <p>Add agents and new views from a link, and decide how much your team asks.</p>
       </div>
-    </div>
-  </section>
 
-
-  <!-- ===================================================
-       5d. FEATURE: ROUTINES
-  ==================================================== -->
-  <section class="feature-section">
-    <div class="container">
-      <div class="feature-section-inner reverse">
-
-        <div class="feature-copy">
-          <h2>Set a routine, and it runs itself.</h2>
-          <p>Pick a skill and say when, and Rundock runs it on its own server: a morning briefing, an end-of-day sync, a weekly digest. Run one now to try it, then see exactly what a run changed, or stop one that's misbehaving, from the run's own screen.</p>
+      <figure class="chapter-lead">
+        <div class="screenshot-sm">
+          <img src="rundock-pinned-dashboard.png" width="2880" height="1800" loading="lazy" decoding="async" alt="Rundock Pins: four pinned files in the sidebar, an investment dashboard first and open beside them, drawn by an extension with portfolio totals, an over-limit warning, an allocation chart and a risk control panel.">
         </div>
+        <figcaption>A portfolio note, pinned in the sidebar and drawn by an extension as a dashboard.</figcaption>
+      </figure>
 
-        <div class="feature-screenshots">
-          <div class="screenshot-sm">
-            <img src="rundock-routines.png" alt="Rundock routines list showing five scheduled routines across different agents: one still going, and others that ran on time, caught up after a missed slot, missed, and failed, each row with a Run now control.">
+      <div class="card-grid">
+        <article class="fcard">
+          <div class="fcard-media">
+            <img src="rundock-tile-extensions.png" width="1120" height="976" loading="lazy" decoding="async" alt="Rundock Settings, Extensions: a CSV table extension switched off and an Investment Partner extension switched on, each naming the package it came from, and a Pause all extensions button.">
           </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================================================
-       5e. FEATURE: YOUR FILES
-  ==================================================== -->
-  <section class="feature-section">
-    <div class="container">
-      <div class="feature-section-inner">
-
-        <div class="feature-copy">
-          <h2>Any file your agents touch, shown the way you expect.</h2>
-          <p>Agents think in plain text. You should not have to. Rundock makes their files beautiful for the people they work for. Everything else the team produces, from pages to boards to PDFs, opens where you can review it.</p>
-          <p>Open a note in an editor that formats as you type, with tables, callouts, and clickable wikilinks. Open an HTML or SVG file and see the real rendered page, not its source. Open an image or a PDF and read it in place. Edit a file's properties without touching raw YAML. It is your workspace, shown the way you would expect to see it.</p>
-        </div>
-
-        <div class="feature-screenshots">
-          <div class="screenshot-sm">
-            <img src="rundock-files.png" alt="Rundock showing a markdown note in the editor, with a properties panel above it listing title, status, tags as chips, and a linked related note, and a coloured callout rendered inline below.">
+          <div class="fcard-body">
+            <h3>Add a team, or a new view, from one link.</h3>
+            <p>Paste a GitHub link and Rundock shows what's inside before anything is written. Extensions open a kind of file in its own sandboxed view. Pin any file, an extension's view included, to keep it one click away. <a href="/directory">Browse the Directory</a>.</p>
           </div>
-        </div>
+        </article>
 
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================================================
-       5f. FEATURE: UNIVERSAL SEARCH
-  ==================================================== -->
-  <section class="feature-section">
-    <div class="container">
-      <div class="feature-section-inner reverse">
-
-        <div class="feature-copy">
-          <h2>One shortcut finds everything you have.</h2>
-          <p>Press Cmd+K and search across every file, every conversation, and every agent and skill at once. Type part of a word and it still finds the match. Pick a result and it opens at the right place, scrolling a conversation straight to the message you were looking for.</p>
-        </div>
-
-        <div class="feature-screenshots">
-          <div class="screenshot-sm">
-            <img src="rundock-search.png" alt="Rundock universal search open over the app, showing results for a query grouped into files and conversations, with the matching word highlighted and each file row carrying its type and a matching icon.">
+        <article class="fcard">
+          <div class="fcard-media">
+            <img src="rundock-tile-permissions.png" width="1120" height="2098" loading="lazy" decoding="async" alt="Rundock Settings open at Permissions: Code mode selected, agents kept inside the workspace with one extra folder named, and a list of tools allowed without asking, each with a remove control.">
           </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================================================
-       5g. FEATURE: REVIEW IN PLACE
-  ==================================================== -->
-  <section class="feature-section">
-    <div class="container">
-      <div class="feature-section-inner">
-
-        <div class="feature-copy">
-          <h2>Review your agent's work where it lives.</h2>
-          <p>Select any passage in a file an agent produced and leave a comment. The agent reads it, proposes an edit inline, and you accept or reject with a click. The feedback lives in the file as plain text you can read in any editor, so nothing is locked inside Rundock.</p>
-        </div>
-
-        <div class="feature-screenshots">
-          <div class="screenshot-sm">
-            <img src="rundock-review.png" alt="Rundock showing an HTML page rendered in the main panel with a review sidebar beside it holding threaded review comments with reply and resolve controls.">
+          <div class="fcard-body">
+            <h3>You stay in control, without the constant questions.</h3>
+            <p>Code mode runs everyday development commands without a prompt, and anything that can't be undone still asks. Name the folders agents can also change, and revoke any Always allow in Settings, Permissions.</p>
           </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================================================
-       5h. FEATURE: KANBAN BOARDS
-  ==================================================== -->
-  <section class="feature-section">
-    <div class="container">
-      <div class="feature-section-inner reverse">
-
-        <div class="feature-copy">
-          <h2>Your boards open as real columns.</h2>
-          <p>A Kanban board in your workspace opens as a real column board. Drag cards, tick them off, rename and reorder columns. It writes back the same markdown Obsidian uses, so the same board edits cleanly in both.</p>
-        </div>
-
-        <div class="feature-screenshots">
-          <div class="screenshot-sm">
-            <img src="rundock-boards.gif" alt="Rundock showing a Kanban board with several columns and a card being dragged from one column to another.">
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================================================
-       5i. FEATURE: PINS
-  ==================================================== -->
-  <section class="feature-section">
-    <div class="container">
-      <div class="feature-section-inner">
-
-        <div class="feature-copy">
-          <h2>The files you live in, one click away.</h2>
-          <p>Pin the board you check every morning, the plan you keep returning to, the note your agents update. Pins sit in their own list, in the order you chose, and travel with the workspace to any machine it syncs to.</p>
-        </div>
-
-        <div class="feature-screenshots">
-          <div class="screenshot-sm">
-            <img src="rundock-pinned-dashboard.png" alt="Rundock Pins: four pinned files in the sidebar, an investment dashboard first and open beside them, drawn by an extension with portfolio totals, an over-limit warning, an allocation chart and a risk control panel.">
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================================================
-       5j. FEATURE: MAP
-  ==================================================== -->
-  <section class="feature-section">
-    <div class="container">
-      <div class="feature-section-inner reverse">
-
-        <div class="feature-copy">
-          <h2>See your whole workspace at once.</h2>
-          <p>Map draws every file as a point and every link as a line. Notes that belong together cluster, files nobody links to sit around the edge, and your most recent work glows warmest. Click any point to open the file.</p>
-        </div>
-
-        <div class="feature-screenshots">
-          <div class="screenshot-sm">
-            <img src="rundock-map.png" alt="Rundock Map: the workspace drawn as a graph, with clusters of linked notes, unlinked files scattered around the edge, and recently changed files brightest.">
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================================================
-       5k. FEATURE: PACKAGES AND EXTENSIONS
-  ==================================================== -->
-  <section class="feature-section">
-    <div class="container">
-      <div class="feature-section-inner">
-
-        <div class="feature-copy">
-          <h2>Add a team, or a new way to see a file, from one link.</h2>
-          <p>Paste a GitHub link and Rundock shows you what is inside before anything is written: the agents, the skills, the routines and when they run. Agents and skills become yours to edit. Updates keep your changes.</p>
-          <p>Some packages bring an extension, which opens a kind of file in its own view, such as a portfolio as a dashboard. Extensions run in a sandbox, use Rundock's own components, and switch off with one click. <a href="/directory">Browse the Directory</a>.</p>
-        </div>
-
-        <div class="feature-screenshots">
-          <div class="screenshot-sm">
-            <img src="rundock-pinned-dashboard.png" alt="Rundock opening an investment dashboard note in an extension's view: portfolio totals, an over-limit warning, an allocation chart and a risk control panel, drawn with Rundock's own cards and controls.">
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ===================================================
-       5l. FEATURE: PERMISSIONS
-  ==================================================== -->
-  <section class="feature-section">
-    <div class="container">
-      <div class="feature-section-inner reverse">
-
-        <div class="feature-copy">
-          <h2>Your agents ask before anything that matters.</h2>
-          <p>When an agent wants to run a command or change a file it has no permission for, it asks with a card: allow it once, always, or not at all. Everything you have always allowed is listed in Settings, and you can take any of it back.</p>
-          <p>Working on notes, agents ask before running commands. Working on code, they get on with everyday development work, and anything that can't be undone still asks, every time.</p>
-        </div>
-
-        <div class="feature-screenshots">
-          <div class="screenshot-sm">
-            <img src="rundock-permissions.png" alt="Rundock Settings open at Permissions: Code mode selected, agents kept inside the workspace with one extra folder named, and a list of tools allowed without asking, each with a remove control.">
-          </div>
-        </div>
-
+        </article>
       </div>
     </div>
   </section>
@@ -2015,9 +2135,9 @@
         </div>
 
         <div class="story-body">
-          <p>Before Rundock, I was running five things at once. Content, clients, marketing, research, admin. Posts were going up later than I wanted. Client work was eating into evenings. Research I had meant to read had been sitting unopened for weeks. There was only one of me, and the maths had stopped working.</p>
+          <p>Before Rundock, I was running five things at once. Content, clients, marketing, research, admin. Posts were going up later than I wanted. Client work was eating into evenings. Research I'd meant to read had been sitting unopened for weeks. There was only one of me, and the maths had stopped working.</p>
           <p>I started building Rundock because my first child was on the way and time was about to compress. I needed more output from the same hours. So I tried as many AI tools as I could. They were either too complicated or just gave me one assistant. What I needed was a team. The day a beta user sent me a screenshot of his own org chart, I knew the metaphor had clicked. This was closer to hiring people than to chatting with a model.</p>
-          <p>Today, I still work most days. The difference is what I am doing in those hours. Cos has the morning briefing waiting. Penn has hooks and a draft for me to push back on. Arlo's weekly digest lands on Saturday whether I open it or not. I am the editor and the orchestrator, not the bottleneck. That is what Rundock is for.</p>
+          <p>Today, I still work most days. The difference is what I'm doing in those hours. Cos has the morning briefing waiting. Penn has hooks and a draft for me to push back on. Arlo's weekly digest lands on Saturday whether I open it or not. I set the direction and edit the work. The team keeps it moving. That's what Rundock is for.</p>
           <div class="story-links">
             <a href="https://theainativeaccelerator.com/lean-agent-team" target="_blank" rel="noopener">Get the Lean Agent Team, free</a>
             <a href="https://theainativeaccelerator.com/ai-scorecard/" target="_blank" rel="noopener">Take the AI Readiness Scorecard</a>
@@ -2030,38 +2150,6 @@
   </section>
 
 
-  <!-- ===================================================
-       8. WALL OF LOVE
-  ==================================================== -->
-  <section class="wall-of-love" aria-label="User testimonials">
-    <div class="container">
-      <h2>What people are saying</h2>
-
-      <div class="opt-b-grid">
-        <figure class="tcard">
-          <blockquote>Rundock removed the intimidation of Claude Code. You stop thinking in coding terms and start thinking in team terms. It's like having your own virtual team of highly paid experts, running in parallel. I've built my entire business DNA in the box.</blockquote>
-          <div class="tcard-attr">
-            <img class="tcard-avatar" src="james-compton.jpeg" alt="James Compton">
-            <div class="tcard-meta">
-              <cite><a href="https://www.linkedin.com/in/jamescomptonofficial/" target="_blank" rel="noopener noreferrer">James Compton</a></cite>
-              <span class="tcard-usage">Founder, Limitless Coaching</span>
-            </div>
-          </div>
-        </figure>
-        <figure class="tcard">
-          <blockquote>My previous AI stack was advanced but not cohesive. Every tool had its own context. With Rundock the context is shared, but each agent keeps their skills. I think of an agent I need and I build, hire, create. I see this running my entire business. This is a true operating system.</blockquote>
-          <div class="tcard-attr">
-            <img class="tcard-avatar" src="patrick-giwa.jpeg" alt="Patrick Giwa">
-            <div class="tcard-meta">
-              <cite><a href="https://www.linkedin.com/in/patrickgiwa/" target="_blank" rel="noopener noreferrer">Patrick Giwa</a></cite>
-              <span class="tcard-usage">Founder, AI Impact</span>
-            </div>
-          </div>
-        </figure>
-      </div>
-
-    </div>
-  </section>
 
 
   <!-- ===================================================
@@ -2104,13 +2192,13 @@
   <section class="compare-teaser">
     <div class="container">
       <h2>Something you talk to, or something you run.</h2>
-      <p class="compare-teaser-intro">Rundock runs your team on a subscription you probably already pay for. Here is the short version.</p>
+      <p class="compare-teaser-intro">Rundock runs your team on a subscription you probably already pay for. Here's the short version.</p>
 
       <div class="compare-teaser-points">
         <p><strong>ChatGPT or Claude on its own:</strong> one assistant that forgets how you work. Rundock puts a team on top of the same subscription, in your files.</p>
         <p><strong>Obsidian or Reflect:</strong> they hold what you know. Rundock puts a team to work on it, in the same files.</p>
         <p><strong>Notion:</strong> their agents live in their cloud on their plan. Your team lives in your folder.</p>
-        <p><strong>Claude Code, OpenClaw, CrewAI:</strong> engines. Rundock is the car built around them, and you do not need to be a mechanic.</p>
+        <p><strong>Claude Code, OpenClaw, CrewAI:</strong> engines. Rundock is the car built around them, and you don't need to be a mechanic.</p>
       </div>
 
       <p class="compare-teaser-intro">Ten minutes, guided setup. <a href="/download">Get started.</a></p>
@@ -2128,7 +2216,7 @@
     <div class="container">
       <h2>The layer that stays yours as the models change.</h2>
       <p class="layer-yours-bridge">Already tried agents in the terminal? Rundock gives you the same power with an org chart you can see and delegation you can watch, running your team across Claude Code and Codex.</p>
-      <p class="layer-yours-body">Rundock is more than a front end. It is a runtime-agnostic orchestration layer: the control plane that catches each request, routes it to the right specialist, hands context between agents, and keeps the team coordinated. The execution engine underneath is pluggable, Claude Code and Codex today, more later. Because your team is plain markdown you own, the same team runs on whichever engine you choose, switchable without a rebuild. When any one model gets commoditised, the layer you built on top is the part that lasts.</p>
+      <p class="layer-yours-body">Rundock is more than a front end. It's a runtime-agnostic orchestration layer: the control plane that catches each request, routes it to the right specialist, hands context between agents, and keeps the team coordinated. The execution engine underneath is pluggable, Claude Code and Codex today, more later. Because your team is plain markdown you own, the same team runs on whichever engine you choose, switchable without a rebuild. When any one model gets commoditised, the layer you built on top is the part that lasts.</p>
     </div>
   </section>
 
@@ -2139,7 +2227,7 @@
   <section class="get-started">
     <div class="container">
       <h2>Get started.</h2>
-      <p class="get-started-intro">You don't need to write code. You need Claude Code and a folder to call your workspace.</p>
+      <p class="get-started-intro">You don't need to write code. You need Rundock, Claude Code and a folder to call your workspace.</p>
 
       <div class="get-started-ctas">
         <a href="https://github.com/liamdarmody/rundock/releases/latest"
@@ -2149,7 +2237,7 @@
       </div>
       <p style="font-size:13px; color:var(--text-2); margin-top:8px;">Free for macOS and Windows. <a href="/download" style="color:var(--text-2); text-decoration:underline; text-underline-offset:3px;">All download options.</a></p>
 
-      <p class="get-started-intro">Setup takes about ten minutes and the app walks you through it. After that, there is no terminal in your day.</p>
+      <p class="get-started-intro">Setup takes about ten minutes and the app walks you through it. After that, there's no terminal in your day.</p>
 
       <!-- Vertical numbered timeline -->
       <div class="steps-timeline">
@@ -2157,21 +2245,22 @@
         <div class="step-row">
           <div class="step-numeral">01</div>
           <div class="step-content">
-            <h3>Install Claude Code</h3>
-            <p>Rundock runs on top of <a href="https://claude.com/product/claude-code" target="_blank" rel="noopener">Claude Code</a>. Install it first. Once set up, specialists can also run on a ChatGPT plan via the official Codex CLI. Requires a Claude Pro ($20/mo) or Max ($100/mo) subscription.</p>
+            <h3><a href="/download" class="step-title-link">Download Rundock for Mac or Windows</a></h3>
+            <p>One file. Open it and it runs.</p>
+            <div class="step-sub">
+              <p>Rundock runs on <a href="https://claude.com/product/claude-code" target="_blank" rel="noopener">Claude Code</a>, and needs a Claude Pro ($20/mo) or Max ($100/mo) subscription. The setup wizard installs Claude Code for you, or you can install it yourself with one command:</p>
+              <div class="install-cmd">
+                <code>curl -fsSL https://claude.ai/install.sh | bash</code>
+                <button type="button" class="install-cmd-copy" onclick="copyCode(this)" aria-label="Copy the Claude Code install command"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+              </div>
+              <p class="step-note">On Windows, the wizard gives you the PowerShell version. Specialists can also run on a ChatGPT plan via the official Codex CLI.</p>
+            </div>
+            <p class="step-note">On Linux? <a href="https://github.com/liamdarmody/rundock#build-from-source" target="_blank" rel="noopener">Run Rundock from source</a>.</p>
           </div>
         </div>
 
         <div class="step-row">
           <div class="step-numeral">02</div>
-          <div class="step-content">
-            <h3>Download Rundock</h3>
-            <p>One file. Open it and it runs. Available for macOS and Windows. See the <a href="/download">download page</a> for every option.</p>
-          </div>
-        </div>
-
-        <div class="step-row">
-          <div class="step-numeral">03</div>
           <div class="step-content">
             <h3>Choose a workspace</h3>
             <p>Point Rundock at any folder on your computer. That folder becomes your workspace. Your agents, files, and conversations live there.</p>
@@ -2179,7 +2268,7 @@
         </div>
 
         <div class="step-row">
-          <div class="step-numeral">04</div>
+          <div class="step-numeral">03</div>
           <div class="step-content">
             <h3>Build your team</h3>
             <p>Doc, your platform agent, walks you through building your first agents. Named, configured, and ready to work in under ten minutes.</p>
@@ -2202,11 +2291,11 @@
       <div class="faq-list">
         <details class="faq-item">
           <summary>What does Rundock cost?</summary>
-          <p>Rundock is free. You will need a Claude Pro ($20/mo) or Max ($100/mo) subscription for the AI processing, since Rundock runs on top of Claude Code. Add a ChatGPT plan if you want specialist agents on Codex too. That is the total cost.</p>
+          <p>Rundock is free. You'll need a Claude Pro ($20/mo) or Max ($100/mo) subscription for the AI processing, since Rundock runs on top of Claude Code. Add a ChatGPT plan if you want specialist agents on Codex too. That's the total cost.</p>
         </details>
         <details class="faq-item">
-          <summary>What if I am not technical?</summary>
-          <p>If you can describe what you want, Rundock can build it. You will spend more time naming your agents than writing code. Doc, the built-in platform agent, walks you through setup and builds your first agents with you.</p>
+          <summary>What if I'm not technical?</summary>
+          <p>If you can describe what you want, Rundock can build it. You'll spend more time naming your agents than writing code. Doc, the built-in platform agent, walks you through setup and builds your first agents with you.</p>
         </details>
         <details class="faq-item">
           <summary>Why not just use Claude Code?</summary>
@@ -2214,7 +2303,7 @@
         </details>
         <details class="faq-item">
           <summary>Is Rundock a harness or an orchestrator?</summary>
-          <p>Neither: Rundock runs on harnesses. Claude Code and Codex are the harnesses; they own the agentic loop, tool execution, and context management, and they improve without Rundock lifting a finger. Rundock is the layer above: the workspace where a team of harness-run agents is built, managed, observed, and improved. If you want a word for it, it is an orchestration layer, but the orchestration primitive is delegation between named agents on an org chart, not a graph you program.</p>
+          <p>Neither: Rundock runs on harnesses. Claude Code and Codex are the harnesses; they own the agentic loop, tool execution, and context management, and they improve without Rundock lifting a finger. Rundock is the layer above: the workspace where a team of harness-run agents is built, managed, observed, and improved. If you want a word for it, it's an orchestration layer, but the orchestration primitive is delegation between named agents on an org chart, not a graph you program.</p>
         </details>
         <details class="faq-item">
           <summary>Do I have to design agent graphs or loops?</summary>
@@ -2222,7 +2311,7 @@
         </details>
         <details class="faq-item">
           <summary>How does Rundock relate to best practices for working with AI?</summary>
-          <p>It makes them structural instead of disciplinary. Context engineering: every specialist has a small, role-scoped context, because that is what an agent file is. Reusable procedures: skills are files. Persistent memory: legible markdown you can read and correct, not an opaque store. Human in the loop: the permission model and the review flow. Observability: delegation happens in front of you. You do not follow the best practices. You get them by default.</p>
+          <p>It makes them structural instead of disciplinary. Context engineering: every specialist has a small, role-scoped context, because that's what an agent file is. Reusable procedures: skills are files. Persistent memory: legible markdown you can read and correct, not an opaque store. Human in the loop: the permission model and the review flow. Observability: delegation happens in front of you. You don't follow the best practices. You get them by default.</p>
         </details>
         <details class="faq-item">
           <summary>Where does my data live?</summary>
@@ -2234,7 +2323,7 @@
         </details>
         <details class="faq-item">
           <summary>Can my agents work on a schedule?</summary>
-          <p>Yes. Set up routines so your team runs on its own. The weekly research digest, the Monday content review, the overnight email triage. Pick the schedule, walk away, get the output when it is ready.</p>
+          <p>Yes. Set up routines so your team runs on its own. The weekly research digest, the Monday content review, the overnight email triage. Pick the schedule, walk away, get the output when it's ready.</p>
         </details>
         <details class="faq-item">
           <summary>Does my computer need to be on?</summary>
@@ -2242,15 +2331,15 @@
         </details>
         <details class="faq-item">
           <summary>Is this another tool I have to babysit?</summary>
-          <p>There is nothing to host and nothing to maintain beyond updating the app. The team runs when you ask it to, every action that matters asks permission, and the org chart shows you everything at a glance. Rundock is where you already work, not another service to keep alive.</p>
+          <p>There's nothing to host and nothing to maintain beyond updating the app. The team runs when you ask it to, every action that matters asks permission, and the org chart shows you everything at a glance. Rundock is where you already work, not another service to keep alive.</p>
         </details>
         <details class="faq-item">
           <summary>What if Rundock stops being maintained?</summary>
           <p>Your workspace is yours. Agents and skills are markdown files you own. The code is open source. Worst case, you keep using whatever version works on your machine, or fork it, or take your agents to any tool that supports the Claude agent format.</p>
         </details>
         <details class="faq-item">
-          <summary>How long until I am up and running?</summary>
-          <p>Around an evening. Install Claude Code (10 minutes). Download Rundock and pick a workspace folder (5 minutes). Talk to Doc and let him build your first three agents (30 to 60 minutes). You are running.</p>
+          <summary>How long until I'm up and running?</summary>
+          <p>Around an evening. Install Claude Code (10 minutes). Download Rundock and pick a workspace folder (5 minutes). Talk to Doc and let him build your first three agents (30 to 60 minutes). You're running.</p>
         </details>
       </div>
     </div>
@@ -2299,6 +2388,7 @@
         <div>
           <p class="footer-col-label">From Liam</p>
           <div class="footer-col-links">
+            <a href="https://theainativeaccelerator.com" target="_blank" rel="noopener">The AI-Native Accelerator</a>
             <a href="https://theainativeaccelerator.com/lean-agent-team" target="_blank" rel="noopener">The Lean Agent Team</a>
             <a href="https://theainativeaccelerator.com/ai-scorecard/" target="_blank" rel="noopener">AI Readiness Scorecard</a>
             <a href="https://liamdarmody.com/services" target="_blank" rel="noopener">Services</a>
@@ -2319,20 +2409,6 @@
   </footer>
 
   <script>
-  // Copy a package's paste string, as the Directory's copy control does,
-  // and put the button's own label back afterwards.
-  document.addEventListener('click', function (e) {
-    var el = e.target.closest && e.target.closest('.dir-copy');
-    if (!el || !navigator.clipboard || !navigator.clipboard.writeText) return;
-    e.preventDefault();
-    var label = el.dataset.label || el.textContent;
-    el.dataset.label = label;
-    navigator.clipboard.writeText(el.dataset.copy).then(function () {
-      el.textContent = 'Copied';
-      setTimeout(function () { el.textContent = label; }, 1500);
-    }, function () {});
-  });
-
   // Clipboard handler (matches existing site pattern)
   function copyCode(btn) {
     const code = btn.parentElement.querySelector('code').textContent;
