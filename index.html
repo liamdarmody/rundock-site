@@ -259,14 +259,17 @@
       justify-content: center;
       padding: 0;
       border: 0;
-      border-radius: 10px;
       background: transparent;
       cursor: pointer;
-      transition: background-color 0.2s ease;
     }
     .hero-film-trigger[hidden] { display: none; }
-    .hero-film-trigger:hover { background: rgba(0, 0, 0, 0.12); }
-    .hero-film-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    /* Dim the picture itself, not the box: the PNG has a transparent margin
+       around the window, and brightness leaves transparent pixels alone. */
+    .hero-frame img { transition: filter 0.2s ease; }
+    .hero-frame:hover img,
+    .hero-frame:has(.hero-film-trigger:focus-visible) img { filter: brightness(0.86); }
+    .hero-film-trigger:focus-visible { outline: none; }
+    .hero-film-trigger:focus-visible .hero-play { outline: 2px solid var(--accent); outline-offset: 4px; }
     .hero-play {
       display: flex;
       align-items: center;
@@ -296,6 +299,10 @@
     }
 
     .film-dialog {
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      height: fit-content;
       width: min(1120px, calc(100vw - 48px));
       max-width: none;
       max-height: none;
@@ -352,7 +359,7 @@
       .film-close { top: 8px; right: 8px; width: 32px; height: 32px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero-film-trigger, .hero-play { transition: none; }
+      .hero-frame img, .hero-play { transition: none; }
       .hero-film-trigger:hover .hero-play, .hero-film-trigger:focus-visible .hero-play { transform: none; }
       .film-dialog[open] .film-panel { animation: none; }
     }
