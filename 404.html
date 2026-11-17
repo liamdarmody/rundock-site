@@ -151,12 +151,13 @@
 
       <p class="footer-credit">
         Built by <a href="https://www.linkedin.com/in/liamdarmody/" target="_blank" rel="noopener">Liam Darmody</a>.
-        &copy; 2026. Rundock is
+        &copy; <span data-year>2026</span>. Rundock is
         <a href="https://github.com/liamdarmody/rundock/blob/main/LICENSE" target="_blank" rel="noopener">PolyForm Perimeter 1.0.0</a>.
         <a href="/ai-policy">AI Policy</a>.
       </p>
 
     </div>
+  <script>document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });</script>
   </footer>
 
   <!-- Summarise-with-LLM widget. Self-contained; bottom-right floating launcher. -->
